@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nocturne — Custom Tattoo Studio",
+  title: "Spiritual Tattoo Studio — Custom Tattoo Art",
   description:
     "Original blackwork, fine-line, large-scale, and cover-up tattoos created in a private appointment-only studio.",
   keywords: [
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     "blackwork tattoo",
     "fine line tattoo",
     "tattoo consultation",
-    "Nocturne tattoo",
+    "Spiritual Tattoo Studio",
   ],
   openGraph: {
-    title: "Nocturne — Custom Tattoo Studio",
+    title: "Spiritual Tattoo Studio — Custom Tattoo Art",
     description:
       "One-of-one tattoos designed around anatomy, movement, and longevity.",
     type: "website",

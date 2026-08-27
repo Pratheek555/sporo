@@ -21,8 +21,17 @@ export default function LandingHero() {
       ).matches;
 
       if (reducedMotion) {
+        root.current?.querySelector("video")?.pause();
         gsap.set(".intro", { autoAlpha: 0, pointerEvents: "none" });
-        gsap.set([".hero-title", ".enter-studio", ".hero-peacock"], {
+        gsap.set([
+          ".hero-title",
+          ".enter-studio",
+          ".hero-peacock",
+          ".hero-film-frame",
+          ".hero-tech",
+          ".hero-tagline",
+          ".hero-stream",
+        ], {
           opacity: 1,
           y: 0,
         });
@@ -54,6 +63,11 @@ export default function LandingHero() {
           opacity: 0,
           y: 28,
         })
+        .set([".hero-tech", ".hero-tagline", ".hero-stream"], {
+          opacity: 0,
+          y: 12,
+        })
+        .set(".hero-film-frame", { opacity: 0, scale: 0.96 })
         .set(".hero-peacock", { opacity: 0, xPercent: 8, scale: 1.04 })
         .to(".intro-mark span", {
           yPercent: 0,
@@ -91,6 +105,19 @@ export default function LandingHero() {
           duration: 1.45,
           ease: "power2.out",
         }, 2.7)
+        .to(".hero-film-frame", {
+          opacity: 0.62,
+          scale: 1,
+          duration: 1.2,
+          ease: "power2.out",
+        }, 2.76)
+        .to([".hero-tech", ".hero-tagline", ".hero-stream"], {
+          opacity: 1,
+          y: 0,
+          duration: 0.62,
+          stagger: 0.06,
+          ease: "power3.out",
+        }, 2.88)
         .to(".hero-title", {
           opacity: 1,
           y: 0,
@@ -104,6 +131,20 @@ export default function LandingHero() {
           ease: "power3.out",
         }, 3.06);
 
+      gsap.to(".hero-peacock", {
+        scale: 1.012,
+        duration: 5.5,
+        delay: 6.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.timeline({ repeat: -1, repeatDelay: 3.4, delay: 7.1 })
+        .to(".hero-film-frame", { x: 2, opacity: 0.5, duration: 0.05, ease: "none" })
+        .to(".hero-film-frame", { x: -2, opacity: 0.7, duration: 0.05, ease: "none" })
+        .to(".hero-film-frame", { x: 0, opacity: 0.62, duration: 0.08, ease: "none" });
+
       return () => document.body.classList.remove("intro-running");
     },
     { scope: root },
@@ -112,6 +153,14 @@ export default function LandingHero() {
   return (
     <div ref={root} className="landing-shell">
       <section id="top" className="hero" aria-labelledby="hero-title">
+        <div className="hero-film-frame" aria-hidden="true">
+          <video autoPlay loop muted playsInline preload="metadata">
+            <source src="/work.mp4" type="video/mp4" />
+          </video>
+          <span className="film-index">STS / VISUAL ARCHIVE / 001</span>
+          <span className="film-state">LOOPING</span>
+        </div>
+
         <div className="hero-peacock" aria-hidden="true">
           <Image
             src="/redpeacock.png"
@@ -120,6 +169,31 @@ export default function LandingHero() {
             priority
             sizes="(max-width: 700px) 82vw, 55vw"
           />
+        </div>
+
+        <div className="hero-tech hero-tech--studio" aria-hidden="true">
+          <span>{"{CUSTOM TATTOO"}</span>
+          <span>AND ART STUDIO.</span>
+          <span>{"APPOINTMENT ONLY}"}</span>
+        </div>
+
+        <div className="hero-tech hero-tech--location" aria-hidden="true">
+          <span>{"{PONDICHERRY /}"}</span>
+          <span>{"{INDIA}"}</span>
+        </div>
+
+        <div className="hero-tech hero-tech--signal" aria-hidden="true">
+          <span>{"{SIGNAL}"}</span>
+          <span>VISUAL / NO SOUND</span>
+        </div>
+
+        <p className="hero-tagline">Where art meets you comes with you</p>
+
+        <div className="hero-stream hero-stream--left" aria-hidden="true">
+          STS / 01 / PONDICHERRY / ART / INK / FORM
+        </div>
+        <div className="hero-stream hero-stream--right" aria-hidden="true">
+          MEMORY / RITUAL / BODY / PERMANENCE / 2026
         </div>
 
         <h1 id="hero-title" className="hero-title">

@@ -32,7 +32,119 @@ a { color: inherit; text-decoration: none; }
   isolation: isolate;
   overflow: hidden;
   background: #000;
+  box-shadow: inset 0 0 15vw rgba(0, 0, 0, 0.72);
 }
+
+.hero::before {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 50% 46%, transparent 38%, rgba(0, 0, 0, 0.55) 100%);
+  content: "";
+  opacity: 0.58;
+  pointer-events: none;
+  animation: screen-flicker 7s steps(1) infinite;
+}
+
+.hero-film-frame {
+  position: absolute;
+  z-index: 0;
+  top: 48%;
+  left: 51%;
+  width: min(34vw, 520px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(245, 241, 235, 0.28);
+  background: #0a0a0a;
+  box-shadow:
+    0 0 0 9px rgba(255, 255, 255, 0.018),
+    0 28px 90px rgba(0, 0, 0, 0.62);
+  will-change: transform, opacity;
+}
+
+.hero-film-frame::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(201, 45, 53, 0.16), transparent 24%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.32), transparent 36%);
+  content: "";
+  pointer-events: none;
+}
+
+.hero-film-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1) contrast(1.3) brightness(0.75);
+}
+
+.film-index,
+.film-state {
+  position: absolute;
+  z-index: 2;
+  bottom: 12px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.07em;
+}
+
+.film-index { left: 12px; }
+.film-state { right: 12px; color: var(--signal); }
+
+.hero-tech,
+.hero-tagline,
+.hero-stream {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  font-family: var(--font-geist-mono), monospace;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+}
+
+.hero-tech {
+  top: clamp(22px, 4.2vh, 52px);
+  display: grid;
+  font-size: clamp(0.56rem, 0.68vw, 0.72rem);
+  line-height: 1.35;
+  letter-spacing: 0.035em;
+}
+
+.hero-tech--studio { left: clamp(22px, 3.5vw, 68px); }
+.hero-tech--location { left: 51%; transform: translateX(-50%); }
+.hero-tech--signal { right: clamp(22px, 3.5vw, 68px); text-align: right; }
+.hero-tech--signal span:last-child { color: var(--signal); }
+
+.hero-tagline {
+  top: 55%;
+  left: clamp(22px, 3.5vw, 68px);
+  width: min(27vw, 390px);
+  color: rgba(245, 241, 235, 0.72);
+  font-size: clamp(0.63rem, 0.78vw, 0.84rem);
+  line-height: 1.4;
+}
+
+.hero-tagline::before {
+  color: var(--signal);
+  content: "{MANIFESTO} ";
+}
+
+.hero-stream {
+  top: 50%;
+  color: rgba(245, 241, 235, 0.32);
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+}
+
+.hero-stream--left { left: 13px; transform: translateY(-50%) rotate(180deg); }
+.hero-stream--right { right: 13px; transform: translateY(-50%); }
 
 .hero-peacock {
   position: absolute;
@@ -154,6 +266,13 @@ a { color: inherit; text-decoration: none; }
 
 @keyframes orbit {
   to { transform: rotate(360deg); }
+}
+
+@keyframes screen-flicker {
+  0%, 89%, 100% { opacity: 0.58; }
+  90% { opacity: 0.42; }
+  91% { opacity: 0.64; }
+  92% { opacity: 0.5; }
 }
 
 .intro {
@@ -301,6 +420,20 @@ a { color: inherit; text-decoration: none; }
     width: 110vw;
   }
 
+  .hero-film-frame {
+    left: 45%;
+    width: min(46vw, 470px);
+  }
+
+  .hero-tech--location {
+    left: 46%;
+  }
+
+  .hero-tagline {
+    top: 51%;
+    width: 31vw;
+  }
+
   .hero-title {
     font-size: clamp(3.35rem, 7.6vw, 5.2rem);
   }
@@ -327,6 +460,42 @@ a { color: inherit; text-decoration: none; }
     object-position: right top;
     transform: scaleX(1.1);
   }
+  .hero-film-frame {
+    top: 39%;
+    left: 43%;
+    width: 66vw;
+    opacity: 0.48;
+  }
+  .film-index,
+  .film-state {
+    bottom: 8px;
+    font-size: 0.46rem;
+  }
+  .film-index { left: 8px; }
+  .film-state { right: 8px; }
+  .hero-tech {
+    top: 18px;
+    font-size: 0.48rem;
+  }
+  .hero-tech--studio { left: 18px; }
+  .hero-tech--studio span:nth-child(2),
+  .hero-tech--studio span:nth-child(3) { display: none; }
+  .hero-tech--location {
+    right: 18px;
+    left: auto;
+    transform: none;
+    text-align: right;
+  }
+  .hero-tech--signal { display: none; }
+  .hero-tagline {
+    top: auto;
+    right: 18px;
+    bottom: 116px;
+    left: 18px;
+    width: auto;
+    font-size: 0.54rem;
+  }
+  .hero-stream { display: none; }
   .hero-title {
     right: 18px;
     bottom: 28px;
@@ -355,4 +524,5 @@ a { color: inherit; text-decoration: none; }
     transition-duration: 0.01ms !important;
   }
   .intro { display: none; }
+  .hero::before { animation: none; }
 }

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(useGSAP);
 
@@ -13,6 +14,7 @@ const tunnelLines = Array.from({ length: 7 }, (_, index) => (
 
 export default function LandingHero() {
   const root = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useGSAP(
     () => {
@@ -25,6 +27,7 @@ export default function LandingHero() {
         gsap.set(".intro", { autoAlpha: 0, pointerEvents: "none" });
         gsap.set([
           ".hero-title",
+          ".hero-welcome",
           ".enter-studio",
           ".hero-peacock",
           ".hero-film-frame",
@@ -40,6 +43,11 @@ export default function LandingHero() {
 
       document.body.classList.add("intro-running");
 
+      // Keep video decoding out of the heaviest part of the intro. The file is
+      // already preloaded and starts just before the hero is revealed.
+      const heroVideo = root.current?.querySelector("video");
+      heroVideo?.pause();
+
       const timeline = gsap.timeline({
         defaults: { ease: "power3.inOut" },
         onComplete: () => {
@@ -48,18 +56,19 @@ export default function LandingHero() {
         },
       });
 
-      // Stretch the full sequence from roughly 3.8s to 6.1s.
+      // Give the sequence a deliberate pace without slowing individual eases.
       timeline.timeScale(0.62);
 
       timeline
         .set(".intro", { autoAlpha: 1 })
+        .set(".intro-backdrop", { opacity: 1 })
         .set(".intro-mark span", { yPercent: 115 })
-        .set(".tunnel", { scale: 0.18, z: -900, opacity: 0 })
+        .set(".tunnel", { scale: 0.18, opacity: 0 })
         .set(".tunnel-plane--top", { yPercent: -105 })
         .set(".tunnel-plane--bottom", { yPercent: 105 })
         .set(".tunnel-plane--left", { xPercent: -105 })
         .set(".tunnel-plane--right", { xPercent: 105 })
-        .set([".hero-title", ".enter-studio"], {
+        .set([".hero-title", ".hero-welcome", ".enter-studio"], {
           opacity: 0,
           y: 28,
         })
@@ -87,49 +96,75 @@ export default function LandingHero() {
         .to(".tunnel-plane--bottom", { yPercent: 0, duration: 0.55 }, 0.9)
         .to(".tunnel-plane--left", { xPercent: 0, duration: 0.55 }, 0.9)
         .to(".tunnel-plane--right", { xPercent: 0, duration: 0.55 }, 0.9)
-        .to(".tunnel", {
-          scale: 4.2,
-          z: 920,
-          duration: 1.35,
-          ease: "expo.in",
+        .to(".intro-backdrop", {
+          opacity: 0,
+          duration: 0.48,
+          ease: "power2.inOut",
+        }, 1.05)
+        // Open the four sides instead of upscaling the entire clipped scene.
+        // This keeps each text surface at a stable raster size while the
+        // transparent centre reveals the hero continuously underneath.
+        .to(".tunnel-plane--top", {
+          yPercent: -112,
+          duration: 1.25,
+          ease: "power3.inOut",
         }, 1.55)
-        .to(".tunnel-plane--top .tunnel-text", { yPercent: -18, duration: 1.1 }, 1.58)
-        .to(".tunnel-plane--bottom .tunnel-text", { yPercent: 18, duration: 1.1 }, 1.58)
-        .to(".tunnel-plane--left .tunnel-text", { xPercent: -16, duration: 1.1 }, 1.58)
-        .to(".tunnel-plane--right .tunnel-text", { xPercent: 16, duration: 1.1 }, 1.58)
-        .to(".intro", { autoAlpha: 0, duration: 0.16, ease: "none" }, 2.72)
+        .to(".tunnel-plane--bottom", {
+          yPercent: 112,
+          duration: 1.25,
+          ease: "power3.inOut",
+        }, 1.55)
+        .to(".tunnel-plane--left", {
+          xPercent: -112,
+          duration: 1.25,
+          ease: "power3.inOut",
+        }, 1.55)
+        .to(".tunnel-plane--right", {
+          xPercent: 112,
+          duration: 1.25,
+          ease: "power3.inOut",
+        }, 1.55)
+        .to(".tunnel-void span", {
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        }, 1.62)
+        .call(() => {
+          heroVideo?.play().catch(() => undefined);
+        }, [], 1.75)
+        .to(".intro", { autoAlpha: 0, duration: 0.3, ease: "power1.out" }, 2.55)
         .to(".hero-peacock", {
           opacity: 1,
           xPercent: 0,
           scale: 1,
           duration: 1.45,
           ease: "power2.out",
-        }, 2.7)
+        }, 1.85)
         .to(".hero-film-frame", {
-          opacity: 0.62,
+          opacity: 0.42,
           scale: 1,
           duration: 1.2,
           ease: "power2.out",
-        }, 2.76)
+        }, 1.9)
         .to([".hero-tech", ".hero-tagline", ".hero-stream"], {
           opacity: 1,
           y: 0,
           duration: 0.62,
           stagger: 0.06,
           ease: "power3.out",
-        }, 2.88)
-        .to(".hero-title", {
+        }, 2.05)
+        .to([".hero-welcome", ".hero-title"], {
           opacity: 1,
           y: 0,
           duration: 0.76,
           ease: "power3.out",
-        }, 2.9)
+        }, 2.1)
         .to(".enter-studio", {
           opacity: 1,
           y: 0,
           duration: 0.72,
           ease: "power3.out",
-        }, 3.06);
+        }, 2.3);
 
       gsap.to(".hero-peacock", {
         scale: 1.012,
@@ -140,11 +175,6 @@ export default function LandingHero() {
         ease: "sine.inOut",
       });
 
-      gsap.timeline({ repeat: -1, repeatDelay: 3.4, delay: 7.1 })
-        .to(".hero-film-frame", { x: 2, opacity: 0.5, duration: 0.05, ease: "none" })
-        .to(".hero-film-frame", { x: -2, opacity: 0.7, duration: 0.05, ease: "none" })
-        .to(".hero-film-frame", { x: 0, opacity: 0.62, duration: 0.08, ease: "none" });
-
       return () => document.body.classList.remove("intro-running");
     },
     { scope: root },
@@ -154,7 +184,7 @@ export default function LandingHero() {
     <div ref={root} className="landing-shell">
       <section id="top" className="hero" aria-labelledby="hero-title">
         <div className="hero-film-frame" aria-hidden="true">
-          <video autoPlay loop muted playsInline preload="metadata">
+          <video loop muted playsInline preload="auto">
             <source src="/work.mp4" type="video/mp4" />
           </video>
           <span className="film-index">STS / VISUAL ARCHIVE / 001</span>
@@ -163,7 +193,7 @@ export default function LandingHero() {
 
         <div className="hero-peacock" aria-hidden="true">
           <Image
-            src="/redpeacock.png"
+            src="/hero-red-art.png"
             alt=""
             fill
             priority
@@ -187,7 +217,7 @@ export default function LandingHero() {
           <span>VISUAL / NO SOUND</span>
         </div>
 
-        <p className="hero-tagline">Where art meets you comes with you</p>
+        <p className="hero-tagline">Where art meets you, comes with you</p>
 
         <div className="hero-stream hero-stream--left" aria-hidden="true">
           STS / 01 / PONDICHERRY / ART / INK / FORM
@@ -196,18 +226,35 @@ export default function LandingHero() {
           MEMORY / RITUAL / BODY / PERMANENCE / 2026
         </div>
 
-        <h1 id="hero-title" className="hero-title">
-          <span>Spiritual</span>
-          <span>Tattoo Studio</span>
-        </h1>
+        <div className="hero-copy">
+          <h2 className="hero-welcome">
+            <span>Bienvenue</span>
+            <span className="text-red-500">À votre service</span>
+          </h2>
 
-        <a className="enter-studio" href="#top" aria-label="Enter Spiritual Tattoo Studio">
+          <h1 id="hero-title" className="hero-title">
+            <span>Spiritual</span>
+            <span>Tattoo <span className="text-red-500">Art</span></span>
+          </h1>
+        </div>
+
+        <a
+          className="enter-studio"
+          href="/studio"
+          aria-label="Enter Spiritual Tattoo Studio"
+          onClick={(event) => {
+            event.preventDefault();
+            router.push("/studio");
+          }}
+        >
           <span>Enter Studio</span>
           <i aria-hidden="true">↗</i>
         </a>
       </section>
 
       <div className="intro" aria-hidden="true">
+        <div className="intro-backdrop" />
+
         <div className="intro-mark">
           <span>SPIRITUAL</span>
           <span>TATTOO STUDIO</span>

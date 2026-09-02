@@ -46,6 +46,8 @@ const cursorTrailDots = Array.from({ length: 20 }, (_, index) => (
   <span key={index} aria-hidden="true" />
 ));
 
+const archiveYears = Array.from({ length: 9 }, (_, index) => 2018 + index);
+
 export default function StudioExperience() {
   const root = useRef<HTMLDivElement>(null);
   const count = useRef<HTMLSpanElement>(null);
@@ -100,63 +102,98 @@ export default function StudioExperience() {
       const counter = { value: 0 };
       const loader = gsap.timeline({ defaults: { ease: "power3.inOut" } });
 
+      const yearStart = 0.38;
+      const yearStep = 0.36;
+      const finalYearStart = yearStart + (archiveYears.length - 1) * yearStep;
+      const progressDuration = (archiveYears.length - 1) * yearStep + 0.22;
+
       loader
-        .set(".studio-loader-word span", { yPercent: 118 })
-        .set(".studio-loader-action", { autoAlpha: 0, y: 18 })
-        .to(".studio-loader-word span", {
-          yPercent: 0,
-          duration: 0.72,
-          stagger: 0.055,
-          ease: "power4.out",
-        })
+        .set(".studio-loader-year-track", { y: 0 })
+        .set(".studio-loader-caption > *", { autoAlpha: 0, y: 12 })
+        .from(
+          ".studio-loader-meta--top > *",
+          { autoAlpha: 0, y: -10, duration: 0.42, stagger: 0.06 },
+          0.08,
+        )
+        .fromTo(
+          ".studio-loader-caption > *",
+          { autoAlpha: 0, y: 12 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.44,
+            stagger: 0.06,
+            ease: "power3.out",
+            immediateRender: false,
+          },
+          0.24,
+        )
         .to(
           counter,
           {
             value: 100,
-            duration: 1.75,
-            ease: "power2.inOut",
+            duration: progressDuration,
+            ease: "none",
             onUpdate: () => {
               if (count.current) {
-                count.current.textContent = Math.round(counter.value)
-                  .toString()
-                  .padStart(3, "0");
+                count.current.textContent = Math.round(counter.value).toString();
               }
             },
           },
-          0.18,
+          yearStart,
         )
         .to(
           ".studio-loader-progress",
-          { scaleX: 1, duration: 1.75, ease: "power2.inOut" },
-          0.18,
-        )
-        .to(".studio-loader-word", {
-          letterSpacing: "0.16em",
-          duration: 0.58,
-        })
+          { scaleX: 1, duration: progressDuration, ease: "none" },
+          yearStart,
+        );
+
+      archiveYears.slice(1).forEach((_, index) => {
+        const yearIndex = index + 1;
+        const position = yearStart + index * yearStep;
+
+        loader.to(
+          ".studio-loader-year-track",
+          {
+            y: () => {
+              const yearWindow = root.current?.querySelector<HTMLElement>(
+                ".studio-loader-years",
+              );
+              return -(yearWindow?.clientHeight ?? 0) * yearIndex;
+            },
+            duration: 0.22,
+            ease: "power4.inOut",
+          },
+          position + yearStep,
+        );
+      });
+
+      loader
         .to(
-          ".studio-loader-action",
-          { autoAlpha: 1, y: 0, duration: 0.52, ease: "power3.out" },
-          "-=0.18",
+          ".studio-loader-years",
+          { scale: 1.035, duration: 0.58, ease: "power2.inOut" },
+          finalYearStart + 0.2,
         )
         .to(
-          ".studio-loader-action",
-          { autoAlpha: 0, y: -12, duration: 0.3 },
-          "+=0.38",
+          ".studio-loader-meta, .studio-loader-caption",
+          { autoAlpha: 0, duration: 0.28, ease: "power2.out" },
+          finalYearStart + 0.62,
         )
         .to(
-          ".studio-loader-word",
-          { scale: 1.08, autoAlpha: 0, duration: 0.44 },
-          "<",
+          ".studio-loader-years",
+          { autoAlpha: 0, yPercent: -8, duration: 0.34, ease: "power3.in" },
+          finalYearStart + 0.66,
         )
-        .to(".studio-loader-panel--left", { xPercent: -101, duration: 0.9 }, "<0.18")
-        .to(".studio-loader-panel--right", { xPercent: 101, duration: 0.9 }, "<")
-        .to(".studio-loader-meta", { autoAlpha: 0, duration: 0.24 }, "<")
+        .to(
+          ".studio-loader",
+          { yPercent: -101, duration: 0.92, ease: "power4.inOut" },
+          finalYearStart + 0.86,
+        )
         .set(".studio-loader", { display: "none" })
         .to(
           ".studio-book-shell",
           { autoAlpha: 1, scale: 1, y: 0, duration: 0.84, ease: "power3.out" },
-          "-=0.48",
+          "-=0.58",
         )
         .fromTo(
           ".studio-book-cover-face > *",
@@ -704,23 +741,31 @@ export default function StudioExperience() {
       </footer>
 
       <div className="studio-loader">
-        <div className="studio-loader-panel studio-loader-panel--left" />
-        <div className="studio-loader-panel studio-loader-panel--right" />
+        <div className="studio-loader-field" aria-hidden="true" />
         <div className="studio-loader-meta studio-loader-meta--top">
-          SPIRITUAL TATTOO STUDIO / PRIVATE ARCHIVE
+          <span>SPIRITUAL TATTOO STUDIO / PRIVATE ARCHIVE</span>
+          <span>EST. PONDICHERRY / INDIA</span>
         </div>
-        <div className="studio-loader-word" aria-label="Ink ritual">
-          <span>INK</span>
-          <span>/</span>
-          <span>001</span>
+
+        <div className="studio-loader-years" aria-label="Studio archive from 2018 to 2026">
+          <div className="studio-loader-year-track" aria-hidden="true">
+            {archiveYears.map((year) => (
+              <span className="studio-loader-year" key={year}>
+                {year}
+              </span>
+            ))}
+          </div>
         </div>
-        <div className="studio-loader-action">
-          <span>PREPARING THE ARCHIVE</span>
-          <small>VISUAL EXPERIENCE / NO SOUND</small>
+
+        <div className="studio-loader-caption">
+          <span>EIGHT YEARS OF INK</span>
+          <small>MARKS, MEMORY AND PERMANENCE</small>
         </div>
+
         <div className="studio-loader-meta studio-loader-meta--bottom">
-          <span ref={count}>000</span>%
+          <span className="studio-loader-percentage"><b ref={count}>0</b>%</span>
           <i><b className="studio-loader-progress" /></i>
+          <span>2018 — 2026</span>
         </div>
       </div>
     </div>

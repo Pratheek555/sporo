@@ -162,7 +162,7 @@ export default function LandingAbout() {
         <div className="landing-about-layout">
           <figure className="landing-about-portrait">
             <Image
-              src="/landingBackground.png"
+              src="/owner.jpeg"
               alt="Temporary portrait placeholder for the studio owner"
               fill
               sizes="(max-width: 700px) 68vw, 36vw"

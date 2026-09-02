@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const footerLinks = [
   { label: "Enter studio", href: "/studio" },
   { label: "Book a session", href: "mailto:studio@spiritualart3.com" },
@@ -33,7 +35,14 @@ export default function LandingFooter() {
 
       <div className="landing-footer-wordmark" aria-hidden="true">
         <span>SPIRITUAL</span>
-        <i>✦</i>
+        <span className="landing-footer-emblem">
+          <Image
+            src="/cover-kali.png"
+            alt=""
+            fill
+            sizes="(max-width: 700px) 56px, 8vw"
+          />
+        </span>
       </div>
 
       <h2 id="landing-footer-title" className="landing-footer-cta">

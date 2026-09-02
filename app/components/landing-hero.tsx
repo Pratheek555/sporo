@@ -217,7 +217,7 @@ export default function LandingHero() {
           <span>VISUAL / NO SOUND</span>
         </div>
 
-        <p className="hero-tagline">Where art meets you, comes with you</p>
+        <p className="hero-tagline">Changing the way you feel art</p>
 
         <div className="hero-stream hero-stream--left" aria-hidden="true">
           STS / 01 / PONDICHERRY / ART / INK / FORM

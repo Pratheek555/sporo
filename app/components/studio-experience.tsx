@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
@@ -42,15 +43,11 @@ const artPages = [
   },
 ];
 
-const cursorTrailDots = Array.from({ length: 20 }, (_, index) => (
-  <span key={index} aria-hidden="true" />
-));
-
-const archiveYears = Array.from({ length: 9 }, (_, index) => 2018 + index);
-
 export default function StudioExperience() {
   const root = useRef<HTMLDivElement>(null);
-  const count = useRef<HTMLSpanElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [busy, setBusy] = useState(false);
   const page = useRef(0);
   const coverReady = useRef(false);
   const opening = useRef(false);
@@ -60,291 +57,21 @@ export default function StudioExperience() {
 
   const { contextSafe } = useGSAP(
     () => {
-      reducedMotion.current = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      gsap.set(".studio-book-shell", { autoAlpha: 0, scale: 0.84, y: 34 });
-      gsap.set(".studio-book", { xPercent: -25, rotationX: 2 });
-      gsap.set(".studio-book-left", { scaleX: 0, transformOrigin: "right center" });
-      gsap.set(".studio-book-cover", {
-        rotationY: 0,
-        transformOrigin: "left center",
-      });
-      gsap.set(".studio-book-art", { autoAlpha: 0, scale: 1.04 });
-      gsap.set('.studio-book-art[data-art="0"]', { autoAlpha: 1 });
-      gsap.set(".studio-book-turn", { autoAlpha: 0, rotationY: 0 });
-      gsap.set(".studio-book-caption > *", { autoAlpha: 0, y: 18 });
-      gsap.set(".studio-cursor-light", {
-        opacity: 0,
-        visibility: "visible",
-        xPercent: -50,
-        yPercent: -50,
-      });
-      gsap.set(".studio-cursor-trail", {
-        opacity: 0,
-        visibility: "visible",
-      });
-      gsap.set(".studio-cursor-trail span", {
-        xPercent: -50,
-        yPercent: -50,
-      });
-
-      if (reducedMotion.current) {
-        if (count.current) count.current.textContent = "100";
-        gsap.set(".studio-loader-progress", { scaleX: 1 });
-        gsap.set(".studio-loader", { display: "none" });
-        gsap.set(".studio-book-shell", { autoAlpha: 1, scale: 1, y: 0 });
-        coverReady.current = true;
-        return;
-      }
-
-      const counter = { value: 0 };
-      const loader = gsap.timeline({ defaults: { ease: "power3.inOut" } });
-
-      const yearStart = 0.38;
-      const yearStep = 0.36;
-      const finalYearStart = yearStart + (archiveYears.length - 1) * yearStep;
-      const progressDuration = (archiveYears.length - 1) * yearStep + 0.22;
-
-      loader
-        .set(".studio-loader-year-track", { y: 0 })
-        .set(".studio-loader-caption > *", { autoAlpha: 0, y: 12 })
-        .from(
-          ".studio-loader-meta--top > *",
-          { autoAlpha: 0, y: -10, duration: 0.42, stagger: 0.06 },
-          0.08,
-        )
-        .fromTo(
-          ".studio-loader-caption > *",
-          { autoAlpha: 0, y: 12 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.44,
-            stagger: 0.06,
-            ease: "power3.out",
-            immediateRender: false,
-          },
-          0.24,
-        )
-        .to(
-          counter,
-          {
-            value: 100,
-            duration: progressDuration,
-            ease: "none",
-            onUpdate: () => {
-              if (count.current) {
-                count.current.textContent = Math.round(counter.value).toString();
-              }
-            },
-          },
-          yearStart,
-        )
-        .to(
-          ".studio-loader-progress",
-          { scaleX: 1, duration: progressDuration, ease: "none" },
-          yearStart,
-        );
-
-      archiveYears.slice(1).forEach((_, index) => {
-        const yearIndex = index + 1;
-        const position = yearStart + index * yearStep;
-
-        loader.to(
-          ".studio-loader-year-track",
-          {
-            y: () => {
-              const yearWindow = root.current?.querySelector<HTMLElement>(
-                ".studio-loader-years",
-              );
-              return -(yearWindow?.clientHeight ?? 0) * yearIndex;
-            },
-            duration: 0.22,
-            ease: "power4.inOut",
-          },
-          position + yearStep,
-        );
-      });
-
-      loader
-        .to(
-          ".studio-loader-years",
-          { scale: 1.035, duration: 0.58, ease: "power2.inOut" },
-          finalYearStart + 0.2,
-        )
-        .to(
-          ".studio-loader-meta, .studio-loader-caption",
-          { autoAlpha: 0, duration: 0.28, ease: "power2.out" },
-          finalYearStart + 0.62,
-        )
-        .to(
-          ".studio-loader-years",
-          { autoAlpha: 0, yPercent: -8, duration: 0.34, ease: "power3.in" },
-          finalYearStart + 0.66,
-        )
-        .to(
-          ".studio-loader",
-          { yPercent: -101, duration: 0.92, ease: "power4.inOut" },
-          finalYearStart + 0.86,
-        )
-        .set(".studio-loader", { display: "none" })
-        .to(
-          ".studio-book-shell",
-          { autoAlpha: 1, scale: 1, y: 0, duration: 0.84, ease: "power3.out" },
-          "-=0.58",
-        )
-        .fromTo(
-          ".studio-book-cover-face > *",
-          { autoAlpha: 0, y: 14 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.56,
-            stagger: 0.06,
-            ease: "power3.out",
-            immediateRender: false,
-          },
-          "-=0.28",
-        )
-        .add(() => {
-          coverReady.current = true;
-        });
-
-      const stage = root.current?.querySelector<HTMLElement>(
-        ".studio-book-stage",
-      );
-      const book = root.current?.querySelector<HTMLElement>(".studio-book");
-      const cursorLight = root.current?.querySelector<HTMLElement>(
-        ".studio-cursor-light",
-      );
-      const cursorTrail = root.current?.querySelector<HTMLElement>(
-        ".studio-cursor-trail",
-      );
-      const trailDots = Array.from(
-        root.current?.querySelectorAll<HTMLElement>(
-          ".studio-cursor-trail span",
-        ) ?? [],
-      );
-      const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-
-      if (!stage || !book || !cursorLight || !cursorTrail || !hasFinePointer) return;
-
-      const moveBookX = gsap.quickTo(book, "x", {
-        duration: 0.72,
-        ease: "power3.out",
-      });
-      const moveBookY = gsap.quickTo(book, "y", {
-        duration: 0.72,
-        ease: "power3.out",
-      });
-      const tiltBookX = gsap.quickTo(book, "rotationX", {
-        duration: 0.72,
-        ease: "power3.out",
-      });
-      const tiltBookY = gsap.quickTo(book, "rotationY", {
-        duration: 0.72,
-        ease: "power3.out",
-      });
-      const moveLightX = gsap.quickTo(cursorLight, "x", {
-        duration: 0.24,
-        ease: "power2.out",
-      });
-      const moveLightY = gsap.quickTo(cursorLight, "y", {
-        duration: 0.24,
-        ease: "power2.out",
-      });
-      const showLight = gsap.quickTo(cursorLight, "opacity", {
-        duration: 0.28,
-        ease: "power2.out",
-      });
-      const moveTrailX = trailDots.map((dot, index) =>
-        gsap.quickTo(dot, "x", {
-          duration: 0.3 + index * 0.075,
-          ease: "power2.out",
-        }),
-      );
-      const moveTrailY = trailDots.map((dot, index) =>
-        gsap.quickTo(dot, "y", {
-          duration: 0.3 + index * 0.075,
-          ease: "power2.out",
-        }),
-      );
-      const trailPositions = trailDots.map(() => ({ x: 0, y: 0 }));
-      const trailHistory: Array<{ x: number; y: number }> = [];
-      const trailSampleSpacing = 2;
-      let trailHasPosition = false;
-      const showTrail = gsap.quickTo(cursorTrail, "opacity", {
-        duration: 0.32,
-        ease: "power2.out",
-      });
-
-      const resetPointerScene = () => {
-        showLight(0);
-        showTrail(0);
-        trailHistory.length = 0;
-        trailHasPosition = false;
-        moveBookX(0);
-        moveBookY(0);
-        tiltBookX(0);
-        tiltBookY(0);
-      };
-
-      const handlePointerMove = (event: PointerEvent) => {
-        if (!opened.current || turning.current) return;
-
-        const bounds = stage.getBoundingClientRect();
-        const localX = event.clientX - bounds.left;
-        const localY = event.clientY - bounds.top;
-        const normalizedX = Math.max(-1, Math.min(1, localX / bounds.width * 2 - 1));
-        const normalizedY = Math.max(-1, Math.min(1, localY / bounds.height * 2 - 1));
-
-        moveLightX(localX);
-        moveLightY(localY);
-        showLight(1);
-        trailHistory.unshift({ x: localX, y: localY });
-        if (trailHistory.length > 48) trailHistory.length = 48;
-        if (!trailHasPosition) {
-          trailPositions.forEach((position) => {
-            position.x = localX;
-            position.y = localY;
-          });
-          trailHasPosition = true;
-        } else {
-          trailPositions.forEach((position, index) => {
-            const historyIndex = Math.min(
-              (index + 1) * trailSampleSpacing,
-              trailHistory.length - 1,
-            );
-            const historyPosition = trailHistory[historyIndex] ?? trailHistory[0];
-            position.x = historyPosition.x;
-            position.y = historyPosition.y;
-          });
-        }
-        trailPositions.forEach((position, index) => {
-          moveTrailX[index](position.x);
-          moveTrailY[index](position.y);
-        });
-        showTrail(1);
-        moveBookX(normalizedX * 9);
-        moveBookY(normalizedY * 6);
-        tiltBookX(normalizedY * -2.8);
-        tiltBookY(normalizedX * 4.2);
-      };
-
-      stage.addEventListener("pointermove", handlePointerMove, { passive: true });
-      stage.addEventListener("pointerleave", resetPointerScene);
-
+      const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const syncMotion = () => { reducedMotion.current = preference.matches; };
+      syncMotion();
+      preference.addEventListener("change", syncMotion);
+      coverReady.current = true;
       return () => {
-        stage.removeEventListener("pointermove", handlePointerMove);
-        stage.removeEventListener("pointerleave", resetPointerScene);
+        preference.removeEventListener("change", syncMotion);
+        coverReady.current = false;
       };
     },
     { scope: root },
   );
 
   const updatePageCopy = (index: number) => {
+    setCurrentPage(index);
     const number = root.current?.querySelector<HTMLElement>(
       ".studio-step-current",
     );
@@ -368,28 +95,23 @@ export default function StudioExperience() {
     if (note) note.textContent = artPages[index].note;
   };
 
-  const updateFooterInstruction = (instruction: string) => {
-    const footerInstruction = root.current?.querySelector<HTMLElement>(
-      ".studio-footer-instruction",
-    );
-    if (footerInstruction) footerInstruction.textContent = instruction;
-  };
-
   const begin = () => {
     contextSafe(() => {
       if (!coverReady.current || opening.current || opened.current) return;
 
       opening.current = true;
+      setBusy(true);
 
       if (reducedMotion.current) {
         opened.current = true;
         opening.current = false;
-        gsap.set(".studio-book", { xPercent: 0, rotationX: 0 });
-        gsap.set(".studio-book-left", { scaleX: 1 });
-        gsap.set(".studio-book-cover", { rotationY: -180, zIndex: 1 });
+        gsap.set(".studio-book", { "--book-open": 1 });
+        gsap.set(".studio-book > .studio-book-left", { autoAlpha: 1 });
+        gsap.set(".studio-book-cover", { rotationY: -180, autoAlpha: 0 });
+        setIsOpen(true);
+        setBusy(false);
         gsap.set('.studio-book-art[data-art="0"]', { autoAlpha: 1, scale: 1 });
         gsap.set(".studio-book-caption > *", { autoAlpha: 1, y: 0 });
-        updateFooterInstruction("CLICK LEFT / PREVIOUS · CLICK RIGHT / NEXT");
         return;
       }
 
@@ -398,6 +120,8 @@ export default function StudioExperience() {
         onComplete: () => {
           opened.current = true;
           opening.current = false;
+          setIsOpen(true);
+          setBusy(false);
         },
       });
 
@@ -406,24 +130,20 @@ export default function StudioExperience() {
         .to(".studio-cover-prompt", { autoAlpha: 0, y: -8, duration: 0.28 }, "openCover")
         .to(
           ".studio-book",
-          { xPercent: 0, rotationX: 0, duration: 1.28, ease: "power4.inOut" },
+          { "--book-open": 1, duration: 1.15, ease: "sine.inOut" },
           "openCover",
         )
-        .to(".studio-book-left", { scaleX: 1, duration: 1.22 }, "openCover")
         .to(
           ".studio-book-cover",
-          { rotationY: -180, duration: 1.22, ease: "power3.inOut" },
+          { rotationY: -180, duration: 1.15, ease: "sine.inOut" },
           "openCover",
         )
-        .set(".studio-book-cover", { zIndex: 1 })
+        .set(".studio-book > .studio-book-left", { autoAlpha: 1 })
+        .set(".studio-book-cover", { autoAlpha: 0 })
         .to(
           '.studio-book-art[data-art="0"]',
           { scale: 1, duration: 0.82, ease: "power3.out" },
           0.42,
-        )
-        .add(
-          () => updateFooterInstruction("CLICK LEFT / PREVIOUS · CLICK RIGHT / NEXT"),
-          0.64,
         )
         .to(
           ".studio-book-caption > *",
@@ -433,153 +153,70 @@ export default function StudioExperience() {
     })();
   };
 
-  const turnPage = (event: React.MouseEvent<HTMLElement>) => {
+  const turnPage = (direction: "forward" | "backward") => {
     contextSafe(() => {
-      if (!opened.current || turning.current) return;
-      if ((event.target as HTMLElement).closest("a, button")) return;
+    if (!opened.current || turning.current) return;
+    const current = page.current;
+    const next = direction === "forward" ? current + 1 : current - 1;
+    if (next < 0 || next >= artPages.length) return;
 
-      const book = root.current?.querySelector<HTMLElement>(".studio-book");
-      const turn = root.current?.querySelector<HTMLElement>(".studio-book-turn");
-      if (!book || !turn) return;
+    turning.current = true;
+    setBusy(true);
+    const finish = () => {
+      page.current = next;
+      updatePageCopy(next);
+      turning.current = false;
+      setBusy(false);
+    };
+    const currentArt = '.studio-book-art[data-art="' + current + '"]';
+    const nextArt = '.studio-book-art[data-art="' + next + '"]';
 
-      const bounds = book.getBoundingClientRect();
-      const clickedInsideBook =
-        event.clientX >= bounds.left &&
-        event.clientX <= bounds.right &&
-        event.clientY >= bounds.top &&
-        event.clientY <= bounds.bottom;
+    if (reducedMotion.current) {
+      gsap.set(currentArt, { autoAlpha: 0 });
+      gsap.set(nextArt, { autoAlpha: 1 });
+      gsap.set(".studio-progress-fill", { scaleX: (next + 1) / artPages.length });
+      finish();
+      return;
+    }
 
-      if (!clickedInsideBook) return;
+    // A full-size artwork and readable external notes suit narrow screens.
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      gsap.timeline({ onComplete: finish })
+        .to(currentArt, { autoAlpha: 0, duration: 0.16 })
+        .fromTo(nextArt, { autoAlpha: 0, x: direction === "forward" ? 12 : -12 },
+          { autoAlpha: 1, x: 0, duration: 0.3, ease: "power2.out" })
+        .to(".studio-progress-fill", { scaleX: (next + 1) / artPages.length, duration: 0.3 }, 0);
+      return;
+    }
 
-      const current = page.current;
-      const direction =
-        event.clientX < bounds.left + bounds.width / 2 ? "backward" : "forward";
-      const next = direction === "forward" ? current + 1 : current - 1;
-
-      if (next < 0 || next >= artPages.length) return;
-
-      turning.current = true;
-
-      if (reducedMotion.current) {
-        gsap.set(`.studio-book-art[data-art="${current}"]`, { autoAlpha: 0 });
-        gsap.set(`.studio-book-art[data-art="${next}"]`, { autoAlpha: 1, scale: 1 });
-        page.current = next;
-        updatePageCopy(next);
-        turning.current = false;
-        return;
-      }
-
-      const frontKind = direction === "forward" ? "art" : "note";
-      const backKind = direction === "forward" ? "note" : "art";
-      const frontLayer = root.current?.querySelector<HTMLElement>(
-        `[data-turn-face="front"][data-turn-kind="${frontKind}"][data-turn-index="${current}"]`,
-      );
-      const backLayer = root.current?.querySelector<HTMLElement>(
-        `[data-turn-face="back"][data-turn-kind="${backKind}"][data-turn-index="${next}"]`,
-      );
-
-      if (!frontLayer || !backLayer) {
-        turning.current = false;
-        return;
-      }
-
-      turn.classList.toggle("studio-book-turn--backward", direction === "backward");
-
-      gsap.set(".studio-book-turn-layer", { autoAlpha: 0 });
-      gsap.set([frontLayer, backLayer], { autoAlpha: 1 });
-      gsap.set(".studio-book-turn-front", { autoAlpha: 1 });
-      gsap.set(".studio-book-turn-back", { autoAlpha: 0 });
-      gsap.set(".studio-book-turn", {
-        autoAlpha: 1,
-        rotationY: 0,
-        z: 0,
-        zIndex: 28,
-      });
-
-      if (direction === "forward") {
-        gsap.set(`.studio-book-art[data-art="${current}"]`, { autoAlpha: 0 });
-        gsap.set(`.studio-book-art[data-art="${next}"]`, {
-          autoAlpha: 1,
-          scale: 1.025,
-        });
-      }
-
-      const timeline = gsap.timeline({
-        defaults: { ease: "sine.inOut" },
-        onComplete: () => {
-          page.current = next;
-          turning.current = false;
-        },
-      });
-
-      const turnDuration = 1.68;
-      const turnMidpoint = turnDuration / 2;
-
-      timeline
-        .to(
-          ".studio-book-turn",
-          {
-            rotationY: direction === "forward" ? -180 : 180,
-            duration: turnDuration,
-            ease: "sine.inOut",
-          },
-          0,
-        )
-        .to(
-          ".studio-book-turn",
-          { z: 24, duration: turnMidpoint, ease: "sine.out" },
-          0,
-        )
-        .to(
-          ".studio-book-turn",
-          { z: 0, duration: turnMidpoint, ease: "sine.in" },
-          turnMidpoint,
-        )
-        .to(
-          ".studio-book-shadow",
-          { opacity: 0.72, duration: turnMidpoint, ease: "sine.out" },
-          0,
-        )
-        .set(".studio-book-turn-front", { autoAlpha: 0 }, turnMidpoint)
-        .set(".studio-book-turn-back", { autoAlpha: 1 }, turnMidpoint)
-        .add(() => {
-          if (direction === "backward") {
-            gsap.set(`.studio-book-art[data-art="${current}"]`, { autoAlpha: 0 });
-            gsap.set(`.studio-book-art[data-art="${next}"]`, {
-              autoAlpha: 1,
-              scale: 1.025,
-            });
-          }
-          updatePageCopy(next);
-        }, turnMidpoint)
-        .to(
-          `.studio-book-art[data-art="${next}"]`,
-          { scale: 1, duration: 0.78, ease: "sine.out" },
-          turnMidpoint,
-        )
-        .to(
-          ".studio-book-shadow",
-          { opacity: 0.28, duration: turnMidpoint, ease: "sine.in" },
-          turnMidpoint,
-        )
-        .to(
-          ".studio-progress-fill",
-          {
-            scaleX: (next + 1) / artPages.length,
-            duration: 1.08,
-            ease: "sine.inOut",
-          },
-          0.3,
-        )
-        .set(".studio-book-turn", {
-          autoAlpha: 0,
-          rotationY: 0,
-          z: 0,
-          zIndex: 0,
-        })
-        .set(".studio-book-turn-front", { autoAlpha: 1 })
-        .set(".studio-book-turn-back", { autoAlpha: 0 })
-        .set(".studio-book-turn-layer", { autoAlpha: 0 });
+    const turn = root.current?.querySelector<HTMLElement>(".studio-book-turn");
+    if (!turn) { turning.current = false; setBusy(false); return; }
+    const frontKind = direction === "forward" ? "art" : "note";
+    const backKind = direction === "forward" ? "note" : "art";
+    const front = '[data-turn-face="front"][data-turn-kind="' + frontKind + '"][data-turn-index="' + current + '"]';
+    const back = '[data-turn-face="back"][data-turn-kind="' + backKind + '"][data-turn-index="' + next + '"]';
+    turn.classList.toggle("studio-book-turn--backward", direction === "backward");
+    gsap.set(".studio-book-turn-layer", { autoAlpha: 0 });
+    gsap.set([front, back], { autoAlpha: 1 });
+    // Backface culling chooses the visible face; never swap it on a timer.
+    gsap.set(".studio-book-turn-front, .studio-book-turn-back", { autoAlpha: 1 });
+    gsap.set(turn, { autoAlpha: 1, rotationY: 0, z: 1, zIndex: 28 });
+    if (direction === "forward") {
+      gsap.set(currentArt, { autoAlpha: 0 });
+      gsap.set(nextArt, { autoAlpha: 1 });
+    } else {
+      // The preceding notes are revealed beneath the turning left leaf.
+      updatePageCopy(next);
+    }
+    gsap.timeline({ onComplete: finish })
+      .to(turn, { rotationY: direction === "forward" ? -180 : 180, duration: 1.05, ease: "sine.inOut" }, 0)
+      .to(".studio-book-shadow", { opacity: 0.6, duration: 0.5, ease: "sine.out" }, 0)
+      .to(".studio-book-shadow", { opacity: 0.28, duration: 0.55, ease: "sine.in" }, 0.5)
+      .to(".studio-progress-fill", { scaleX: (next + 1) / artPages.length, duration: 0.8 }, 0.1)
+      .set(currentArt, { autoAlpha: 0 }, 1.05)
+      .set(nextArt, { autoAlpha: 1 }, 1.05)
+      .call(() => updatePageCopy(next), [], 1.05)
+      .set(turn, { autoAlpha: 0, rotationY: 0, z: 0, zIndex: 0 }, 1.05);
     })();
   };
 
@@ -587,15 +224,12 @@ export default function StudioExperience() {
     <div ref={root} className="studio-shell studio-book-experience">
       <div className="studio-noise" aria-hidden="true" />
 
-      <main id="archive" className="studio-book-stage" onClick={turnPage}>
+      <main id="archive" className="studio-book-stage" data-open={isOpen}>
+        <Link className="studio-back-link" href="/">← Back to studio home</Link>
         <p className="studio-art-statement">EVERYTHING IS ART</p>
-        <div className="studio-cursor-trail" aria-hidden="true">
-          {cursorTrailDots}
-        </div>
-        <div className="studio-cursor-light" aria-hidden="true" />
         <div className="studio-book-shell">
           <div className="studio-book">
-            <section className="studio-book-page studio-book-left" aria-label="Artwork notes">
+            <section className="studio-book-page studio-book-left" aria-label="Artwork notes" inert={!isOpen}>
               <div className="studio-book-left-rule" />
               <span className="studio-book-page-number">PLATE / 01</span>
               <h1 className="studio-book-page-title">THE FIRST LINE</h1>
@@ -608,13 +242,15 @@ export default function StudioExperience() {
               <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
             </section>
 
-            <section className="studio-book-page studio-book-right" aria-label="Tattoo artwork">
+            <section className="studio-book-page studio-book-right" aria-label="Tattoo artwork" inert={!isOpen}>
               <div className="studio-book-artwork">
                 {artPages.map((art, index) => (
                   <figure
                     key={art.number}
                     className={`studio-book-art ${art.className}`}
                     data-art={index}
+                    aria-hidden={index !== currentPage}
+                    inert={index !== currentPage}
                   >
                     <Image src={art.src} alt={art.alt} fill sizes="(max-width: 800px) 78vw, 42vw" />
                     {index === artPages.length - 1 && (
@@ -689,7 +325,9 @@ export default function StudioExperience() {
             <div
               className="studio-book-cover"
               role="button"
-              tabIndex={0}
+              tabIndex={isOpen ? -1 : 0}
+              aria-disabled={busy}
+              aria-expanded={isOpen}
               aria-label="Open the Spiritual Tattoo Art archive book"
               onClick={(event) => {
                 event.stopPropagation();
@@ -710,11 +348,15 @@ export default function StudioExperience() {
                 <div className="studio-cover-title" aria-hidden="true">
                   <Image src="/cover-spiritual-title.png" alt="" fill sizes="40vw" priority />
                 </div>
-                <span className="studio-cover-prompt">CLICK COVER / OPEN ARCHIVE ↗</span>
+                <span className="studio-cover-prompt">OPEN THE ARCHIVE ↗</span>
               </div>
-              <div className="studio-book-cover-inside">
-                <Image src="/redpeacock.png" alt="" fill sizes="42vw" />
-                <span>MADE ONCE / CARRIED ALWAYS</span>
+              <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">
+                <div className="studio-book-left-rule" />
+                <span className="studio-book-page-number">PLATE / 01</span>
+                <h2 className="studio-book-page-title">THE FIRST LINE</h2>
+                <p className="studio-book-page-note">A mark begins as a conversation between memory, anatomy and intent.</p>
+                <div className="studio-book-seal"><Image src="/redpeacock.png" alt="" fill sizes="22vw" /></div>
+                <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
               </div>
             </div>
 
@@ -722,10 +364,15 @@ export default function StudioExperience() {
           </div>
         </div>
 
-        <div className="studio-book-caption">
-          <span>LEFT / PREVIOUS · RIGHT / NEXT</span>
-          <p>One archive. Four studies in line, body, matter and permanence.</p>
+        <div className="studio-book-caption" aria-live="polite">
+          <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
+          <p>{isOpen ? artPages[currentPage].note : "Four studies in line, body, matter and permanence."}</p>
         </div>
+        <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
+          <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
+          <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
+          <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
+        </nav>
       </main>
 
       <footer className="studio-footer">
@@ -737,37 +384,9 @@ export default function StudioExperience() {
         <div className="studio-progress" aria-hidden="true">
           <span className="studio-progress-fill" />
         </div>
-        <p className="studio-footer-instruction">CLICK THE COVER TO OPEN THE ARCHIVE</p>
+        <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
       </footer>
 
-      <div className="studio-loader">
-        <div className="studio-loader-field" aria-hidden="true" />
-        <div className="studio-loader-meta studio-loader-meta--top">
-          <span>SPIRITUAL TATTOO STUDIO / PRIVATE ARCHIVE</span>
-          <span>EST. PONDICHERRY / INDIA</span>
-        </div>
-
-        <div className="studio-loader-years" aria-label="Studio archive from 2018 to 2026">
-          <div className="studio-loader-year-track" aria-hidden="true">
-            {archiveYears.map((year) => (
-              <span className="studio-loader-year" key={year}>
-                {year}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="studio-loader-caption">
-          <span>EIGHT YEARS OF INK</span>
-          <small>MARKS, MEMORY AND PERMANENCE</small>
-        </div>
-
-        <div className="studio-loader-meta studio-loader-meta--bottom">
-          <span className="studio-loader-percentage"><b ref={count}>0</b>%</span>
-          <i><b className="studio-loader-progress" /></i>
-          <span>2018 — 2026</span>
-        </div>
-      </div>
     </div>
   );
 }

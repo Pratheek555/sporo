@@ -41,18 +41,9 @@ export default function LandingTestimonials() {
       const section = root.current;
       const trackElement = track.current;
       const progressElement = progress.current;
-      const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
       if (!section || !trackElement || !progressElement) return;
-
-      if (reducedMotion) {
-        gsap.set(trackElement, { clearProps: "transform" });
-        gsap.set(progressElement, { scaleX: 1 });
-        return;
-      }
-
+      const media = gsap.matchMedia();
+      media.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
       gsap.set(progressElement, { scaleX: 0, transformOrigin: "left center" });
 
       const timeline = gsap.timeline({
@@ -64,10 +55,10 @@ export default function LandingTestimonials() {
           end: () => {
             const horizontalDistance =
               trackElement.scrollWidth - window.innerWidth;
-            return `+=${Math.max(horizontalDistance, window.innerHeight * 2.2)}`;
+            return `+=${Math.max(0, horizontalDistance)}`;
           },
           pin: true,
-          scrub: 0.75,
+          scrub: 0.25,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -77,7 +68,7 @@ export default function LandingTestimonials() {
         .to(
           trackElement,
           {
-            x: () => -(trackElement.scrollWidth - window.innerWidth),
+            x: () => -Math.max(0, trackElement.scrollWidth - section.clientWidth),
             duration: 1,
           },
           0,
@@ -89,6 +80,8 @@ export default function LandingTestimonials() {
           { xPercent: -9, duration: 1 },
           0,
         );
+      });
+      return () => media.revert();
     },
     { scope: root },
   );

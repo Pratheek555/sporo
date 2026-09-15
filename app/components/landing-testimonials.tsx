@@ -88,6 +88,7 @@ export default function LandingTestimonials() {
 
   return (
     <section
+      id="stories"
       ref={root}
       className="landing-testimonials"
       aria-labelledby="testimonials-title"

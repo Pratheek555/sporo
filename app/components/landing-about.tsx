@@ -26,7 +26,7 @@ export default function LandingAbout() {
   }, { scope: root });
 
   return (
-    <section ref={root} className="landing-about" aria-labelledby="about-title">
+    <section id="philosophy" ref={root} className="landing-about" aria-labelledby="about-title">
       <div className="landing-about-stage">
         <div className="landing-about-bg" aria-hidden="true">
           <video loop muted playsInline preload="none" poster="/media/nocturne-hero.webp">

@@ -6,7 +6,7 @@ const directionsUrl =
 
 export default function LandingLocation() {
   return (
-    <section className="landing-location" aria-labelledby="landing-location-title">
+    <section id="visit" className="landing-location" aria-labelledby="landing-location-title">
       <div className="landing-location-heading">
         <span>{"{FIND THE STUDIO}"}</span>
         <h2 id="landing-location-title">White Town / Puducherry</h2>

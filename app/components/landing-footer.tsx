@@ -1,9 +1,16 @@
 import Image from "next/image";
 
-const footerLinks = [
-  { label: "Enter studio", href: "/studio" },
-  { label: "Book a session", href: "mailto:studio@spiritualart3.com" },
-  { label: "Back to top", href: "#top" },
+const studioAddress =
+  "34 Law De Lauriston Street, White Town, Puducherry 605001";
+
+const studioDetails = [
+  { label: "Studio", value: "Spiritual Tattoo Art Studio" },
+  {
+    label: "Address",
+    value: studioAddress,
+    href: "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001",
+  },
+  { label: "Phone", value: "+91 81242 59830", href: "tel:+918124259830" },
 ];
 
 export default function LandingFooter() {
@@ -23,14 +30,26 @@ export default function LandingFooter() {
           <small>Appointment only</small>
         </div>
 
-        <nav className="landing-footer-nav" aria-label="Footer navigation">
-          {footerLinks.map((link) => (
-            <a key={link.label} href={link.href}>
-              <span>{link.label}</span>
-              <i aria-hidden="true">↗</i>
-            </a>
+        <address className="landing-footer-details" aria-label="Studio details">
+          {studioDetails.map((detail) => (
+            <div key={detail.label} className="landing-footer-detail">
+              <span>{detail.label}</span>
+              {detail.href ? (
+                <a
+                  href={detail.href}
+                  {...(detail.label === "Address"
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
+                >
+                  {detail.value}
+                  <i aria-hidden="true">↗</i>
+                </a>
+              ) : (
+                <strong>{detail.value}</strong>
+              )}
+            </div>
           ))}
-        </nav>
+        </address>
       </div>
 
       <div className="landing-footer-wordmark" aria-hidden="true">

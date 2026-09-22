@@ -3230,3 +3230,23 @@ html { scroll-padding-top: 96px; }
   from { opacity: 0; transform: translateY(-12px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 700px) {
+  .hero-copy {
+    top: 45%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  .enter-studio {
+    top: auto;
+    bottom: max(42px, calc(env(safe-area-inset-bottom) + 16px));
+    left: 18px;
+  }
+
+  .hero-tagline { bottom: 202px; }
+}
+
+@media (max-width: 700px) and (max-height: 500px) {
+  .hero { min-height: 568px; }
+}

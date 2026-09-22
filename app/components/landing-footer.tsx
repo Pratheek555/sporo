@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const studioAddress =
   "34 Law De Lauriston Street, White Town, Puducherry 605001";
 
@@ -54,14 +52,6 @@ export default function LandingFooter() {
 
       <div className="landing-footer-wordmark" aria-hidden="true">
         <span>SPIRITUAL</span>
-        <span className="landing-footer-emblem">
-          <Image
-            src="/cover-kali.png"
-            alt=""
-            fill
-            sizes="(max-width: 700px) 56px, 8vw"
-          />
-        </span>
       </div>
 
       <h2 id="landing-footer-title" className="landing-footer-cta">

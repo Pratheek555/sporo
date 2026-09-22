@@ -8,40 +8,95 @@ import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 
-const artPages = [
+type ArtImage = {
+  src: string;
+  alt: string;
+};
+
+type ArtPageBase = {
+  number: string;
+  title: string;
+  note: string;
+  className: string;
+};
+
+type ArtPage =
+  | (ArtPageBase & { kind: "gallery"; images: [ArtImage, ArtImage, ArtImage, ArtImage] })
+  | (ArtPageBase & { kind: "single"; image: ArtImage });
+
+const studioGalleryImages = [
+  {
+    src: "/media/studio-gallery/studio-gallery-1.png",
+    alt: "A warm red tattoo studio filled with art, sculptures and shelves",
+  },
+  {
+    src: "/media/studio-gallery/studio-gallery-2.png",
+    alt: "A tattoo session taking place inside the red Spiritual Art studio",
+  },
+  {
+    src: "/media/studio-gallery/studio-gallery-3.png",
+    alt: "Collectible figures and objects arranged on a studio shelf",
+  },
+  {
+    src: "/media/studio-gallery/studio-gallery-4.png",
+    alt: "A small dog wearing a colorful outfit inside the studio",
+  },
+] satisfies [ArtImage, ArtImage, ArtImage, ArtImage];
+
+const artPages: ArtPage[] = [
   {
     number: "01",
     title: "THE FIRST LINE",
     note: "A mark begins as a conversation between memory, anatomy and intent.",
-    src: "/media/nocturne-hero.webp",
-    alt: "A tattoo artist drawing a botanical blackwork tattoo",
-    className: "studio-book-art--photo",
+    kind: "gallery",
+    images: studioGalleryImages,
+    className: "studio-book-art--gallery",
   },
   {
     number: "02",
     title: "BODY / FORM",
     note: "Each composition is drawn to move with the body that carries it.",
-    src: "/media/nocturne-work-grid.webp",
-    alt: "A collection of blackwork and fine-line tattoo studies",
+    kind: "single",
+    image: { src: "/media/nocturne-work-grid.webp", alt: "A collection of blackwork and fine-line tattoo studies" },
     className: "studio-book-art--grid",
   },
   {
     number: "03",
     title: "INK / MATTER",
     note: "Texture, weight and negative space turn an image into a living object.",
-    src: "/media/nocturne-ink-object.webp",
-    alt: "A sculptural black ink form",
+    kind: "single",
+    image: { src: "/media/nocturne-ink-object.webp", alt: "A sculptural black ink form" },
     className: "studio-book-art--object",
   },
   {
     number: "04",
     title: "CARRIED ALWAYS",
     note: "The final work leaves the studio and becomes part of your own mythology.",
-    src: "/redpeacock.png",
-    alt: "An ornate red peacock illustration",
+    kind: "single",
+    image: { src: "/redpeacock.png", alt: "An ornate red peacock illustration" },
     className: "studio-book-art--peacock",
   },
 ];
+
+function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: boolean }) {
+  const images = art.kind === "gallery" ? art.images : [art.image];
+  const sizes = decorative ? "42vw" : "(max-width: 800px) 78vw, 42vw";
+
+  if (images.length > 1) {
+    return (
+      <div className="studio-book-image-grid">
+        {images.map((image, index) => (
+          <span className="studio-book-image-grid__cell" key={image.src}>
+            <Image src={image.src} alt={decorative ? "" : image.alt} fill sizes={sizes} priority={!decorative && index < 2} />
+          </span>
+        ))}
+      </div>
+    );
+  }
+
+  const image = images[0];
+  return image ? <Image src={image.src} alt={decorative ? "" : image.alt} fill sizes={sizes} /> : null;
+}
 
 export default function StudioExperience() {
   const root = useRef<HTMLDivElement>(null);
@@ -252,7 +307,7 @@ export default function StudioExperience() {
                     aria-hidden={index !== currentPage}
                     inert={index !== currentPage}
                   >
-                    <Image src={art.src} alt={art.alt} fill sizes="(max-width: 800px) 78vw, 42vw" />
+                    <ArtMedia art={art} />
                     {index === artPages.length - 1 && (
                       <figcaption id="booking" className="studio-book-booking">
                         <span>YOUR STORY / YOUR SKIN</span>
@@ -275,7 +330,7 @@ export default function StudioExperience() {
                     data-turn-kind="art"
                     data-turn-index={index}
                   >
-                    <Image src={art.src} alt="" fill sizes="42vw" />
+                    <ArtMedia art={art} decorative />
                   </figure>
                 ))}
                 {artPages.map((art, index) => (
@@ -316,7 +371,7 @@ export default function StudioExperience() {
                     data-turn-kind="art"
                     data-turn-index={index}
                   >
-                    <Image src={art.src} alt="" fill sizes="42vw" />
+                    <ArtMedia art={art} decorative />
                   </figure>
                 ))}
               </div>

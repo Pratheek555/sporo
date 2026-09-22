@@ -2785,7 +2785,7 @@ a { color: inherit; text-decoration: none; }
   .studio-book-turn,
   .studio-book-art { transition: none !important; }
 }
-/* Stable first paint and restrained motion. No JavaScript loader gates content. */
+/* Stable first paint and restrained motion after the studio entry sequence. */
 .hero-film-frame { opacity: .42; }
 .hero-copy, .hero-title, .hero-welcome, .hero-tech, .hero-tagline,
 .hero-stream, .hero-film-frame, .hero-peacock, .enter-studio,

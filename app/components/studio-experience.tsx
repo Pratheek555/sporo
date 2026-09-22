@@ -43,6 +43,8 @@ const studioGalleryImages = [
   },
 ] satisfies [ArtImage, ArtImage, ArtImage, ArtImage];
 
+const archiveYears = Array.from({ length: 9 }, (_, index) => 2018 + index);
+
 const artPages: ArtPage[] = [
   {
     number: "01",
@@ -100,6 +102,7 @@ function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: bool
 
 export default function StudioExperience() {
   const root = useRef<HTMLDivElement>(null);
+  const count = useRef<HTMLSpanElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [busy, setBusy] = useState(false);
@@ -116,7 +119,137 @@ export default function StudioExperience() {
       const syncMotion = () => { reducedMotion.current = preference.matches; };
       syncMotion();
       preference.addEventListener("change", syncMotion);
-      coverReady.current = true;
+
+      gsap.set(".studio-book-shell", { autoAlpha: 0, scale: 0.84, y: 34 });
+      gsap.set(".studio-book-caption > *", { autoAlpha: 0, y: 18 });
+
+      if (reducedMotion.current) {
+        if (count.current) count.current.textContent = "100";
+        gsap.set(".studio-loader-progress", { scaleX: 1 });
+        gsap.set(".studio-loader", { display: "none" });
+        gsap.set(".studio-book-shell", { autoAlpha: 1, scale: 1, y: 0 });
+        gsap.set(".studio-book-caption > *", { autoAlpha: 1, y: 0 });
+        coverReady.current = true;
+      } else {
+        const counter = { value: 0 };
+        const loader = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+        const yearStart = 0.38;
+        const yearStep = 0.36;
+        const finalYearStart = yearStart + (archiveYears.length - 1) * yearStep;
+        const progressDuration = (archiveYears.length - 1) * yearStep + 0.22;
+
+        loader
+          .set(".studio-loader-year-track", { y: 0 })
+          .set(".studio-loader-caption > *", { autoAlpha: 0, y: 12 })
+          .from(
+            ".studio-loader-meta--top > *",
+            { autoAlpha: 0, y: -10, duration: 0.42, stagger: 0.06 },
+            0.08,
+          )
+          .fromTo(
+            ".studio-loader-caption > *",
+            { autoAlpha: 0, y: 12 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.44,
+              stagger: 0.06,
+              ease: "power3.out",
+              immediateRender: false,
+            },
+            0.24,
+          )
+          .to(
+            counter,
+            {
+              value: 100,
+              duration: progressDuration,
+              ease: "none",
+              onUpdate: () => {
+                if (count.current) {
+                  count.current.textContent = Math.round(counter.value).toString();
+                }
+              },
+            },
+            yearStart,
+          )
+          .to(
+            ".studio-loader-progress",
+            { scaleX: 1, duration: progressDuration, ease: "none" },
+            yearStart,
+          );
+
+        archiveYears.slice(1).forEach((_, index) => {
+          const yearIndex = index + 1;
+          const position = yearStart + index * yearStep;
+
+          loader.to(
+            ".studio-loader-year-track",
+            {
+              y: () => {
+                const yearWindow = root.current?.querySelector<HTMLElement>(
+                  ".studio-loader-years",
+                );
+                return -(yearWindow?.clientHeight ?? 0) * yearIndex;
+              },
+              duration: 0.22,
+              ease: "power4.inOut",
+            },
+            position + yearStep,
+          );
+        });
+
+        loader
+          .to(
+            ".studio-loader-years",
+            { scale: 1.035, duration: 0.58, ease: "power2.inOut" },
+            finalYearStart + 0.2,
+          )
+          .to(
+            ".studio-loader-meta, .studio-loader-caption",
+            { autoAlpha: 0, duration: 0.28, ease: "power2.out" },
+            finalYearStart + 0.62,
+          )
+          .to(
+            ".studio-loader-years",
+            { autoAlpha: 0, yPercent: -8, duration: 0.34, ease: "power3.in" },
+            finalYearStart + 0.66,
+          )
+          .to(
+            ".studio-loader",
+            { yPercent: -101, duration: 0.92, ease: "power4.inOut" },
+            finalYearStart + 0.86,
+          )
+          .set(".studio-loader", { display: "none" })
+          .to(
+            ".studio-book-shell",
+            { autoAlpha: 1, scale: 1, y: 0, duration: 0.84, ease: "power3.out" },
+            "-=0.58",
+          )
+          .fromTo(
+            ".studio-book-cover-face > *",
+            { autoAlpha: 0, y: 14 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.56,
+              stagger: 0.06,
+              ease: "power3.out",
+              immediateRender: false,
+            },
+            "-=0.28",
+          )
+          .to(
+            ".studio-book-caption > *",
+            { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.07, ease: "power3.out" },
+            "-=0.18",
+          )
+          .add(() => {
+            coverReady.current = true;
+          });
+      }
+
       return () => {
         preference.removeEventListener("change", syncMotion);
         coverReady.current = false;
@@ -441,6 +574,35 @@ export default function StudioExperience() {
         </div>
         <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
       </footer>
+
+      <div className="studio-loader">
+        <div className="studio-loader-field" aria-hidden="true" />
+        <div className="studio-loader-meta studio-loader-meta--top">
+          <span>SPIRITUAL TATTOO STUDIO / PRIVATE ARCHIVE</span>
+          <span>EST. PONDICHERRY / INDIA</span>
+        </div>
+
+        <div className="studio-loader-years" aria-label="Studio archive from 2018 to 2026">
+          <div className="studio-loader-year-track" aria-hidden="true">
+            {archiveYears.map((year) => (
+              <span className="studio-loader-year" key={year}>
+                {year}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="studio-loader-caption">
+          <span>EIGHT YEARS OF INK</span>
+          <small>MARKS, MEMORY AND PERMANENCE</small>
+        </div>
+
+        <div className="studio-loader-meta studio-loader-meta--bottom">
+          <span className="studio-loader-percentage"><b ref={count}>0</b>%</span>
+          <i><b className="studio-loader-progress" /></i>
+          <span>2018 — 2026</span>
+        </div>
+      </div>
 
     </div>
   );

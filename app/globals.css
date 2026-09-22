@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Akzidenz Freena";
-  src: url("/fonts/AkzidenzFreena-BoldCondense.ttf") format("truetype");
+  src: url("/fonts/AkzidenzFreena-BoldCondense.woff2") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 700;

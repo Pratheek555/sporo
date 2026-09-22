@@ -3249,4 +3249,7 @@ html { scroll-padding-top: 96px; }
 
 @media (max-width: 700px) and (max-height: 500px) {
   .hero { min-height: 568px; }
+  .landing-location-heading { gap: 14px; }
+  .landing-location-heading h2 { line-height: 0.94; }
+  .landing-location-heading p { line-height: 1.55; }
 }

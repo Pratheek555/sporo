@@ -115,8 +115,8 @@ export default function LandingHero() {
             src="/hero-red-art.png"
             alt=""
             fill
-            priority
-            sizes="(max-width: 700px) 82vw, 55vw"
+            preload
+            sizes="calc(100svh * 2 / 3)"
           />
         </div>
 

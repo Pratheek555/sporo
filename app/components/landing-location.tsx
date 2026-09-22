@@ -1,3 +1,5 @@
+import DeferredMap from "./deferred-map";
+
 const mapUrl =
   "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001&output=embed";
 
@@ -19,15 +21,7 @@ export default function LandingLocation() {
         </a>
       </div>
 
-      <div className="landing-location-map">
-        <iframe
-          src={mapUrl}
-          title="Spiritual Tattoo Studio location in White Town, Puducherry"
-          loading="lazy"
-          allowFullScreen
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      </div>
+      <DeferredMap src={mapUrl} />
     </section>
   );
 }

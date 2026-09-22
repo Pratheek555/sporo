@@ -1,0 +1,36 @@
+{
+  "capturedAt": "2026-09-22",
+  "surface": "http://localhost:3000/ production build in Codex In-app Browser",
+  "navigation": {
+    "firstByteMs": 13,
+    "domContentLoadedMs": 53,
+    "loadEventMs": 75,
+    "firstPaintMs": 132,
+    "firstContentfulPaintMs": 132
+  },
+  "criticalResources": {
+    "mapIframeCountAtTop": 0,
+    "mapResourceCountAtTop": 0,
+    "heroImageRequests": 2,
+    "font": {
+      "path": "/fonts/AkzidenzFreena-BoldCondense.woff2",
+      "encodedBodySize": 418456
+    }
+  },
+  "scrollSample": {
+    "threeScrollBurst": {
+      "scriptDurationMs": 13.844,
+      "taskDurationMs": 192.26,
+      "recalcStyleCount": 301
+    }
+  },
+  "desktopCheck": {
+    "testimonialTrackMoved": true,
+    "mapIframeCountBeforeVisit": 0,
+    "consoleErrors": 0
+  },
+  "activationCheck": {
+    "mapIframeCountNearVisit": 1,
+    "iframeSrc": "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001&output=embed"
+  }
+}

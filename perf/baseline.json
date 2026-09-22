@@ -1,0 +1,29 @@
+{
+  "capturedAt": "2026-09-22",
+  "surface": "http://localhost:3000/ production build in Codex In-app Browser",
+  "navigation": {
+    "firstByteMs": 75,
+    "domContentLoadedMs": 296,
+    "loadEventMs": 21713,
+    "firstPaintMs": 352,
+    "firstContentfulPaintMs": 352
+  },
+  "criticalResources": [
+    { "path": "/work.mp4", "bytes": 3535167, "policy": "preload=none" },
+    { "path": "/hero-red-art.png", "bytes": 1852311, "policy": "next/image priority" },
+    { "path": "/owner.jpeg", "bytes": 153582, "policy": "next/image lazy" },
+    { "path": "Google Maps iframe", "policy": "loading=lazy but browser starts it during initial navigation" }
+  ],
+  "scrollSample": {
+    "threeScrollBurst": {
+      "scriptDurationMs": 13.873,
+      "taskDurationMs": 184.835,
+      "recalcStyleCount": 300
+    }
+  },
+  "observations": [
+    "FCP is fast, but load is held open by the external map frame.",
+    "The visible hero is interactive while the page is still waiting on below-the-fold third-party work.",
+    "The two decorative videos remain preload=none and are not the initial transfer bottleneck."
+  ]
+}

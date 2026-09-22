@@ -85,9 +85,9 @@ function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: bool
   if (images.length > 1) {
     return (
       <div className="studio-book-image-grid">
-        {images.map((image, index) => (
+        {images.map((image) => (
           <span className="studio-book-image-grid__cell" key={image.src}>
-            <Image src={image.src} alt={decorative ? "" : image.alt} fill sizes={sizes} priority={!decorative && index < 2} />
+            <Image src={image.src} alt={decorative ? "" : image.alt} fill sizes={sizes} />
           </span>
         ))}
       </div>
@@ -398,10 +398,10 @@ export default function StudioExperience() {
               <div className="studio-book-cover-face">
                 <span className="studio-cover-kicker">THE BOOK OF LIVING MARKS / 01</span>
                 <div className="studio-cover-kali" aria-hidden="true">
-                  <Image src="/cover-kali.png" alt="" fill sizes="40vw" priority />
+                  <Image src="/cover-kali.png" alt="" fill sizes="40vw" preload />
                 </div>
                 <div className="studio-cover-title" aria-hidden="true">
-                  <Image src="/cover-spiritual-title.png" alt="" fill sizes="40vw" priority />
+                  <Image src="/cover-spiritual-title.png" alt="" fill sizes="40vw" preload />
                 </div>
                 <span className="studio-cover-prompt">OPEN THE ARCHIVE ↗</span>
               </div>

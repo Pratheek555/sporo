@@ -80,6 +80,15 @@ export default function LandingTestimonials() {
           { xPercent: -9, duration: 1 },
           0,
         );
+
+      let disposed = false;
+      void document.fonts.ready.then(() => {
+        if (!disposed) ScrollTrigger.refresh();
+      });
+
+      return () => {
+        disposed = true;
+      };
       });
       return () => media.revert();
     },

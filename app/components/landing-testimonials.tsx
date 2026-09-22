@@ -7,27 +7,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+const googleReviewsUrl =
+  "https://www.google.com/search?q=spiritualart+pondicherry&oq=spiritualart+pondicherry&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDUxMDZqMGo3qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x3a5363ab0ef0d2cd:0xa4ef7c80af258de1,1,,,,";
+
 const testimonials = [
   {
     number: "01",
     theme: "ink",
-    service: "Custom blackwork",
-    quote:
-      "I came in with a feeling, not an image. The final piece somehow says exactly what I couldn’t.",
+    author: "Nicolas Joffroy",
+    quote: "Excellent tattoo artist, and someone I trust completely.",
   },
   {
     number: "02",
     theme: "paper",
-    service: "Fine line",
-    quote:
-      "Nothing felt rushed. The design moved with my body, and the whole process felt quiet, clear, and completely mine.",
+    author: "Lydie Asselin",
+    quote: "Beautiful, delicate, and exactly what I had imagined.",
   },
   {
     number: "03",
     theme: "signal",
-    service: "Large scale",
-    quote:
-      "It doesn’t feel like something placed on me. It feels like something that was always meant to be there.",
+    author: "Chris Coles",
+    quote: "Very clean and professional.",
   },
 ] as const;
 
@@ -131,8 +131,12 @@ export default function LandingTestimonials() {
 
               <footer className="landing-testimonial-meta">
                 <span>{testimonial.number} / 03</span>
-                <span>{testimonial.service}</span>
-                <span>Temporary copy — replace with verified client quote</span>
+                <span>{testimonial.author}</span>
+                <span>
+                  <a href={googleReviewsUrl} target="_blank" rel="noreferrer">
+                    Google review ↗
+                  </a>
+                </span>
               </footer>
             </article>
           ))}

@@ -3253,3 +3253,82 @@ html { scroll-padding-top: 96px; }
   .landing-location-heading h2 { line-height: 0.94; }
   .landing-location-heading p { line-height: 1.55; }
 }
+
+/* Keep the archive progress rail with the book, above the video gallery. */
+.studio-archive { position: relative; }
+
+.studio-video-gallery {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 96px);
+  padding: clamp(48px, 7vw, 112px) clamp(24px, 6vw, 96px);
+  border-top: 1px solid rgba(243, 238, 229, 0.2);
+  background: #10070a;
+}
+
+.studio-video-eyebrow {
+  margin: 0 0 24px;
+  color: #e1767e;
+  font: 0.7rem var(--font-geist-mono), monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.studio-video-intro h2 {
+  margin: 0;
+  font-family: "Akzidenz Freena", Impact, sans-serif;
+  font-size: clamp(4rem, 9vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.studio-video-description {
+  max-width: 28ch;
+  margin: 28px 0 0;
+  color: rgba(243, 238, 229, 0.72);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.studio-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 40px 24px;
+  min-width: 0;
+}
+
+.studio-video-card {
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.studio-video-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid rgba(243, 238, 229, 0.18);
+  color-scheme: dark;
+}
+
+.studio-video-card figcaption { padding-top: 18px; }
+.studio-video-caption-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+.studio-video-caption-row h3 { margin: 0; font: 0.72rem var(--font-geist-mono), monospace; line-height: 1.6; text-transform: uppercase; }
+.studio-video-caption-row h3 span { color: #e1767e; }
+.studio-video-caption-row a { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.8rem; text-decoration: underline; text-underline-offset: 4px; }
+.studio-video-caption-row a:hover { color: #e1767e; }
+.studio-video-card figcaption > p { margin: 4px 0 0; color: rgba(243, 238, 229, 0.65); font-size: 0.85rem; line-height: 1.6; }
+.studio-video-card video:focus-visible, .studio-video-card a:focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
+
+@media (max-width: 800px) {
+  .studio-video-gallery { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .studio-video-intro h2 { font-size: clamp(4rem, 14vw, 7rem); }
+  .studio-video-description { max-width: 36ch; margin-top: 20px; }
+}

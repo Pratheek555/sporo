@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
+import StudioVideoGallery from "./studio-video-gallery";
 
 gsap.registerPlugin(useGSAP);
 
@@ -412,168 +413,173 @@ export default function StudioExperience() {
     <div ref={root} className="studio-shell studio-book-experience">
       <div className="studio-noise" aria-hidden="true" />
 
-      <main id="archive" className="studio-book-stage" data-open={isOpen}>
-        <Link className="studio-back-link" href="/">← Back to studio home</Link>
-        <p className="studio-art-statement">EVERYTHING IS ART</p>
-        <div className="studio-book-shell">
-          <div className="studio-book">
-            <section className="studio-book-page studio-book-left" aria-label="Artwork notes" inert={!isOpen}>
-              <div className="studio-book-left-rule" />
-              <span className="studio-book-page-number">PLATE / 01</span>
-              <h1 className="studio-book-page-title">THE FIRST LINE</h1>
-              <p className="studio-book-page-note">
-                A mark begins as a conversation between memory, anatomy and intent.
-              </p>
-              <div className="studio-book-seal" aria-hidden="true">
-                <Image src="/redpeacock.png" alt="" fill sizes="22vw" />
-              </div>
-              <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
-            </section>
+      <main>
+        <div className="studio-archive">
+          <section id="archive" className="studio-book-stage" data-open={isOpen} aria-label="Art archive book">
+            <Link className="studio-back-link" href="/">← Back to studio home</Link>
+            <p className="studio-art-statement">EVERYTHING IS ART</p>
+            <div className="studio-book-shell">
+              <div className="studio-book">
+                <section className="studio-book-page studio-book-left" aria-label="Artwork notes" inert={!isOpen}>
+                  <div className="studio-book-left-rule" />
+                  <span className="studio-book-page-number">PLATE / 01</span>
+                  <h1 className="studio-book-page-title">THE FIRST LINE</h1>
+                  <p className="studio-book-page-note">
+                    A mark begins as a conversation between memory, anatomy and intent.
+                  </p>
+                  <div className="studio-book-seal" aria-hidden="true">
+                    <Image src="/redpeacock.png" alt="" fill sizes="22vw" />
+                  </div>
+                  <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+                </section>
 
-            <section className="studio-book-page studio-book-right" aria-label="Tattoo artwork" inert={!isOpen}>
-              <div className="studio-book-artwork">
-                {artPages.map((art, index) => (
-                  <figure
-                    key={art.number}
-                    className={`studio-book-art ${art.className}`}
-                    data-art={index}
-                    aria-hidden={index !== currentPage}
-                    inert={index !== currentPage}
-                  >
-                    <ArtMedia art={art} />
-                    {index === artPages.length - 1 && (
-                      <figcaption id="booking" className="studio-book-booking">
-                        <span>YOUR STORY / YOUR SKIN</span>
-                        <a href="mailto:studio@spiritualart3.com">START A CONVERSATION ↗</a>
-                      </figcaption>
-                    )}
-                  </figure>
-                ))}
-              </div>
-              <div className="studio-book-shadow" aria-hidden="true" />
-            </section>
+                <section className="studio-book-page studio-book-right" aria-label="Tattoo artwork" inert={!isOpen}>
+                  <div className="studio-book-artwork">
+                    {artPages.map((art, index) => (
+                      <figure
+                        key={art.number}
+                        className={`studio-book-art ${art.className}`}
+                        data-art={index}
+                        aria-hidden={index !== currentPage}
+                        inert={index !== currentPage}
+                      >
+                        <ArtMedia art={art} />
+                        {index === artPages.length - 1 && (
+                          <figcaption id="booking" className="studio-book-booking">
+                            <span>YOUR STORY / YOUR SKIN</span>
+                            <a href="mailto:studio@spiritualart3.com">START A CONVERSATION ↗</a>
+                          </figcaption>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                  <div className="studio-book-shadow" aria-hidden="true" />
+                </section>
 
-            <div className="studio-book-turn" aria-hidden="true">
-              <div className="studio-book-turn-front">
-                {artPages.map((art, index) => (
-                  <figure
-                    key={`front-art-${art.number}`}
-                    className={`studio-book-turn-layer studio-book-turn-art ${art.className}`}
-                    data-turn-face="front"
-                    data-turn-kind="art"
-                    data-turn-index={index}
-                  >
-                    <ArtMedia art={art} decorative />
-                  </figure>
-                ))}
-                {artPages.map((art, index) => (
-                  <div
-                    key={`front-note-${art.number}`}
-                    className="studio-book-turn-layer studio-book-turn-note"
-                    data-turn-face="front"
-                    data-turn-kind="note"
-                    data-turn-index={index}
-                  >
-                    <span>PLATE / {art.number}</span>
-                    <strong>{art.title}</strong>
-                    <p>{art.note}</p>
+                <div className="studio-book-turn" aria-hidden="true">
+                  <div className="studio-book-turn-front">
+                    {artPages.map((art, index) => (
+                      <figure
+                        key={`front-art-${art.number}`}
+                        className={`studio-book-turn-layer studio-book-turn-art ${art.className}`}
+                        data-turn-face="front"
+                        data-turn-kind="art"
+                        data-turn-index={index}
+                      >
+                        <ArtMedia art={art} decorative />
+                      </figure>
+                    ))}
+                    {artPages.map((art, index) => (
+                      <div
+                        key={`front-note-${art.number}`}
+                        className="studio-book-turn-layer studio-book-turn-note"
+                        data-turn-face="front"
+                        data-turn-kind="note"
+                        data-turn-index={index}
+                      >
+                        <span>PLATE / {art.number}</span>
+                        <strong>{art.title}</strong>
+                        <p>{art.note}</p>
+                        <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="studio-book-turn-back">
+                    {artPages.map((art, index) => (
+                      <div
+                        key={`back-note-${art.number}`}
+                        className="studio-book-turn-layer studio-book-turn-note"
+                        data-turn-face="back"
+                        data-turn-kind="note"
+                        data-turn-index={index}
+                      >
+                        <span>PLATE / {art.number}</span>
+                        <strong>{art.title}</strong>
+                        <p>{art.note}</p>
+                        <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+                      </div>
+                    ))}
+                    {artPages.map((art, index) => (
+                      <figure
+                        key={`back-art-${art.number}`}
+                        className={`studio-book-turn-layer studio-book-turn-art ${art.className}`}
+                        data-turn-face="back"
+                        data-turn-kind="art"
+                        data-turn-index={index}
+                      >
+                        <ArtMedia art={art} decorative />
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  className="studio-book-cover"
+                  role="button"
+                  tabIndex={isOpen ? -1 : 0}
+                  aria-disabled={busy}
+                  aria-expanded={isOpen}
+                  aria-label="Open the Spiritual Tattoo Art archive book"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    begin();
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      begin();
+                    }
+                  }}
+                >
+                  <div className="studio-book-cover-face">
+                    <span className="studio-cover-kicker">THE BOOK OF LIVING MARKS / 01</span>
+                    <div className="studio-cover-kali" aria-hidden="true">
+                      <Image src="/cover-kali.png" alt="" fill sizes="40vw" preload />
+                    </div>
+                    <div className="studio-cover-title" aria-hidden="true">
+                      <Image src="/cover-spiritual-title.png" alt="" fill sizes="40vw" preload />
+                    </div>
+                    <span className="studio-cover-prompt">OPEN THE ARCHIVE ↗</span>
+                  </div>
+                  <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">
+                    <div className="studio-book-left-rule" />
+                    <span className="studio-book-page-number">PLATE / 01</span>
+                    <h2 className="studio-book-page-title">THE FIRST LINE</h2>
+                    <p className="studio-book-page-note">A mark begins as a conversation between memory, anatomy and intent.</p>
+                    <div className="studio-book-seal"><Image src="/redpeacock.png" alt="" fill sizes="22vw" /></div>
                     <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
                   </div>
-                ))}
-              </div>
-              <div className="studio-book-turn-back">
-                {artPages.map((art, index) => (
-                  <div
-                    key={`back-note-${art.number}`}
-                    className="studio-book-turn-layer studio-book-turn-note"
-                    data-turn-face="back"
-                    data-turn-kind="note"
-                    data-turn-index={index}
-                  >
-                    <span>PLATE / {art.number}</span>
-                    <strong>{art.title}</strong>
-                    <p>{art.note}</p>
-                    <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
-                  </div>
-                ))}
-                {artPages.map((art, index) => (
-                  <figure
-                    key={`back-art-${art.number}`}
-                    className={`studio-book-turn-layer studio-book-turn-art ${art.className}`}
-                    data-turn-face="back"
-                    data-turn-kind="art"
-                    data-turn-index={index}
-                  >
-                    <ArtMedia art={art} decorative />
-                  </figure>
-                ))}
+                </div>
+
+                <div className="studio-book-spine" aria-hidden="true" />
               </div>
             </div>
 
-            <div
-              className="studio-book-cover"
-              role="button"
-              tabIndex={isOpen ? -1 : 0}
-              aria-disabled={busy}
-              aria-expanded={isOpen}
-              aria-label="Open the Spiritual Tattoo Art archive book"
-              onClick={(event) => {
-                event.stopPropagation();
-                begin();
-              }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  begin();
-                }
-              }}
-            >
-              <div className="studio-book-cover-face">
-                <span className="studio-cover-kicker">THE BOOK OF LIVING MARKS / 01</span>
-                <div className="studio-cover-kali" aria-hidden="true">
-                  <Image src="/cover-kali.png" alt="" fill sizes="40vw" preload />
-                </div>
-                <div className="studio-cover-title" aria-hidden="true">
-                  <Image src="/cover-spiritual-title.png" alt="" fill sizes="40vw" preload />
-                </div>
-                <span className="studio-cover-prompt">OPEN THE ARCHIVE ↗</span>
-              </div>
-              <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">
-                <div className="studio-book-left-rule" />
-                <span className="studio-book-page-number">PLATE / 01</span>
-                <h2 className="studio-book-page-title">THE FIRST LINE</h2>
-                <p className="studio-book-page-note">A mark begins as a conversation between memory, anatomy and intent.</p>
-                <div className="studio-book-seal"><Image src="/redpeacock.png" alt="" fill sizes="22vw" /></div>
-                <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
-              </div>
+            <div className="studio-book-caption" aria-live="polite">
+              <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
+              <p>{isOpen ? artPages[currentPage].note : "Four studies in line, body, matter and permanence."}</p>
             </div>
+            <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
+              <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
+              <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
+              <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
+            </nav>
+          </section>
 
-            <div className="studio-book-spine" aria-hidden="true" />
-          </div>
+          <footer className="studio-footer">
+            <div className="studio-step">
+              <span className="studio-step-current">01</span>
+              <i>/ 04</i>
+              <strong className="studio-step-label">THE FIRST LINE</strong>
+            </div>
+            <div className="studio-progress" aria-hidden="true">
+              <span className="studio-progress-fill" />
+            </div>
+            <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
+          </footer>
         </div>
-
-        <div className="studio-book-caption" aria-live="polite">
-          <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
-          <p>{isOpen ? artPages[currentPage].note : "Four studies in line, body, matter and permanence."}</p>
-        </div>
-        <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
-          <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
-          <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
-          <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
-        </nav>
+        <StudioVideoGallery />
       </main>
-
-      <footer className="studio-footer">
-        <div className="studio-step">
-          <span className="studio-step-current">01</span>
-          <i>/ 04</i>
-          <strong className="studio-step-label">THE FIRST LINE</strong>
-        </div>
-        <div className="studio-progress" aria-hidden="true">
-          <span className="studio-progress-fill" />
-        </div>
-        <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
-      </footer>
 
       <div className="studio-loader">
         <div className="studio-loader-field" aria-hidden="true" />

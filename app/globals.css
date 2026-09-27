@@ -2569,23 +2569,6 @@ a { color: inherit; text-decoration: none; }
   transform: scale(0.94);
 }
 
-.studio-cover-title {
-  position: absolute;
-  z-index: 3;
-  right: -2%;
-  bottom: 8%;
-  left: -2%;
-  height: 42%;
-  overflow: hidden;
-  mix-blend-mode: screen;
-}
-
-.studio-cover-title img {
-  object-fit: contain;
-  object-position: center;
-  transform: scale(1.08);
-}
-
 .studio-cover-prompt {
   bottom: 4.4%;
   color: var(--signal);
@@ -2769,7 +2752,6 @@ a { color: inherit; text-decoration: none; }
   .studio-cover-kicker { top: 6.5%; font-size: 0.3rem; }
   .studio-cover-prompt { bottom: 3.8%; font-size: 0.3rem; }
   .studio-cover-kali { top: 8%; right: 5%; left: 5%; height: 57%; }
-  .studio-cover-title { right: -6%; bottom: 7%; left: -6%; height: 43%; }
   .studio-book-caption {
     right: 18px;
     bottom: 70px;

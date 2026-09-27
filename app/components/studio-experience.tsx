@@ -533,9 +533,6 @@ export default function StudioExperience() {
                 <div className="studio-cover-kali" aria-hidden="true">
                   <Image src="/cover-kali.png" alt="" fill sizes="40vw" preload />
                 </div>
-                <div className="studio-cover-title" aria-hidden="true">
-                  <Image src="/cover-spiritual-title.png" alt="" fill sizes="40vw" preload />
-                </div>
                 <span className="studio-cover-prompt">OPEN THE ARCHIVE ↗</span>
               </div>
               <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">

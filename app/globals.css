@@ -838,7 +838,6 @@ a { color: inherit; text-decoration: none; }
 .landing-about-link:focus-visible i { transform: translate(3px, -3px); }
 
 .landing-about-chapter,
-.landing-about-ghost,
 .landing-about-progress {
   position: absolute;
   z-index: 5;
@@ -852,17 +851,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--signal);
   font-size: clamp(0.5rem, 0.62vw, 0.68rem);
   letter-spacing: 0.16em;
-}
-
-.landing-about-ghost {
-  top: -0.15em;
-  right: -0.02em;
-  color: transparent;
-  font-family: "Akzidenz Freena", var(--font-geist-sans), sans-serif;
-  font-size: clamp(9rem, 18vw, 22rem);
-  font-weight: 700;
-  line-height: 1;
-  -webkit-text-stroke: 1px rgba(243, 238, 229, 0.1);
 }
 
 .landing-about-progress {
@@ -926,7 +914,6 @@ a { color: inherit; text-decoration: none; }
     font-size: 0.46rem;
   }
   .landing-about-chapter { top: 20px; left: 18px; font-size: 0.42rem; }
-  .landing-about-ghost { top: -0.12em; font-size: 8rem; }
   .landing-about-progress { right: 18px; bottom: 18px; }
 }
 

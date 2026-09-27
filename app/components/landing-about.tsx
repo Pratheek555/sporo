@@ -38,7 +38,6 @@ export default function LandingAbout() {
         <span className="landing-about-chapter" aria-hidden="true">
           ABOUT / 02
         </span>
-        <span className="landing-about-ghost" aria-hidden="true">02</span>
 
         <div className="landing-about-layout">
           <figure className="landing-about-portrait">

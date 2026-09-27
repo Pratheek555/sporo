@@ -3260,75 +3260,242 @@ html { scroll-padding-top: 96px; }
 .studio-video-gallery {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: start;
-  gap: clamp(32px, 6vw, 96px);
-  padding: clamp(48px, 7vw, 112px) clamp(24px, 6vw, 96px);
-  border-top: 1px solid rgba(243, 238, 229, 0.2);
-  background: #10070a;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 0 clamp(20px, 3.2vw, 56px) clamp(76px, 10vw, 160px);
+  border-top: 1px solid rgba(22, 9, 12, 0.32);
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.studio-video-eyebrow {
-  margin: 0 0 24px;
-  color: #e1767e;
-  font: 0.7rem var(--font-geist-mono), monospace;
-  letter-spacing: 0.1em;
+.studio-video-gallery::before {
+  position: absolute;
+  top: clamp(172px, 20vw, 300px);
+  right: -0.03em;
+  color: rgba(201, 45, 53, 0.075);
+  content: "MOTION";
+  font: 700 clamp(8rem, 24vw, 29rem) / 0.7 "Akzidenz Freena", Impact, sans-serif;
+  letter-spacing: -0.045em;
+  pointer-events: none;
+  writing-mode: vertical-rl;
+}
+
+.studio-video-kicker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 17px 0 15px;
+  border-bottom: 1px solid rgba(22, 9, 12, 0.55);
+  font: 0.62rem var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.studio-video-kicker span:nth-child(2) { text-align: center; }
+.studio-video-kicker span:last-child { text-align: right; }
+
+.studio-video-intro {
+  position: relative;
+  z-index: 1;
+  padding: clamp(48px, 6vw, 92px) 0 clamp(54px, 8vw, 128px);
 }
 
 .studio-video-intro h2 {
-  margin: 0;
+  display: grid;
+  width: min(100%, 1480px);
+  margin: 0 auto;
   font-family: "Akzidenz Freena", Impact, sans-serif;
-  font-size: clamp(4rem, 9vw, 9rem);
+  font-size: clamp(6rem, 17.2vw, 19rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 0.68;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
 }
 
-.studio-video-description {
-  max-width: 28ch;
-  margin: 28px 0 0;
-  color: rgba(243, 238, 229, 0.72);
-  font-size: 1rem;
-  line-height: 1.7;
+.studio-video-title-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.08em 0 0.06em;
 }
 
-.studio-video-grid {
+.studio-video-title-line > span { display: block; }
+
+.studio-video-title-line--italic {
+  justify-self: end;
+  margin-top: 0.02em;
+  padding-right: 0.08em;
+  color: var(--signal);
+  font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+  font-size: 0.47em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  text-transform: none;
+}
+
+.studio-video-collection,
+.studio-video-feature {
+  position: relative;
+  z-index: 1;
+}
+
+.studio-video-feature {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  gap: 40px 24px;
-  min-width: 0;
-}
-
-.studio-video-card {
-  width: 100%;
-  max-width: 420px;
-  min-width: 0;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(16px, 2vw, 32px);
+  width: min(100%, 1480px);
   margin: 0 auto;
 }
 
-.studio-video-card video {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background: #000;
-  border: 1px solid rgba(243, 238, 229, 0.18);
-  color-scheme: dark;
+.studio-film-meta {
+  grid-column: 1 / span 3;
+  padding-top: clamp(22px, 3vw, 46px);
+  border-top: 1px solid rgba(22, 9, 12, 0.55);
+  font: 0.65rem var(--font-geist-mono), monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.studio-video-card figcaption { padding-top: 18px; }
-.studio-video-caption-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
-.studio-video-caption-row h3 { margin: 0; font: 0.72rem var(--font-geist-mono), monospace; line-height: 1.6; text-transform: uppercase; }
-.studio-video-caption-row h3 span { color: #e1767e; }
-.studio-video-caption-row a { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.8rem; text-decoration: underline; text-underline-offset: 4px; }
-.studio-video-caption-row a:hover { color: #e1767e; }
-.studio-video-card figcaption > p { margin: 4px 0 0; color: rgba(243, 238, 229, 0.65); font-size: 0.85rem; line-height: 1.6; }
-.studio-video-card video:focus-visible, .studio-video-card a:focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
+.studio-film-meta > span { color: var(--signal); }
+.studio-film-meta dl { margin: clamp(44px, 7vw, 110px) 0 0; }
+.studio-film-meta dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(22, 9, 12, 0.18);
+}
+.studio-film-meta dt { color: rgba(22, 9, 12, 0.48); }
+.studio-film-meta dd { margin: 0; text-align: right; }
+
+.studio-video-card {
+  grid-column: 4 / span 5;
+  min-width: 0;
+  margin: 0;
+}
+
+.studio-video-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: #0d0708;
+  box-shadow: 0 34px 90px rgba(22, 9, 12, 0.2);
+  will-change: transform, opacity;
+}
+
+.studio-video-frame::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(243, 238, 229, 0.22);
+  content: "";
+  pointer-events: none;
+}
+
+.studio-video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 48%;
+  background: #000;
+  color-scheme: dark;
+  will-change: transform;
+}
+
+.studio-video-frame-index {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  padding: 7px 9px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 0.58rem var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+}
+
+.studio-video-caption {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(22, 9, 12, 0.55);
+}
+.studio-video-caption h3 {
+  margin: 0;
+  font: 700 clamp(1.7rem, 2.6vw, 3.2rem) / 0.95 "Akzidenz Freena", Impact, sans-serif;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.studio-video-caption p {
+  grid-column: 1;
+  max-width: 48ch;
+  margin: 8px 0 0;
+  color: rgba(22, 9, 12, 0.64);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+.studio-video-caption a {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: flex-start;
+  min-height: 44px;
+  padding-top: 3px;
+  font: 0.62rem var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.studio-video-caption a:hover { color: var(--signal); }
+
+.studio-film-note {
+  grid-column: 10 / -1;
+  align-self: end;
+  max-width: 31ch;
+  margin: 0 0 clamp(82px, 12vw, 190px);
+  font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.15rem, 1.7vw, 1.7rem);
+  font-style: italic;
+  line-height: 1.35;
+}
+.studio-film-note span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--signal);
+  font: 0.58rem var(--font-geist-mono), monospace;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.studio-video-card video:focus-visible,
+.studio-video-card a:focus-visible { outline: 2px solid var(--signal); outline-offset: 5px; }
 
 @media (max-width: 800px) {
-  .studio-video-gallery { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-  .studio-video-intro h2 { font-size: clamp(4rem, 14vw, 7rem); }
-  .studio-video-description { max-width: 36ch; margin-top: 20px; }
+  .studio-video-gallery { padding-inline: 20px; }
+  .studio-video-gallery::before { top: 240px; font-size: 58vw; }
+  .studio-video-kicker { grid-template-columns: 1fr auto; }
+  .studio-video-kicker span:nth-child(2) { display: none; }
+  .studio-video-intro { padding: 52px 0 70px; }
+  .studio-video-intro h2 { font-size: clamp(5.2rem, 27vw, 8rem); line-height: 0.7; }
+  .studio-video-title-line--italic { font-size: 0.52em; }
+  .studio-video-feature { display: flex; flex-direction: column; gap: 26px; }
+  .studio-video-card { order: 1; width: min(100%, 540px); }
+  .studio-film-meta { order: 2; width: 100%; padding-top: 20px; }
+  .studio-film-meta dl { margin-top: 24px; }
+  .studio-film-note { order: 3; max-width: 32ch; margin: 24px 0 0 auto; }
+}
+
+@media (max-width: 480px) {
+  .studio-video-gallery { padding-bottom: 88px; }
+  .studio-video-intro h2 { font-size: 25vw; }
+  .studio-video-caption { grid-template-columns: 1fr; }
+  .studio-video-caption a { grid-column: 1; grid-row: auto; margin-top: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-video-frame,
+  .studio-video-frame video { will-change: auto; }
 }

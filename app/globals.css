@@ -2556,10 +2556,11 @@ a { color: inherit; text-decoration: none; }
 .studio-cover-kali {
   position: absolute;
   z-index: 2;
-  top: 9%;
-  right: 8%;
-  left: 8%;
+  top: 50%;
+  left: 50%;
+  width: 84%;
   height: 56%;
+  transform: translate(-50%, -50%);
   filter: drop-shadow(0 14px 22px rgba(208, 17, 31, 0.22));
 }
 
@@ -2751,7 +2752,7 @@ a { color: inherit; text-decoration: none; }
   .studio-book-cover-face { border-left-width: 6px; }
   .studio-cover-kicker { top: 6.5%; font-size: 0.3rem; }
   .studio-cover-prompt { bottom: 3.8%; font-size: 0.3rem; }
-  .studio-cover-kali { top: 8%; right: 5%; left: 5%; height: 57%; }
+  .studio-cover-kali { width: 90%; height: 57%; }
   .studio-book-caption {
     right: 18px;
     bottom: 70px;

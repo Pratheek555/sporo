@@ -1,13 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import { useVisibleVideo } from "./use-visible-video";
-
-gsap.registerPlugin(useGSAP);
 
 export default function LandingHero() {
   const root = useRef<HTMLDivElement>(null);
@@ -22,17 +18,6 @@ export default function LandingHero() {
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
-
-  useGSAP(() => {
-    // CSS owns the first frame; hydration never hides already-painted content.
-    const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.fromTo(".hero-peacock", { x: 12 }, {
-        x: 0, duration: 1.1, ease: "power2.out", clearProps: "transform",
-      });
-    });
-    return () => media.revert();
-  }, { scope: root });
 
   return (
     <>
@@ -61,7 +46,7 @@ export default function LandingHero() {
           </a>
         </nav>
 
-        <Link className="landing-nav-cta" href="/studio">
+        <Link className="landing-nav-cta" href="/studio" prefetch={false}>
           <span>Enter studio</span><i aria-hidden="true">↗</i>
         </Link>
 
@@ -92,7 +77,7 @@ export default function LandingHero() {
             <a href="#visit" onClick={() => setNavOpen(false)}>
               <small>03 /</small><span>Visit</span><i aria-hidden="true">↘</i>
             </a>
-            <Link href="/studio" onClick={() => setNavOpen(false)}>
+            <Link href="/studio" prefetch={false} onClick={() => setNavOpen(false)}>
               <small>04 /</small><span>Enter studio</span><i aria-hidden="true">↗</i>
             </Link>
           </nav>
@@ -103,20 +88,18 @@ export default function LandingHero() {
       <div ref={root} className="landing-shell">
         <section id="top" className="hero" aria-labelledby="hero-title">
         <div className="hero-film-frame" aria-hidden="true">
-          <video loop muted playsInline preload="none" poster="/media/nocturne-hero.webp">
-            <source src="/work.mp4" type="video/mp4" />
-          </video>
+          <video data-src="/media/landing-ambient.mp4" loop muted playsInline preload="none" poster="/media/nocturne-hero.webp" />
           <span className="film-index">STS / VISUAL ARCHIVE / 001</span>
           <span className="film-state">LOOPING</span>
         </div>
 
         <div className="hero-peacock" aria-hidden="true">
           <Image
-            src="/hero-red-art.png"
+            src="/media/hero-red-art.webp"
             alt=""
             fill
             preload
-            sizes="calc(100svh * 2 / 3)"
+            unoptimized
           />
         </div>
 
@@ -160,6 +143,7 @@ export default function LandingHero() {
         <Link
           className="enter-studio"
           href="/studio"
+          prefetch={false}
           aria-label="Enter Spiritual Tattoo Studio"
 
         >

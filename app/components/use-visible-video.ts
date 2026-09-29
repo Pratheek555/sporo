@@ -14,6 +14,9 @@ export function useVisibleVideo(root: RefObject<HTMLElement | null>, enabled = t
     let disposed = false;
     const update = () => {
       if (enabled && visible && media.matches && !document.hidden) {
+        if (!video.getAttribute("src") && video.dataset.src) {
+          video.src = video.dataset.src;
+        }
         void video.play().then(() => {
           if (disposed || !visible || !media.matches || document.hidden) video.pause();
         }).catch(() => undefined);

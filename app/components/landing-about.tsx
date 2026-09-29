@@ -1,37 +1,29 @@
 "use client";
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useVisibleVideo } from "./use-visible-video";
+import { useScrollAnimation } from "./use-scroll-animation";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+const animateAbout: Parameters<typeof useScrollAnimation>[1] = ({ gsap, section }) => {
+  gsap.from(".landing-about-portrait, .landing-about-copy", {
+    y: 32, duration: 0.8, stagger: 0.1, ease: "power3.out",
+    scrollTrigger: { trigger: section, start: "top 85%", once: true },
+    clearProps: "transform",
+  });
+};
 
 export default function LandingAbout() {
   const root = useRef<HTMLElement>(null);
   useVisibleVideo(root);
 
-  useGSAP(() => {
-    const media = gsap.matchMedia();
-    media.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
-      gsap.from(".landing-about-portrait, .landing-about-copy", {
-        y: 32, duration: 0.8, stagger: 0.1, ease: "power3.out",
-        scrollTrigger: { trigger: root.current, start: "top 85%", once: true },
-        clearProps: "transform",
-      });
-    });
-    return () => media.revert();
-  }, { scope: root });
+  useScrollAnimation(root, animateAbout);
 
   return (
     <section id="philosophy" ref={root} className="landing-about" aria-labelledby="about-title">
       <div className="landing-about-stage">
         <div className="landing-about-bg" aria-hidden="true">
-          <video loop muted playsInline preload="none" poster="/media/nocturne-hero.webp">
-            <source src="/work.mp4" type="video/mp4" />
-          </video>
+          <video data-src="/media/landing-ambient.mp4" loop muted playsInline preload="none" poster="/media/nocturne-hero.webp" />
           <div className="landing-about-shade" />
         </div>
 

@@ -1,11 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useScrollAnimation } from "./use-scroll-animation";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const googleReviewsUrl =
   "https://www.google.com/search?q=spiritualart+pondicherry&oq=spiritualart+pondicherry&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDUxMDZqMGo3qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x3a5363ab0ef0d2cd:0xa4ef7c80af258de1,1,,,,";
@@ -33,67 +30,7 @@ const testimonials = [
 
 export default function LandingTestimonials() {
   const root = useRef<HTMLElement>(null);
-  const track = useRef<HTMLDivElement>(null);
-  const progress = useRef<HTMLSpanElement>(null);
-
-  useGSAP(
-    () => {
-      const section = root.current;
-      const trackElement = track.current;
-      const progressElement = progress.current;
-      if (!section || !trackElement || !progressElement) return;
-      const media = gsap.matchMedia();
-      media.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
-      gsap.set(progressElement, { scaleX: 0, transformOrigin: "left center" });
-
-      const timeline = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          id: "landing-testimonials",
-          trigger: section,
-          start: "top top",
-          end: () => {
-            const horizontalDistance =
-              trackElement.scrollWidth - window.innerWidth;
-            return `+=${Math.max(0, horizontalDistance)}`;
-          },
-          pin: true,
-          scrub: 0.25,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      timeline
-        .to(
-          trackElement,
-          {
-            x: () => -Math.max(0, trackElement.scrollWidth - section.clientWidth),
-            duration: 1,
-          },
-          0,
-        )
-        .to(progressElement, { scaleX: 1, duration: 1 }, 0)
-        .fromTo(
-          ".landing-testimonial-ghost",
-          { xPercent: 9 },
-          { xPercent: -9, duration: 1 },
-          0,
-        );
-
-      let disposed = false;
-      void document.fonts.ready.then(() => {
-        if (!disposed) ScrollTrigger.refresh();
-      });
-
-      return () => {
-        disposed = true;
-      };
-      });
-      return () => media.revert();
-    },
-    { scope: root },
-  );
+  useScrollAnimation(root, animateTestimonials);
 
   return (
     <section
@@ -107,7 +44,7 @@ export default function LandingTestimonials() {
       </h2>
 
       <div className="landing-testimonials-stage">
-        <div ref={track} className="landing-testimonials-track">
+        <div className="landing-testimonials-track">
           {testimonials.map((testimonial) => (
             <article
               className={`landing-testimonial-panel landing-testimonial-panel--${testimonial.theme}`}
@@ -145,7 +82,7 @@ export default function LandingTestimonials() {
         <div className="landing-testimonials-progress" aria-hidden="true">
           <span>What they carry</span>
           <i>
-            <span ref={progress} />
+            <span />
           </i>
           <span>Scroll to read</span>
         </div>
@@ -153,3 +90,32 @@ export default function LandingTestimonials() {
     </section>
   );
 }
+
+const animateTestimonials: Parameters<typeof useScrollAnimation>[1] = ({ gsap, section }) => {
+  const trackElement = section.querySelector<HTMLElement>(".landing-testimonials-track");
+  const progressElement = section.querySelector<HTMLElement>(".landing-testimonials-progress i span");
+  if (!trackElement || !progressElement) return;
+  gsap.set(progressElement, { scaleX: 0, transformOrigin: "left center" });
+
+  const timeline = gsap.timeline({
+    defaults: { ease: "none" },
+    scrollTrigger: {
+      id: "landing-testimonials",
+      trigger: section,
+      start: "top top",
+      end: () => `+=${Math.max(0, trackElement.scrollWidth - section.clientWidth)}`,
+      pin: true,
+      scrub: 0.25,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  timeline
+    .to(trackElement, {
+      x: () => -Math.max(0, trackElement.scrollWidth - section.clientWidth),
+      duration: 1,
+    }, 0)
+    .to(progressElement, { scaleX: 1, duration: 1 }, 0)
+    .fromTo(".landing-testimonial-ghost", { xPercent: 9 }, { xPercent: -9, duration: 1 }, 0);
+};

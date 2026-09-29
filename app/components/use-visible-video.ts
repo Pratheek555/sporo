@@ -3,7 +3,7 @@
 import { useEffect, type RefObject } from "react";
 
 /** Decode decorative video only while visible, on larger screens with motion enabled. */
-export function useVisibleVideo(root: RefObject<HTMLElement | null>) {
+export function useVisibleVideo(root: RefObject<HTMLElement | null>, enabled = true) {
   useEffect(() => {
     const element = root.current;
     const video = element?.querySelector("video");
@@ -13,7 +13,7 @@ export function useVisibleVideo(root: RefObject<HTMLElement | null>) {
     let visible = false;
     let disposed = false;
     const update = () => {
-      if (visible && media.matches && !document.hidden) {
+      if (enabled && visible && media.matches && !document.hidden) {
         void video.play().then(() => {
           if (disposed || !visible || !media.matches || document.hidden) video.pause();
         }).catch(() => undefined);
@@ -33,5 +33,5 @@ export function useVisibleVideo(root: RefObject<HTMLElement | null>) {
       document.removeEventListener("visibilitychange", update);
       video.pause();
     };
-  }, [root]);
+  }, [root, enabled]);
 }

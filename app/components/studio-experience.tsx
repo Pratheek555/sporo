@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
+import StudioFilmGallery from "./studio-film-gallery";
 
 gsap.registerPlugin(useGSAP);
 
@@ -558,8 +559,6 @@ export default function StudioExperience() {
           <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
           <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
         </nav>
-      </main>
-
       <footer className="studio-footer">
         <div className="studio-step">
           <span className="studio-step-current">01</span>
@@ -571,6 +570,10 @@ export default function StudioExperience() {
         </div>
         <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
       </footer>
+      <a href="#films" className="studio-films-link">THE STUDIO IN MOTION <span>↓</span></a>
+      </main>
+
+      <StudioFilmGallery />
 
       <div className="studio-loader">
         <div className="studio-loader-field" aria-hidden="true" />

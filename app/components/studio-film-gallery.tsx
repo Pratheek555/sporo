@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useVisibleVideo } from "./use-visible-video";
 
 const films = [
-  { number: "01", title: "The ritual", note: "A moment before the mark.", duration: "00:05", src: "/media/studio-films/film-01.mp4", poster: "/media/studio-films/film-01.jpg" },
+  { number: "01", title: "The ritual", note: "A moment before the mark.", duration: "00:22", src: "/media/studio-films/the-ritual.mp4", poster: "/media/studio-films/the-ritual.jpg" },
   { number: "02", title: "In the making", note: "Steady hands. Singular intent.", duration: "00:06", src: "/media/studio-films/film-02.mp4", poster: "/media/studio-films/film-02.jpg" },
-  { number: "03", title: "Living marks", note: "Art, carried beyond these walls.", duration: "00:05", src: "/media/studio-films/film-03.mp4", poster: "/media/studio-films/film-03.jpg" },
+  { number: "03", title: "Living marks", note: "Art, carried beyond these walls.", duration: "00:20", src: "/media/studio-films/living-marks.mp4", poster: "/media/studio-films/living-marks.jpg" },
 ];
 
 type Film = (typeof films)[number];

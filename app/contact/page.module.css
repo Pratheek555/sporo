@@ -1,0 +1,107 @@
+.page { background: var(--ink); color: var(--paper); }
+.header { display: flex; justify-content: space-between; align-items: stretch; min-height: 82px; margin: 0 3.5vw; border-bottom: 1px solid #f3eee530; }
+.brand { display: flex; align-items: center; gap: 18px; }
+.monogram { font: italic 2.7rem Georgia, serif; color: var(--signal); }
+.brand strong { display: block; font: 700 1.6rem/1 "Akzidenz Freena", sans-serif; text-transform: uppercase; }
+.brand small { display: block; margin-top: 5px; font: .5rem var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; }
+.header nav { display: flex; gap: 34px; align-items: center; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .06em; }
+.header nav [aria-current] { color: #ec767b; }
+.page a:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+.hero { position: relative; isolation: isolate; overflow: hidden; min-height: 730px; padding: 32px 6vw 26px; background: var(--signal); }
+.hero::after { position: absolute; inset: 0; z-index: -1; background: repeating-linear-gradient(0deg, #16090c0a 0 1px, transparent 1px 4px); content: ""; pointer-events: none; }
+.heroIndex, .heroFoot { position: relative; display: flex; justify-content: space-between; gap: 18px; font: .6rem/1.5 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; }
+.heroIndex { padding-bottom: 20px; border-bottom: 1px solid #f3eee555; }
+.heroCopy { position: relative; padding: 60px 0 50px; }
+.script { margin: 0 0 24px; font: italic clamp(1rem, 1.7vw, 1.6rem)/1.4 Georgia, serif; }
+.hero h1 { margin: 0; font: 700 clamp(6.5rem, 13vw, 13rem)/.82 "Akzidenz Freena", sans-serif; letter-spacing: -.02em; text-transform: uppercase; }
+.hero h1 span { color: var(--ink); }
+.intro { margin: 28px 0; font-size: .9rem; line-height: 1.7; }
+.heroLink { display: flex; justify-content: space-between; align-items: center; width: 235px; padding: 14px 0; border-bottom: 1px solid #f3eee588; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; }
+.heroLink span { font-size: 1.2rem; }
+.heroFoot { padding-top: 20px; border-top: 1px solid #f3eee555; }
+.art { position: absolute; z-index: -1; top: 8%; bottom: 0; right: -3%; width: 51%; opacity: .64; mix-blend-mode: multiply; }
+.art img { object-fit: contain; object-position: right center; }
+.connect { padding: 70px 6vw; scroll-margin-top: 24px; }
+.sectionLabel { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 35px; }
+.sectionLabel h2 { margin: 0; font: italic 1.55rem Georgia, serif; }
+.sectionLabel > span, .eyebrow { font: .6rem var(--font-geist-mono), monospace; letter-spacing: .08em; }
+.contactRow { display: grid; grid-template-columns: 40px 48px 1fr minmax(120px, 220px) 40px; align-items: center; gap: 24px; padding: 36px 0; border-top: 1px solid #f3eee533; transition: color .2s, padding .2s; }
+a.contactRow:hover { color: #ec767b; padding-left: 12px; }
+.rowIndex { align-self: start; padding-top: 8px; font: .6rem var(--font-geist-mono), monospace; color: #ec767b; }
+.icon { width: 36px; height: 36px; }
+.rowCopy h3 { margin: 0 0 10px; font: 700 clamp(2rem, 3.8vw, 4rem)/1 "Akzidenz Freena", sans-serif; text-transform: uppercase; }
+.rowCopy p { margin: 0; color: #c6b6b2; font-size: .8rem; line-height: 1.5; }
+.rowDetail { color: #c6b6b2; font: .6rem/1.7 var(--font-geist-mono), monospace; text-align: right; }
+.arrow { justify-self: end; font-size: 2rem; color: #ec767b; }
+.email { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid #f3eee533; padding-top: 24px; font: .65rem/1.5 var(--font-geist-mono), monospace; }
+.email > span { color: #c6b6b2; }
+.visit { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; padding: 80px 6vw; background: var(--paper); color: var(--ink); }
+.visit h2 { margin: 30px 0; font: 700 clamp(4rem, 6.5vw, 7rem)/.88 "Akzidenz Freena", sans-serif; text-transform: uppercase; }
+.visit h2 span { color: var(--signal); }
+.visit address { font-style: normal; font-size: .9rem; line-height: 1.8; }
+.visit address small { display: block; margin-top: 10px; color: #685758; font-size: .75rem; }
+.directions { display: flex; justify-content: space-between; width: min(100%, 270px); padding: 16px 0; margin-top: 18px; border-bottom: 1px solid #16090c55; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; }
+.directions span { color: var(--signal); }
+.hours { margin-top: 40px; }
+.hours h3 { margin: 0 0 14px; font: .6rem var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; }
+.hours p { margin: 0 0 12px; font: italic 1.5rem Georgia, serif; }
+.hoursList { margin: 0 0 20px; font-size: .75rem; line-height: 1.7; }
+.hoursList div { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid #16090c22; }
+.hoursList dd { margin: 0; }
+.hours > span, .hours small { display: block; max-width: 270px; color: #685758; font-size: .75rem; line-height: 1.6; }
+.hours small { margin-top: 12px; font: .55rem var(--font-geist-mono), monospace; }
+.map { display: flex; min-width: 0; flex-direction: column; }
+.mapCaption { display: flex; justify-content: space-between; gap: 16px; padding: 0 0 18px; font: .55rem/1.5 var(--font-geist-mono), monospace; text-transform: uppercase; }
+.map :global(.landing-location-map) { flex: 1; min-height: 440px; box-shadow: none; border: 1px solid #16090c33; }
+.map :global(iframe) { position: absolute; inset: 0; filter: grayscale(1); }
+.map > p { margin: 16px 0 0; font: italic 1rem Georgia, serif; }
+.footer { overflow: hidden; padding: 48px 6vw 24px; background: var(--signal); }
+.footer > p { margin: 0; font: 1.8rem/1.1 Georgia, serif; }
+.footer > a { display: flex; justify-content: space-between; gap: 24px; width: fit-content; margin-top: 22px; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; }
+.wordmark { margin: 50px -.02em 10px; font: 700 22vw/.8 "Akzidenz Freena", sans-serif; text-transform: uppercase; letter-spacing: -.02em; }
+.footerIndex { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid #f3eee555; padding-top: 20px; font: .55rem var(--font-geist-mono), monospace; text-transform: uppercase; }
+@media (max-width: 900px) {
+  .hero { min-height: 660px; }
+  .heroCopy { padding-top: 70px; }
+  .art { width: 65%; right: -14%; opacity: .45; }
+  .contactRow { grid-template-columns: 30px 36px 1fr 28px; gap: 18px; }
+  .rowDetail { grid-column: 3; grid-row: auto; justify-self: start; text-align: left; }
+  .arrow { grid-column: 4; grid-row: 1; }
+  .visit { gap: 5vw; }
+}
+@media (max-width: 600px) {
+  .header { min-height: 76px; margin-inline: 6vw; }
+  .brand { gap: 10px; }
+  .brand strong { font-size: 1.3rem; }
+  .brand small { font-size: .4rem; }
+  .monogram { font-size: 2.1rem; }
+  .header nav { gap: 16px; font-size: .55rem; }
+  .header nav a:first-child { display: none; }
+  .hero { min-height: auto; padding-top: 24px; }
+  .heroIndex, .heroFoot { font-size: .48rem; }
+  .heroCopy { padding: 60px 0 48px; }
+  .hero h1 { font-size: 24vw; }
+  .script { max-width: 220px; }
+  .intro { max-width: 260px; font-size: .8rem; }
+  .art { top: 18%; right: -34%; width: 100%; opacity: .27; }
+  .connect { padding-block: 48px; }
+  .sectionLabel { align-items: start; margin-bottom: 25px; }
+  .sectionLabel h2 { font-size: 1.3rem; }
+  .sectionLabel > span { font-size: .48rem; padding-top: 5px; }
+  .contactRow { grid-template-columns: 24px 30px 1fr 22px; gap: 12px; padding-block: 28px; }
+  .icon { width: 28px; height: 28px; }
+  .rowCopy h3 { font-size: 1.85rem; }
+  .rowCopy p { font-size: .72rem; }
+  .rowDetail { font-size: .55rem; }
+  .arrow { font-size: 1.5rem; }
+  .email { font-size: .58rem; }
+  .visit { grid-template-columns: 1fr; padding-block: 48px; gap: 40px; }
+  .visit h2 { font-size: 19vw; }
+  .map :global(.landing-location-map) { min-height: 360px; }
+  .footer { padding-top: 36px; }
+  .footer > p { font-size: 1.5rem; }
+  .footerIndex { font-size: .48rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contactRow { transition: none; }
+}

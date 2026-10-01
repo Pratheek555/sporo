@@ -17,6 +17,7 @@ export default function LandingFooter() {
       <div className="landing-footer-grid">
         <div className="landing-footer-contact">
           <span>Start a conversation</span>
+          <a href="/contact">Contact us ↗</a>
           <a href="mailto:studio@spiritualart3.com">
             studio@spiritualart3.com
           </a>

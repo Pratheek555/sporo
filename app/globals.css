@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Akzidenz Freena";
-  src: url("/fonts/AkzidenzFreena-BoldCondense.woff2") format("woff2");
+  src: url("/fonts/AkzidenzFreena-BoldCondense-web.woff2") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 700;
@@ -940,10 +940,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .landing-testimonials-track {
-  display: flex;
-  width: max-content;
+  display: block;
+  width: 100%;
   min-height: 100svh;
-  will-change: transform;
 }
 
 .landing-testimonial-panel {
@@ -1109,7 +1108,7 @@ a { color: inherit; text-decoration: none; }
   right: clamp(24px, 5.2vw, 100px);
   bottom: clamp(22px, 3.2vh, 38px);
   left: clamp(24px, 5.2vw, 100px);
-  display: grid;
+  display: none;
   grid-template-columns: auto minmax(80px, 1fr) auto;
   align-items: center;
   gap: 16px;
@@ -1133,6 +1132,56 @@ a { color: inherit; text-decoration: none; }
   transform: scaleX(0);
   transform-origin: left center;
   will-change: transform;
+}
+
+@supports (animation-timeline: view()) and (animation-range: contain) {
+  @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+    .landing-testimonials {
+      height: calc(100svh + 200vw);
+      view-timeline-name: --testimonials;
+      view-timeline-axis: block;
+      view-timeline-inset: 0;
+    }
+    .landing-testimonials-stage {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+    }
+    .landing-testimonials-track {
+      display: flex;
+      width: 300vw;
+      will-change: transform;
+      animation: testimonial-reel linear both;
+      animation-timeline: --testimonials;
+      animation-range: contain;
+    }
+    .landing-testimonials-progress {
+      display: grid;
+    }
+    .landing-testimonials-progress > i > span {
+      animation: testimonial-progress linear both;
+      animation-timeline: --testimonials;
+      animation-range: contain;
+    }
+    .landing-testimonial-ghost {
+      animation: testimonial-ghost linear both;
+      animation-timeline: --testimonials;
+      animation-range: contain;
+    }
+  }
+}
+
+@keyframes testimonial-reel {
+  from { transform: translateX(0); }
+  to { transform: translateX(-200vw); }
+}
+@keyframes testimonial-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes testimonial-ghost {
+  from { transform: translateX(9%); }
+  to { transform: translateX(-9%); }
 }
 
 @media (max-width: 700px) {
@@ -3036,7 +3085,7 @@ html { scroll-padding-top: 96px; }
 
 .landing-nav-links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .landing-nav-links a {
@@ -3294,7 +3343,7 @@ html { scroll-padding-top: 96px; }
 .studio-film-gallery__heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; padding-top: 40px; }
 .studio-film-gallery__heading h2 {
   margin: 0;
-  font: 700 clamp(5.8rem, 13.8vw, 13.5rem)/.82 "Akzidenz Freena", Impact, sans-serif;
+  font: 700 clamp(5.8rem, 13.8vw, 13.5rem)/1.08 "Akzidenz Freena", Impact, sans-serif;
   letter-spacing: -.025em;
 }
 .studio-film-gallery__heading em { color: #e44c46; font-style: normal; }

@@ -44,6 +44,7 @@ export default function LandingHero() {
           <a href="#visit" onClick={() => setNavOpen(false)}>
             <small>03</small><span>Visit</span>
           </a>
+          <Link href="/contact"><small>04</small><span>Contact</span></Link>
         </nav>
 
         <Link className="landing-nav-cta" href="/studio" prefetch={false}>
@@ -79,6 +80,9 @@ export default function LandingHero() {
             </a>
             <Link href="/studio" prefetch={false} onClick={() => setNavOpen(false)}>
               <small>04 /</small><span>Enter studio</span><i aria-hidden="true">↗</i>
+            </Link>
+            <Link href="/contact" onClick={() => setNavOpen(false)}>
+              <small>05 /</small><span>Contact us</span><i aria-hidden="true">↗</i>
             </Link>
           </nav>
           <p>Custom work / Appointment only</p>

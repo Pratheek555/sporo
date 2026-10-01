@@ -1,9 +1,3 @@
-"use client";
-
-import { useRef } from "react";
-import { useScrollAnimation } from "./use-scroll-animation";
-
-
 const googleReviewsUrl =
   "https://www.google.com/search?q=spiritualart+pondicherry&oq=spiritualart+pondicherry&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDUxMDZqMGo3qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x3a5363ab0ef0d2cd:0xa4ef7c80af258de1,1,,,,";
 
@@ -29,13 +23,9 @@ const testimonials = [
 ] as const;
 
 export default function LandingTestimonials() {
-  const root = useRef<HTMLElement>(null);
-  useScrollAnimation(root, animateTestimonials);
-
   return (
     <section
       id="stories"
-      ref={root}
       className="landing-testimonials"
       aria-labelledby="testimonials-title"
     >
@@ -90,32 +80,3 @@ export default function LandingTestimonials() {
     </section>
   );
 }
-
-const animateTestimonials: Parameters<typeof useScrollAnimation>[1] = ({ gsap, section }) => {
-  const trackElement = section.querySelector<HTMLElement>(".landing-testimonials-track");
-  const progressElement = section.querySelector<HTMLElement>(".landing-testimonials-progress i span");
-  if (!trackElement || !progressElement) return;
-  gsap.set(progressElement, { scaleX: 0, transformOrigin: "left center" });
-
-  const timeline = gsap.timeline({
-    defaults: { ease: "none" },
-    scrollTrigger: {
-      id: "landing-testimonials",
-      trigger: section,
-      start: "top top",
-      end: () => `+=${Math.max(0, trackElement.scrollWidth - section.clientWidth)}`,
-      pin: true,
-      scrub: 0.25,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-    },
-  });
-
-  timeline
-    .to(trackElement, {
-      x: () => -Math.max(0, trackElement.scrollWidth - section.clientWidth),
-      duration: 1,
-    }, 0)
-    .to(progressElement, { scaleX: 1, duration: 1 }, 0)
-    .fromTo(".landing-testimonial-ghost", { xPercent: 9 }, { xPercent: -9, duration: 1 }, 0);
-};

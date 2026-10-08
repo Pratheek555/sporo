@@ -1,0 +1,104 @@
+.reviewHeader {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+
+:global(.landing-testimonial-panel)::after { display: none; }
+
+@media (min-width: 901px) {
+  :global(.landing-testimonial-panel) { padding-top: clamp(112px, 14vh, 140px); }
+}
+
+.googleBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font: .75rem/1.5 var(--font-geist-mono), monospace;
+  white-space: nowrap;
+}
+
+.googleWord {
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #fff;
+  font: 500 1.4rem/1.2 Arial, sans-serif;
+  letter-spacing: -.06em;
+}
+
+.googleWord span:nth-child(1), .googleWord span:nth-child(4) { color: #4285f4; }
+.googleWord span:nth-child(2), .googleWord span:nth-child(6) { color: #ea4335; }
+.googleWord span:nth-child(3) { color: #fbbc05; }
+.googleWord span:nth-child(5) { color: #34a853; }
+
+.quoteCopy.quoteCopy { display: block; }
+
+.quoteMark {
+  color: var(--signal);
+  font-family: Georgia, serif;
+  font-size: .85em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+:global(.landing-testimonial-panel--signal) .quoteMark { color: var(--ink); }
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.avatar.avatar {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: .75rem;
+  opacity: 1;
+}
+
+.author {
+  display: block;
+  font-size: clamp(.75rem, 1vw, 1rem);
+  font-style: normal;
+  letter-spacing: .03em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.rating > span {
+  color: #fbbc05;
+  font-size: 1.05rem;
+  letter-spacing: .1em;
+}
+
+:global(.landing-testimonial-panel--paper) .rating > span { color: #8b5700; }
+.rating small { font-size: .7rem; letter-spacing: 0; }
+.reviewLink.reviewLink { opacity: 1; font-size: .7rem; }
+
+@media (max-width: 900px) {
+  .reviewHeader { flex-wrap: wrap; }
+  .reviewer { justify-self: end; gap: 10px; }
+  .googleBrand { gap: 8px; font-size: .625rem; }
+  .googleWord { font-size: 1.15rem; }
+  .avatar.avatar { flex-basis: 36px; width: 36px; height: 36px; font-size: .625rem; }
+  .rating { gap: 6px; }
+}

@@ -55,14 +55,13 @@ export default function LandingAbout() {
             </h2>
 
             <p>
-              Spiritual Tattoo Studio is a private, appointment-only practice in
-              Pondicherry. Every piece begins with a conversation—your history,
-              your movement, and the way you occupy the world.
+              Mukhilan, founder of Spiritual Tattoo Art Studio, has been shaping his craft since 2018.
+              For him, tattooing is not about chasing money, but about respecting the art and the person receiving it.
+              He takes the time to understand each individual and create work that feels personal and meaningful.
             </p>
             <p>
-              We work slowly and deliberately, building original blackwork and
-              fine-line compositions around the body instead of placing an image
-              on top of it.
+              Every design is carefully considered so it naturally belongs on the skin, rather than simply sitting on it.
+              His approach goes beyond creating tattoos; it is about creating art that carries meaning, character, and permanence.
             </p>
 
             <blockquote className="landing-about-quote">

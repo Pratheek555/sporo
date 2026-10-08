@@ -23,7 +23,9 @@ export default function LandingHero() {
     <>
       <header className={`landing-nav${navOpen ? " is-open" : ""}`}>
         <a className="landing-nav-brand" href="#top" aria-label="Spiritual Tattoo Art home">
-          <span className="landing-nav-monogram" aria-hidden="true">S</span>
+          <span className="landing-nav-logo" aria-hidden="true">
+            <Image src="/cover-kali.png" alt="" width={66} height={66} />
+          </span>
           <span className="landing-nav-wordmark">
             <strong>Spiritual</strong>
             <small>Tattoo Art / Pondicherry</small>
@@ -92,7 +94,7 @@ export default function LandingHero() {
       <div ref={root} className="landing-shell">
         <section id="top" className="hero" aria-labelledby="hero-title">
         <div className="hero-film-frame" aria-hidden="true">
-          <video data-src="/media/landing-ambient.mp4" loop muted playsInline preload="none" poster="/media/nocturne-hero.webp" />
+          <video data-src="/media/cover_page_video.mp4" loop muted playsInline preload="none" poster="/media/nocturne-hero.webp" />
           <span className="film-index">STS / VISUAL ARCHIVE / 001</span>
           <span className="film-state">LOOPING</span>
         </div>
@@ -107,24 +109,6 @@ export default function LandingHero() {
           />
         </div>
 
-        <div className="hero-tech hero-tech--studio" aria-hidden="true">
-          <span>{"{CUSTOM TATTOO"}</span>
-          <span>AND ART STUDIO.</span>
-          <span>{"APPOINTMENT ONLY}"}</span>
-        </div>
-
-        <div className="hero-tech hero-tech--location" aria-hidden="true">
-          <span>{"{PONDICHERRY /}"}</span>
-          <span>{"{INDIA}"}</span>
-        </div>
-
-        <div className="hero-tech hero-tech--signal" aria-hidden="true">
-          <span>{"{SIGNAL}"}</span>
-          <span>VISUAL / NO SOUND</span>
-        </div>
-
-        <p className="hero-tagline">Changing the way you feel art</p>
-
         <div className="hero-stream hero-stream--left" aria-hidden="true">
           STS / 01 / PONDICHERRY / ART / INK / FORM
         </div>
@@ -132,30 +116,35 @@ export default function LandingHero() {
           MEMORY / RITUAL / BODY / PERMANENCE / 2026
         </div>
 
-        <div className="hero-copy">
-          <h2 className="hero-welcome">
-            <span>Bienvenue</span>
-            <span className="text-red-500">À votre service</span>
-          </h2>
+        <div className="hero-content">
+          <p className="hero-tagline">Changing the way you feel art</p>
+          <div className="hero-copy">
+            <h2 className="hero-welcome">
+              <span>Bienvenue</span>
+              <span className="text-red-500">À votre service</span>
+            </h2>
 
-          <h1 id="hero-title" className="hero-title">
-            <span>Spiritual</span>
-            <span>Tattoo <span className="text-red-500">Art</span></span>
-          </h1>
+            <h1 id="hero-title" className="hero-title">
+              <span>Spiritual</span>
+              <span>Tattoo <span className="text-red-500">Art</span></span>
+            </h1>
+          </div>
+
+          <Link
+            className="enter-studio"
+            href="/studio"
+            prefetch={false}
+            aria-label="Enter Spiritual Tattoo Studio"
+          >
+            <span className="enter-studio-label">
+              <small>Step inside the archive</small>
+              <strong>Enter Studio</strong>
+            </span>
+            <i aria-hidden="true">↗</i>
+          </Link>
+          </div>
+          </section>
         </div>
-
-        <Link
-          className="enter-studio"
-          href="/studio"
-          prefetch={false}
-          aria-label="Enter Spiritual Tattoo Studio"
-
-        >
-          <span>Enter Studio</span>
-          <i aria-hidden="true">↗</i>
-        </Link>
-        </section>
-      </div>
-    </>
-  );
-}
+      </>
+    );
+  }

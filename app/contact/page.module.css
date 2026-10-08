@@ -35,25 +35,25 @@ a.contactRow:hover { color: #ec767b; padding-left: 12px; }
 .arrow { justify-self: end; font-size: 2rem; color: #ec767b; }
 .email { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid #f3eee533; padding-top: 24px; font: .65rem/1.5 var(--font-geist-mono), monospace; }
 .email > span { color: #c6b6b2; }
-.visit { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; padding: 80px 6vw; background: var(--paper); color: var(--ink); }
+.visit { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; padding: 80px 6vw; background: #141214; color: var(--paper); }
 .visit h2 { margin: 30px 0; font: 700 clamp(4rem, 6.5vw, 7rem)/.88 "Akzidenz Freena", sans-serif; text-transform: uppercase; }
-.visit h2 span { color: var(--signal); }
+.visit h2 span { color: #ed6269; }
 .visit address { font-style: normal; font-size: .9rem; line-height: 1.8; }
-.visit address small { display: block; margin-top: 10px; color: #685758; font-size: .75rem; }
-.directions { display: flex; justify-content: space-between; width: min(100%, 270px); padding: 16px 0; margin-top: 18px; border-bottom: 1px solid #16090c55; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; }
-.directions span { color: var(--signal); }
+.visit address small { display: block; margin-top: 10px; color: #bcb0b2; font-size: .75rem; }
+.directions { display: flex; justify-content: space-between; width: min(100%, 270px); padding: 16px 0; margin-top: 18px; border-bottom: 1px solid #f3eee540; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; }
+.directions span { color: #ed6269; }
 .hours { margin-top: 40px; }
 .hours h3 { margin: 0 0 14px; font: .6rem var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; }
 .hours p { margin: 0 0 12px; font: italic 1.5rem Georgia, serif; }
 .hoursList { margin: 0 0 20px; font-size: .75rem; line-height: 1.7; }
-.hoursList div { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid #16090c22; }
+.hoursList div { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid #f3eee526; }
 .hoursList dd { margin: 0; }
-.hours > span, .hours small { display: block; max-width: 270px; color: #685758; font-size: .75rem; line-height: 1.6; }
+.hours > span, .hours small { display: block; max-width: 270px; color: #bcb0b2; font-size: .75rem; line-height: 1.6; }
 .hours small { margin-top: 12px; font: .55rem var(--font-geist-mono), monospace; }
 .map { display: flex; min-width: 0; flex-direction: column; }
 .mapCaption { display: flex; justify-content: space-between; gap: 16px; padding: 0 0 18px; font: .55rem/1.5 var(--font-geist-mono), monospace; text-transform: uppercase; }
-.map :global(.landing-location-map) { flex: 1; min-height: 440px; box-shadow: none; border: 1px solid #16090c33; }
-.map :global(iframe) { position: absolute; inset: 0; filter: grayscale(1); }
+.map :global(.landing-location-map) { flex: 1; min-height: 440px; box-shadow: none; border: 1px solid #f3eee533; background: #1e1b1e; }
+.map :global(iframe) { position: absolute; inset: 0; filter: grayscale(1) invert(.92) contrast(.9); }
 .map > p { margin: 16px 0 0; font: italic 1rem Georgia, serif; }
 .footer { overflow: hidden; padding: 48px 6vw 24px; background: var(--signal); }
 .footer > p { margin: 0; font: 1.8rem/1.1 Georgia, serif; }

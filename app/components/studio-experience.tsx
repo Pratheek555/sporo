@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
 import StudioFilmGallery from "./studio-film-gallery";
+import styles from "./studio-book-interaction.module.css";
 
 gsap.registerPlugin(useGSAP);
 
@@ -415,10 +416,22 @@ export default function StudioExperience() {
 
       <main id="archive" className="studio-book-stage" data-open={isOpen}>
         <Link className="studio-back-link" href="/">← Back to studio home</Link>
+        <span className="studio-archive-meta">Private archive / Pondicherry</span>
         <p className="studio-art-statement">EVERYTHING IS ART</p>
         <div className="studio-book-shell">
           <div className="studio-book">
-            <section className="studio-book-page studio-book-left" aria-label="Artwork notes" inert={!isOpen}>
+            <section
+              className="studio-book-page studio-book-left"
+              aria-label="Artwork notes"
+              inert={!isOpen}
+              onClick={() => turnPage("backward")}
+            >
+              <button
+                type="button"
+                className={styles.pageTap}
+                aria-label="Flip to previous page"
+                disabled={!isOpen || busy || currentPage === 0}
+              />
               <div className="studio-book-left-rule" />
               <span className="studio-book-page-number">PLATE / 01</span>
               <h1 className="studio-book-page-title">THE FIRST LINE</h1>
@@ -431,7 +444,21 @@ export default function StudioExperience() {
               <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
             </section>
 
-            <section className="studio-book-page studio-book-right" aria-label="Tattoo artwork" inert={!isOpen}>
+            <section
+              className="studio-book-page studio-book-right"
+              aria-label="Tattoo artwork"
+              inert={!isOpen}
+              onClick={(event) => {
+                if (event.target instanceof Element && event.target.closest("a")) return;
+                turnPage("forward");
+              }}
+            >
+              <button
+                type="button"
+                className={styles.pageTap}
+                aria-label="Flip to next page"
+                disabled={!isOpen || busy || currentPage === artPages.length - 1}
+              />
               <div className="studio-book-artwork">
                 {artPages.map((art, index) => (
                   <figure
@@ -534,7 +561,7 @@ export default function StudioExperience() {
                 <div className="studio-cover-kali" aria-hidden="true">
                   <Image src="/cover-kali.png" alt="" fill sizes="40vw" preload />
                 </div>
-                <span className="studio-cover-prompt">OPEN THE ARCHIVE ↗</span>
+                <span className="studio-cover-prompt">OPEN THE ARCHIVE <span aria-hidden="true">↗</span></span>
               </div>
               <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">
                 <div className="studio-book-left-rule" />
@@ -550,15 +577,17 @@ export default function StudioExperience() {
           </div>
         </div>
 
-        <div className="studio-book-caption" aria-live="polite">
-          <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
-          <p>{isOpen ? artPages[currentPage].note : "Four studies in line, body, matter and permanence."}</p>
+        <div className="studio-book-navigation">
+          <div className="studio-book-caption" aria-live="polite">
+            <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
+            <p>{isOpen ? artPages[currentPage].note : "Four studies in line, body, matter and permanence."}</p>
+          </div>
+          <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
+            <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
+            <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
+            <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
+          </nav>
         </div>
-        <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
-          <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
-          <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
-          <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
-        </nav>
       <footer className="studio-footer">
         <div className="studio-step">
           <span className="studio-step-current">01</span>

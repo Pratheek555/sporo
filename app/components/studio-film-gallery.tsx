@@ -76,8 +76,8 @@ export default function StudioFilmGallery() {
       <div className="studio-film-gallery__content">
         <div className="studio-film-gallery__eyebrow"><span><i /> Inside Spiritual</span><span>Film journal / 01—03</span></div>
         <header className="studio-film-gallery__heading">
-          <h2 id="studio-films-title">BEHIND<br />THE <em>INK.</em></h2>
-          <div className="studio-film-gallery__intro"><span className="studio-film-gallery__asterisk" aria-hidden="true">✳</span><p>The hands. The space.<br />The moments in between.<br /><span>A little of our world, in motion.</span></p></div>
+          <h2 id="studio-films-title"><span>BEHIND</span>{" "}<span>THE <em>INK.</em></span></h2>
+          <div className="studio-film-gallery__intro"><p>The hands. The space.<br />The moments in between.<br /><span>A little of our world, in motion.</span></p></div>
         </header>
         <div className="studio-film-gallery__films">
           {films.map((film) => <FilmCard key={film.number} film={film} onSelect={setActiveFilm} previewsEnabled={!paused && !activeFilm} />)}

@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteNav from "../components/site-nav";
+import { site } from "../lib/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Contact us | Spiritual Tattoo Studio",
-  description: "Start a conversation, plan your tattoo, or find our private studio in White Town, Puducherry.",
+  description: "Start a conversation, plan your tattoo or piercing, or find our studio in White Town, Puducherry. Walk-ins welcome.",
 };
 
-// Filler links and hours: replace with the owner's details before publishing.
+// Filler links: confirm the Instagram and Calendly URLs with the owner before publishing.
 const instagramUrl = "https://www.instagram.com/spiritualtattooart/";
 const calendlyUrl = "https://calendly.com/spiritualtattooart/consultation";
 const whatsappUrl = "https://wa.me/918124259830";
@@ -41,17 +43,7 @@ function ContactIcon({ kind }: { kind: "whatsapp" | "instagram" | "calendar" }) 
 export default function ContactPage() {
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <Link href="/" className={styles.brand} aria-label="Spiritual Tattoo Art home">
-          <span className={styles.monogram} aria-hidden="true">S</span>
-          <span><strong>Spiritual</strong><small>Tattoo Art / Pondicherry</small></span>
-        </Link>
-        <nav aria-label="Primary navigation">
-          <Link href="/">Home</Link>
-          <Link href="/studio" prefetch={false}>The studio</Link>
-          <Link href="/contact" aria-current="page">Contact</Link>
-        </nav>
-      </header>
+      <SiteNav />
 
       <main>
         <section className={styles.hero} aria-labelledby="contact-title">
@@ -65,7 +57,7 @@ export default function ContactPage() {
             <p className={styles.intro}>An idea, a question, a story you want to carry.<br />We&apos;d love to hear it.</p>
             <a href="#connect" className={styles.heroLink}>Find your way to us <span aria-hidden="true">↓</span></a>
           </div>
-          <div className={styles.heroFoot}><span>Custom work / Personal stories</span><span>By appointment only</span></div>
+          <div className={styles.heroFoot}><span>Custom work / Personal stories</span><span>Walk-ins &amp; appointments</span></div>
         </section>
 
         <section id="connect" className={styles.connect} aria-labelledby="connect-title">
@@ -100,10 +92,11 @@ export default function ContactPage() {
             <div className={styles.hours}>
               <h3>Operating hours</h3>
               <dl className={styles.hoursList}>
-                <div><dt>Monday to Saturday</dt><dd>11 am – 7 pm</dd></div>
-                <div><dt>Sunday</dt><dd>By appointment</dd></div>
+                {site.hours.map((slot) => (
+                  <div key={slot.label}><dt>{slot.label}</dt><dd>{slot.time}</dd></div>
+                ))}
               </dl>
-              <span>Message us to confirm a time before your visit.</span>
+              <span>Walk-ins are welcome. For larger pieces, message us first so we can set aside enough time.</span>
               <small>All appointment times are in IST.</small>
             </div>
           </div>

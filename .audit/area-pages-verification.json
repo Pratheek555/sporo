@@ -1,0 +1,90 @@
+[
+  {
+    "slug": "white-town",
+    "words": 2170,
+    "titleCharacters": 74,
+    "descriptionCharacters": 158,
+    "faqs": 7,
+    "httpChecked": true
+  },
+  {
+    "slug": "french-quarter",
+    "words": 2141,
+    "titleCharacters": 76,
+    "descriptionCharacters": 155,
+    "faqs": 7,
+    "httpChecked": true
+  },
+  {
+    "slug": "promenade-beach",
+    "words": 2109,
+    "titleCharacters": 75,
+    "descriptionCharacters": 142,
+    "faqs": 6,
+    "httpChecked": true
+  },
+  {
+    "slug": "mission-street",
+    "words": 2104,
+    "titleCharacters": 74,
+    "descriptionCharacters": 163,
+    "faqs": 6,
+    "httpChecked": true
+  },
+  {
+    "slug": "goubert-avenue",
+    "words": 2001,
+    "titleCharacters": 82,
+    "descriptionCharacters": 153,
+    "faqs": 6,
+    "httpChecked": true
+  },
+  {
+    "slug": "lawspet",
+    "words": 2100,
+    "titleCharacters": 76,
+    "descriptionCharacters": 146,
+    "faqs": 6,
+    "httpChecked": true
+  },
+  {
+    "slug": "muthialpet",
+    "words": 2015,
+    "titleCharacters": 69,
+    "descriptionCharacters": 153,
+    "faqs": 10,
+    "httpChecked": true
+  },
+  {
+    "slug": "reddiarpalayam",
+    "words": 2410,
+    "titleCharacters": 62,
+    "descriptionCharacters": 155,
+    "faqs": 9,
+    "httpChecked": true
+  },
+  {
+    "slug": "auroville",
+    "words": 2710,
+    "titleCharacters": 57,
+    "descriptionCharacters": 159,
+    "faqs": 9,
+    "httpChecked": true
+  },
+  {
+    "slug": "serenity-beach",
+    "words": 1951,
+    "titleCharacters": 65,
+    "descriptionCharacters": 154,
+    "faqs": 10,
+    "httpChecked": true
+  },
+  {
+    "slug": "kottakuppam",
+    "words": 1878,
+    "titleCharacters": 66,
+    "descriptionCharacters": 150,
+    "faqs": 10,
+    "httpChecked": true
+  }
+]

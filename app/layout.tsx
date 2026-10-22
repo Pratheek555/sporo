@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { jsonLdScript, localBusinessJsonLd, site } from "./lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spiritual Tattoo Studio — Custom Tattoo Art",
+  metadataBase: new URL(site.url),
+  title: "BEST Tattoo and piercing shop Pondicherry - if you're looking for Tattoo Shop near me or Piercing Shop near me - Spiritual Tattoo Art Studio is the place to be",
   description:
     "Original blackwork, fine-line, large-scale, and cover-up tattoos created in a private appointment-only studio.",
   keywords: [
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     "Spiritual Tattoo Studio",
   ],
   openGraph: {
-    title: "Spiritual Tattoo Studio — Custom Tattoo Art",
+    title: "BEST Tattoo and piercing shop Pondicherry - if you're looking for Tattoo Shop near me or Piercing Shop near me - Spiritual Tattoo Art Studio is the place to be",
     description:
       "One-of-one tattoos designed around anatomy, movement, and longevity.",
     type: "website",
@@ -37,7 +39,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusinessJsonLd())} />
+      </body>
     </html>
   );
 }

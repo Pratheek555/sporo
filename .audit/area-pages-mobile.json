@@ -1,0 +1,85 @@
+{
+  "viewport": {
+    "width": 375,
+    "height": 667
+  },
+  "results": [
+    {
+      "slug": "white-town",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "french-quarter",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "promenade-beach",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "mission-street",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "goubert-avenue",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "lawspet",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "muthialpet",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "reddiarpalayam",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "auroville",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "serenity-beach",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    },
+    {
+      "slug": "kottakuppam",
+      "pageFits": true,
+      "titleFits": true,
+      "missingAnchors": 0,
+      "brokenImages": 0
+    }
+  ]
+}

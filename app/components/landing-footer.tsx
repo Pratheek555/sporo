@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const studioAddress =
   "34 Law De Lauriston Street, White Town, Puducherry 605001";
 
@@ -18,15 +20,16 @@ export default function LandingFooter() {
         <div className="landing-footer-contact">
           <span>Start a conversation</span>
           <a href="/contact">Contact us ↗</a>
+          <Link href="/services">All services ↗</Link>
           <a href="mailto:studio@spiritualart3.com">
             studio@spiritualart3.com
           </a>
         </div>
 
         <div className="landing-footer-location">
-          <span>Private studio</span>
+          <span>White Town studio</span>
           <strong>Pondicherry / India</strong>
-          <small>Appointment only</small>
+          <small>Walk-ins &amp; appointments</small>
         </div>
 
         <address className="landing-footer-details" aria-label="Studio details">

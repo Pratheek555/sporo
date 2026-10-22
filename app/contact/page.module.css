@@ -1,13 +1,6 @@
 .page { background: var(--ink); color: var(--paper); }
-.header { display: flex; justify-content: space-between; align-items: stretch; min-height: 82px; margin: 0 3.5vw; border-bottom: 1px solid #f3eee530; }
-.brand { display: flex; align-items: center; gap: 18px; }
-.monogram { font: italic 2.7rem Georgia, serif; color: var(--signal); }
-.brand strong { display: block; font: 700 1.6rem/1 "Akzidenz Freena", sans-serif; text-transform: uppercase; }
-.brand small { display: block; margin-top: 5px; font: .5rem var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; }
-.header nav { display: flex; gap: 34px; align-items: center; font: .65rem var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .06em; }
-.header nav [aria-current] { color: #ec767b; }
 .page a:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
-.hero { position: relative; isolation: isolate; overflow: hidden; min-height: 730px; padding: 32px 6vw 26px; background: var(--signal); }
+.hero { position: relative; isolation: isolate; overflow: hidden; min-height: 730px; padding: 112px 6vw 26px; background: var(--signal); }
 .hero::after { position: absolute; inset: 0; z-index: -1; background: repeating-linear-gradient(0deg, #16090c0a 0 1px, transparent 1px 4px); content: ""; pointer-events: none; }
 .heroIndex, .heroFoot { position: relative; display: flex; justify-content: space-between; gap: 18px; font: .6rem/1.5 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; }
 .heroIndex { padding-bottom: 20px; border-bottom: 1px solid #f3eee555; }
@@ -70,14 +63,7 @@ a.contactRow:hover { color: #ec767b; padding-left: 12px; }
   .visit { gap: 5vw; }
 }
 @media (max-width: 600px) {
-  .header { min-height: 76px; margin-inline: 6vw; }
-  .brand { gap: 10px; }
-  .brand strong { font-size: 1.3rem; }
-  .brand small { font-size: .4rem; }
-  .monogram { font-size: 2.1rem; }
-  .header nav { gap: 16px; font-size: .55rem; }
-  .header nav a:first-child { display: none; }
-  .hero { min-height: auto; padding-top: 24px; }
+  .hero { min-height: auto; padding-top: 92px; }
   .heroIndex, .heroFoot { font-size: .48rem; }
   .heroCopy { padding: 60px 0 48px; }
   .hero h1 { font-size: 24vw; }

@@ -1,95 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SiteNav from "./site-nav";
 import { useVisibleVideo } from "./use-visible-video";
 
 export default function LandingHero() {
   const root = useRef<HTMLDivElement>(null);
-  const [navOpen, setNavOpen] = useState(false);
   useVisibleVideo(root);
-
-  useEffect(() => {
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setNavOpen(false);
-    };
-
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, []);
 
   return (
     <>
-      <header className={`landing-nav${navOpen ? " is-open" : ""}`}>
-        <a className="landing-nav-brand" href="#top" aria-label="Spiritual Tattoo Art home">
-          <span className="landing-nav-logo" aria-hidden="true">
-            <Image src="/cover-kali.png" alt="" width={66} height={66} />
-          </span>
-          <span className="landing-nav-wordmark">
-            <strong>Spiritual</strong>
-            <small>Tattoo Art / Pondicherry</small>
-          </span>
-        </a>
-
-        <span className="landing-nav-edition" aria-hidden="true">
-          Private studio<br />Est. 2018
-        </span>
-
-        <nav className="landing-nav-links" aria-label="Primary navigation">
-          <a href="#philosophy" onClick={() => setNavOpen(false)}>
-            <small>01</small><span>Philosophy</span>
-          </a>
-          <a href="#stories" onClick={() => setNavOpen(false)}>
-            <small>02</small><span>Stories</span>
-          </a>
-          <a href="#visit" onClick={() => setNavOpen(false)}>
-            <small>03</small><span>Visit</span>
-          </a>
-          <Link href="/contact"><small>04</small><span>Contact</span></Link>
-        </nav>
-
-        <Link className="landing-nav-cta" href="/studio" prefetch={false}>
-          <span>Enter studio</span><i aria-hidden="true">↗</i>
-        </Link>
-
-        <button
-          className="landing-nav-toggle"
-          type="button"
-          aria-expanded={navOpen}
-          aria-controls="landing-mobile-nav"
-          onClick={() => setNavOpen((open) => !open)}
-        >
-          <span>{navOpen ? "Close" : "Menu"}</span>
-          <i aria-hidden="true"><b /><b /></i>
-        </button>
-
-        <div
-          id="landing-mobile-nav"
-          className="landing-mobile-nav"
-          aria-hidden={!navOpen}
-          inert={!navOpen}
-        >
-          <nav aria-label="Mobile navigation">
-            <a href="#philosophy" onClick={() => setNavOpen(false)}>
-              <small>01 /</small><span>Philosophy</span><i aria-hidden="true">↘</i>
-            </a>
-            <a href="#stories" onClick={() => setNavOpen(false)}>
-              <small>02 /</small><span>Stories</span><i aria-hidden="true">↘</i>
-            </a>
-            <a href="#visit" onClick={() => setNavOpen(false)}>
-              <small>03 /</small><span>Visit</span><i aria-hidden="true">↘</i>
-            </a>
-            <Link href="/studio" prefetch={false} onClick={() => setNavOpen(false)}>
-              <small>04 /</small><span>Enter studio</span><i aria-hidden="true">↗</i>
-            </Link>
-            <Link href="/contact" onClick={() => setNavOpen(false)}>
-              <small>05 /</small><span>Contact us</span><i aria-hidden="true">↗</i>
-            </Link>
-          </nav>
-          <p>Custom work / Appointment only</p>
-        </div>
-      </header>
+      <SiteNav />
 
       <div ref={root} className="landing-shell">
         <section id="top" className="hero" aria-labelledby="hero-title">
@@ -128,6 +51,11 @@ export default function LandingHero() {
               <span>Spiritual</span>
               <span>Tattoo <span className="text-red-500">Art</span></span>
             </h1>
+            <p className="hero-descriptor">
+              <span>Tattoo and piercing shop in Pondicherry</span>
+              <span className="hero-descriptor-note">Best and most trusted</span>
+            </p>
+          </div>
           </div>
 
           <Link
@@ -136,13 +64,18 @@ export default function LandingHero() {
             prefetch={false}
             aria-label="Enter Spiritual Tattoo Studio"
           >
-            <span className="enter-studio-label">
-              <small>Step inside the archive</small>
-              <strong>Enter Studio</strong>
-            </span>
+            <svg className="enter-studio-ring" viewBox="0 0 100 100" aria-hidden="true">
+              <defs>
+                <path id="enter-studio-ring-path" d="M11,50 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0" />
+              </defs>
+              <text>
+                <textPath href="#enter-studio-ring-path" textLength="236" lengthAdjust="spacing">
+                  Step inside the archive <tspan>•</tspan> Enter studio <tspan>•</tspan>
+                </textPath>
+              </text>
+            </svg>
             <i aria-hidden="true">↗</i>
           </Link>
-          </div>
           </section>
         </div>
       </>

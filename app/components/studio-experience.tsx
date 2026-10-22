@@ -50,36 +50,29 @@ const archiveYears = Array.from({ length: 9 }, (_, index) => 2018 + index);
 const artPages: ArtPage[] = [
   {
     number: "01",
-    title: "THE FIRST LINE",
-    note: "A mark begins as a conversation between memory, anatomy and intent.",
+    title: "Mukhilan’s Creative Den",
+    note: "Born in 2018 from a young artist’s vision, this studio has evolved into a sacred space for intentional tattooing. Today, he honors that dream by cultivating an environment where art is deeply respected, transforming personal stories into enduring, spiritual milestones on the skin.",
     kind: "gallery",
     images: studioGalleryImages,
     className: "studio-book-art--gallery",
   },
   {
     number: "02",
-    title: "BODY / FORM",
-    note: "Each composition is drawn to move with the body that carries it.",
+    title: "Beyond the Canvas",
+    note: "For Mukhilan, each design is a sacred collaboration rather than a mere service. He carefully crafts every piece to mirror your personal journey, transforming ancient ink traditions into an unforgettable, intentional experience that deeply resonates with your spirit.",
     kind: "single",
     image: { src: "/media/nocturne-work-grid.webp", alt: "A collection of blackwork and fine-line tattoo studies" },
     className: "studio-book-art--grid",
   },
   {
     number: "03",
-    title: "INK / MATTER",
-    note: "Texture, weight and negative space turn an image into a living object.",
+    title: "The Hall of Art",
+    note: "Anything and Everything is Art. This gallery showcases a few of Mukhilan’s custom works, each carefully designed to honour our client’s unique visions. Let us transform your story into a living masterpiece!\n\nVisit the studio or call us today to secure your custom ink session.",
     kind: "single",
     image: { src: "/media/nocturne-ink-object.webp", alt: "A sculptural black ink form" },
     className: "studio-book-art--object",
   },
-  {
-    number: "04",
-    title: "CARRIED ALWAYS",
-    note: "The final work leaves the studio and becomes part of your own mythology.",
-    kind: "single",
-    image: { src: "/redpeacock.png", alt: "An ornate red peacock illustration" },
-    className: "studio-book-art--peacock",
-  },
+
 ];
 
 function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: boolean }) {
@@ -268,9 +261,6 @@ export default function StudioExperience() {
     const label = root.current?.querySelector<HTMLElement>(
       ".studio-step-label",
     );
-    const bookNumber = root.current?.querySelector<HTMLElement>(
-      ".studio-book-page-number",
-    );
     const title = root.current?.querySelector<HTMLElement>(
       ".studio-book-page-title",
     );
@@ -280,7 +270,6 @@ export default function StudioExperience() {
 
     if (number) number.textContent = artPages[index].number;
     if (label) label.textContent = artPages[index].title;
-    if (bookNumber) bookNumber.textContent = `PLATE / ${artPages[index].number}`;
     if (title) title.textContent = artPages[index].title;
     if (note) note.textContent = artPages[index].note;
   };
@@ -411,7 +400,7 @@ export default function StudioExperience() {
   };
 
   return (
-    <div ref={root} className="studio-shell studio-book-experience">
+    <div ref={root} className={`studio-shell studio-book-experience ${styles.editorialBook}`}>
       <div className="studio-noise" aria-hidden="true" />
 
       <main id="archive" className="studio-book-stage" data-open={isOpen}>
@@ -433,10 +422,9 @@ export default function StudioExperience() {
                 disabled={!isOpen || busy || currentPage === 0}
               />
               <div className="studio-book-left-rule" />
-              <span className="studio-book-page-number">PLATE / 01</span>
-              <h1 className="studio-book-page-title">THE FIRST LINE</h1>
+              <h1 className="studio-book-page-title">{artPages[0].title}</h1>
               <p className="studio-book-page-note">
-                A mark begins as a conversation between memory, anatomy and intent.
+                {artPages[0].note}
               </p>
               <div className="studio-book-seal" aria-hidden="true">
                 <Image src="/redpeacock.png" alt="" fill sizes="22vw" />
@@ -502,7 +490,6 @@ export default function StudioExperience() {
                     data-turn-kind="note"
                     data-turn-index={index}
                   >
-                    <span>PLATE / {art.number}</span>
                     <strong>{art.title}</strong>
                     <p>{art.note}</p>
                     <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
@@ -518,7 +505,6 @@ export default function StudioExperience() {
                     data-turn-kind="note"
                     data-turn-index={index}
                   >
-                    <span>PLATE / {art.number}</span>
                     <strong>{art.title}</strong>
                     <p>{art.note}</p>
                     <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
@@ -565,9 +551,8 @@ export default function StudioExperience() {
               </div>
               <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">
                 <div className="studio-book-left-rule" />
-                <span className="studio-book-page-number">PLATE / 01</span>
-                <h2 className="studio-book-page-title">THE FIRST LINE</h2>
-                <p className="studio-book-page-note">A mark begins as a conversation between memory, anatomy and intent.</p>
+                <h2 className="studio-book-page-title">{artPages[0].title}</h2>
+                <p className="studio-book-page-note">{artPages[0].note}</p>
                 <div className="studio-book-seal"><Image src="/redpeacock.png" alt="" fill sizes="22vw" /></div>
                 <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
               </div>
@@ -580,7 +565,7 @@ export default function StudioExperience() {
         <div className="studio-book-navigation">
           <div className="studio-book-caption" aria-live="polite">
             <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
-            <p>{isOpen ? artPages[currentPage].note : "Four studies in line, body, matter and permanence."}</p>
+            <p>{isOpen ? artPages[currentPage].note : "Three chapters in art, intention and personal stories."}</p>
           </div>
           <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
             <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
@@ -591,11 +576,11 @@ export default function StudioExperience() {
       <footer className="studio-footer">
         <div className="studio-step">
           <span className="studio-step-current">01</span>
-          <i>/ 04</i>
-          <strong className="studio-step-label">THE FIRST LINE</strong>
+          <i>/ {String(artPages.length).padStart(2, "0")}</i>
+          <strong className="studio-step-label">{artPages[0].title}</strong>
         </div>
         <div className="studio-progress" aria-hidden="true">
-          <span className="studio-progress-fill" />
+          <span className="studio-progress-fill" style={{ transform: `scaleX(${1 / artPages.length})` }} />
         </div>
         <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
       </footer>

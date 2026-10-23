@@ -61,8 +61,11 @@ const artPages: ArtPage[] = [
     title: "Beyond the Canvas",
     note: "For Mukhilan, each design is a sacred collaboration rather than a mere service. He carefully crafts every piece to mirror your personal journey, transforming ancient ink traditions into an unforgettable, intentional experience that deeply resonates with your spirit.",
     kind: "single",
-    image: { src: "/media/nocturne-work-grid.webp", alt: "A collection of blackwork and fine-line tattoo studies" },
-    className: "studio-book-art--grid",
+    image: {
+      src: "/media/studio-flash-sheet.webp",
+      alt: "A hand-drawn flash sheet of four original tattoo designs: a fierce goddess with a trident, a sun face, an eye-winged moth and Kali with a cobra",
+    },
+    className: "studio-book-art--flash",
   },
   {
     number: "03",

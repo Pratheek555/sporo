@@ -157,7 +157,7 @@ export function renderMarkdown(markdown: string): ReactNode[] {
                   <tr key={r}>
                     {row.map((cell, c) => c === 0
                       ? <th key={c} scope="row">{renderInline(cell, `${key}-${r}-${c}`)}</th>
-                      : <td key={c}>{renderInline(cell, `${key}-${r}-${c}`)}</td>)}
+                      : <td key={c} data-label={head[c]?.replace(/[*_`]/g, "")}>{renderInline(cell, `${key}-${r}-${c}`)}</td>)}
                   </tr>
                 ))}
               </tbody>

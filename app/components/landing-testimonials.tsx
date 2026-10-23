@@ -124,7 +124,10 @@ export default function LandingTestimonials() {
           <i>
             <span />
           </i>
-          <span>Scroll to read</span>
+          <span className="landing-testimonials-hint">
+            <span className="landing-testimonials-hint--scroll">Scroll to read</span>
+            <span className="landing-testimonials-hint--swipe">Swipe to read →</span>
+          </span>
         </div>
       </div>
     </section>

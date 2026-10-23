@@ -389,7 +389,35 @@
 }
 
 @media (max-width: 600px) {
-  .breadcrumb { flex-direction: column; gap: 6px; font-size: .5rem; }
+  .breadcrumb { flex-direction: column; gap: 2px; font-size: .65rem; }
+  .breadcrumb ol { align-items: center; }
+  .breadcrumb a { display: inline-block; padding-block: 8px; }
+  .buttonInk,
+  .buttonLine,
+  .buttonPrimary,
+  .buttonGhost { font-size: .72rem; }
+  .facts dt,
+  .related li > a > small,
+  .tocMobile small,
+  .sectionLabel > span,
+  .sectionLabel > a,
+  .eyebrow { font-size: .65rem; }
+  .sectionLabel > a { display: inline-flex; align-items: center; min-height: 44px; }
+  .related li > a { padding: 20px 20px 22px; }
+  /* Stack comparison tables into labelled cards instead of scrolling sideways. */
+  .tableWrap { overflow: visible; }
+  .tableWrap table,
+  .tableWrap tbody,
+  .tableWrap caption { display: block; min-width: 0; }
+  .tableWrap caption { font-size: .65rem; }
+  .tableWrap thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .tableWrap tbody tr { display: block; padding: 16px 18px; border-top: 1px solid #f3eee51a; }
+  .tableWrap tbody tr:first-child { border-top: 0; }
+  .tableWrap tbody th,
+  .tableWrap td { display: block; padding: 0; border: 0; }
+  .tableWrap tbody th { margin-bottom: 8px; font-size: 1rem; }
+  .tableWrap td { display: grid; grid-template-columns: minmax(0, 8.5em) 1fr; gap: 14px; padding-block: 4px; }
+  .tableWrap td::before { color: #bcb0b2; font: .62rem/2 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; content: attr(data-label); }
   .heroCopy { padding: 44px 0 40px; }
   .hero h1 { font-size: clamp(3rem, 15vw, 4.6rem); }
   .heroArt { top: 22%; right: -38%; width: 100%; opacity: .26; }

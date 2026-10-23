@@ -64,29 +64,33 @@ a.contactRow:hover { color: #ec767b; padding-left: 12px; }
 }
 @media (max-width: 600px) {
   .hero { min-height: auto; padding-top: 92px; }
-  .heroIndex, .heroFoot { font-size: .48rem; }
+  .heroIndex, .heroFoot { font-size: .62rem; }
   .heroCopy { padding: 60px 0 48px; }
   .hero h1 { font-size: 24vw; }
   .script { max-width: 220px; }
-  .intro { max-width: 260px; font-size: .8rem; }
+  .intro { max-width: 290px; font-size: .9rem; }
   .art { top: 18%; right: -34%; width: 100%; opacity: .27; }
   .connect { padding-block: 48px; }
   .sectionLabel { align-items: start; margin-bottom: 25px; }
   .sectionLabel h2 { font-size: 1.3rem; }
-  .sectionLabel > span { font-size: .48rem; padding-top: 5px; }
+  .sectionLabel > span { font-size: .62rem; padding-top: 5px; }
   .contactRow { grid-template-columns: 24px 30px 1fr 22px; gap: 12px; padding-block: 28px; }
   .icon { width: 28px; height: 28px; }
   .rowCopy h3 { font-size: 1.85rem; }
-  .rowCopy p { font-size: .72rem; }
-  .rowDetail { font-size: .55rem; }
+  .rowCopy p { font-size: .85rem; }
+  .rowDetail { font-size: .68rem; }
   .arrow { font-size: 1.5rem; }
-  .email { font-size: .58rem; }
+  .email { flex-direction: column; gap: 4px; font-size: .72rem; }
+  .email a { display: inline-flex; align-items: center; min-height: 44px; }
+  .mapCaption, .hours small { font-size: .65rem; }
+  .hoursList { font-size: .85rem; }
   .visit { grid-template-columns: 1fr; padding-block: 48px; gap: 40px; }
   .visit h2 { font-size: 19vw; }
   .map :global(.landing-location-map) { min-height: 360px; }
   .footer { padding-top: 36px; }
   .footer > p { font-size: 1.5rem; }
-  .footerIndex { font-size: .48rem; }
+  .footer > a { align-items: center; min-height: 44px; font-size: .72rem; }
+  .footerIndex { font-size: .62rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .contactRow { transition: none; }

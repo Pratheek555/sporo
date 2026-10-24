@@ -48,6 +48,7 @@ export default function LandingHero() {
             </h2>
 
             <h1 id="hero-title" className="hero-title">
+              <span className="hero-title-seo">Tattoo &amp; Piercing Studio in Pondicherry: </span>
               <span>Spiritual</span>
               <span>Tattoo <span className="text-red-500">Art</span></span>
             </h1>

@@ -61,21 +61,20 @@ const artPages: ArtPage[] = [
     title: "Beyond the Canvas",
     note: "For Mukhilan, each design is a sacred collaboration rather than a mere service. He carefully crafts every piece to mirror your personal journey, transforming ancient ink traditions into an unforgettable, intentional experience that deeply resonates with your spirit.",
     kind: "single",
-    image: {
-      src: "/media/studio-flash-sheet.webp",
-      alt: "A hand-drawn flash sheet of four original tattoo designs: a fierce goddess with a trident, a sun face, an eye-winged moth and Kali with a cobra",
-    },
-    className: "studio-book-art--flash",
+    image: { src: "/media/nocturne-ink-object.webp", alt: "A sculptural black ink form" },
+    className: "studio-book-art--object",
   },
   {
     number: "03",
     title: "The Hall of Art",
     note: "Anything and Everything is Art. This gallery showcases a few of Mukhilan’s custom works, each carefully designed to honour our client’s unique visions. Let us transform your story into a living masterpiece!\n\nVisit the studio or call us today to secure your custom ink session.",
     kind: "single",
-    image: { src: "/media/nocturne-ink-object.webp", alt: "A sculptural black ink form" },
-    className: "studio-book-art--object",
+    image: {
+      src: "/media/studio-flash-sheet.webp",
+      alt: "A hand-drawn flash sheet of four original tattoo designs: a fierce goddess with a trident, a sun face, an eye-winged moth and Kali with a cobra",
+    },
+    className: "studio-book-art--flash",
   },
-
 ];
 
 function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: boolean }) {

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: "BEST Tattoo and piercing shop Pondicherry - if you're looking for Tattoo Shop near me or Piercing Shop near me - Spiritual Tattoo Art Studio is the place to be",
   description:
-    "Original blackwork, fine-line, large-scale, and cover-up tattoos created in a private appointment-only studio.",
+    "Original blackwork, fine-line, large-scale, and cover-up tattoos created at our studio in Pondicherry.",
   keywords: [
     "custom tattoo studio",
     "blackwork tattoo",

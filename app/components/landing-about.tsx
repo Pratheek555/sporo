@@ -35,14 +35,13 @@ export default function LandingAbout() {
           <figure className="landing-about-portrait">
             <Image
               src="/owner.jpeg"
-              alt="Temporary portrait placeholder for the studio owner"
+              alt="Mukhilan, founder of Spiritual Tattoo Art Studio"
               fill
               sizes="(max-width: 700px) 68vw, 36vw"
             />
             <span className="landing-about-portrait-curtain" aria-hidden="true" />
             <figcaption>
               <span>Founder / Artist</span>
-              <small>Portrait placeholder — 2026</small>
             </figcaption>
           </figure>
 

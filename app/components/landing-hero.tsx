@@ -53,7 +53,7 @@ export default function LandingHero() {
               <span>Tattoo <span className="text-red-500">Art</span></span>
             </h1>
             <p className="hero-descriptor">
-              <span className="hero-descriptor-kicker">Tattoo &amp; Piercing <i>/</i> Pondicherry</span>
+              <span className="hero-descriptor-kicker">Tattoo &amp; Piercing Shop <i>in</i> Pondicherry</span>
               <span className="hero-descriptor-note">The best &amp; most trusted studio in town.</span>
             </p>
           </div>

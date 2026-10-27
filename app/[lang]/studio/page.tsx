@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import StudioExperience from "../../components/studio-experience";
 import LandingFooter from "../../components/landing-footer";
+import StudioWorkReel from "../../components/studio-work-reel";
 import { isLocale, pageAlternates } from "../../lib/i18n/config";
 import { getDictionary, getDictionaryFor } from "../../lib/i18n/get-dictionary";
 
@@ -18,6 +19,7 @@ export default async function StudioPage() {
   return (
     <div className="studio-page">
       <StudioExperience t={studio} />
+      <StudioWorkReel t={studio.reel} />
       <LandingFooter />
     </div>
   );

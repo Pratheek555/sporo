@@ -52,6 +52,7 @@ export default function LandingHero({ t }: { t: Dictionary["hero"] }) {
               <span>Spiritual</span>
               <span>Tattoo <span className="text-red-500">Art</span></span>
             </h1>
+            <h2 className="sr-only">{t.subtitleSeo}</h2>
             <p className="hero-descriptor">
               <span className="hero-descriptor-kicker">{t.descriptorKicker[0]} <i>{t.descriptorKicker[1]}</i> {t.descriptorKicker[2]}</span>
               <span className="hero-descriptor-note">{t.descriptorNote}</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -24,9 +24,16 @@ type ArtPageBase = {
   className: string;
 };
 
+type ArtFilm = {
+  sources: { src: string; type: string }[];
+  poster: string;
+  alt: string;
+};
+
 type ArtPage =
   | (ArtPageBase & { kind: "gallery"; images: [ArtImage, ArtImage, ArtImage, ArtImage] })
-  | (ArtPageBase & { kind: "single"; image: ArtImage });
+  | (ArtPageBase & { kind: "single"; image: ArtImage })
+  | (ArtPageBase & { kind: "film"; film: ArtFilm });
 
 const studioGallerySources = [
   "/media/studio-gallery/studio-gallery-1.png",
@@ -57,9 +64,17 @@ function buildArtPages(t: Dictionary["studio"]): ArtPage[] {
     {
       number: "02",
       ...second,
-      kind: "single",
-      image: { src: "/media/nocturne-ink-object.webp", alt: t.objectAlt },
-      className: "studio-book-art--object",
+      kind: "film",
+      // Compressed from raw-media/C0031.MP4 (not committed): rotated upright, 720x1280, 30fps, no audio.
+      film: {
+        sources: [
+          { src: "/media/studio-book-film.webm", type: "video/webm" },
+          { src: "/media/studio-book-film.mp4", type: "video/mp4" },
+        ],
+        poster: "/media/studio-book-film-poster.webp",
+        alt: t.filmAlt,
+      },
+      className: "studio-book-art--film",
     },
     {
       number: "03",
@@ -72,8 +87,22 @@ function buildArtPages(t: Dictionary["studio"]): ArtPage[] {
 }
 
 function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: boolean }) {
-  const images = art.kind === "gallery" ? art.images : [art.image];
   const sizes = decorative ? "42vw" : "(max-width: 800px) 78vw, 42vw";
+
+  // Page-turn layers only need the still; the live page streams nothing until it is played.
+  if (art.kind === "film") {
+    return decorative ? (
+      <Image src={art.film.poster} alt="" fill sizes={sizes} />
+    ) : (
+      <video poster={art.film.poster} muted loop playsInline preload="none" aria-label={art.film.alt}>
+        {art.film.sources.map((source) => (
+          <source key={source.src} src={source.src} type={source.type} />
+        ))}
+      </video>
+    );
+  }
+
+  const images = art.kind === "gallery" ? art.images : [art.image];
 
   if (images.length > 1) {
     return (
@@ -105,6 +134,38 @@ export default function StudioExperience({ t }: { t: Dictionary["studio"] }) {
   const opened = useRef(false);
   const turning = useRef(false);
   const reducedMotion = useRef(false);
+  const filmShowing = isOpen && artPages[currentPage]?.kind === "film";
+
+  // The page film streams only while its page is open, on screen and motion is allowed.
+  useEffect(() => {
+    const video = root.current?.querySelector<HTMLVideoElement>(".studio-book-art video");
+    if (!video) return;
+    if (!filmShowing) {
+      video.pause();
+      return;
+    }
+
+    const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
+    let visible = false;
+    const update = () => {
+      if (visible && motion.matches && !document.hidden) void video.play().catch(() => undefined);
+      else video.pause();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    }, { threshold: 0.25 });
+
+    observer.observe(video);
+    motion.addEventListener("change", update);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      observer.disconnect();
+      motion.removeEventListener("change", update);
+      document.removeEventListener("visibilitychange", update);
+      video.pause();
+    };
+  }, [filmShowing]);
 
   const { contextSafe } = useGSAP(
     () => {

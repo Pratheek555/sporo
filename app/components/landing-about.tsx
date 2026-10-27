@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import type { Dictionary } from "../lib/i18n/dictionaries/en";
+import { useLocalePath } from "../lib/i18n/locale-context";
 import { useVisibleVideo } from "./use-visible-video";
 import { useScrollAnimation } from "./use-scroll-animation";
 
@@ -13,8 +15,9 @@ const animateAbout: Parameters<typeof useScrollAnimation>[1] = ({ gsap, section 
   });
 };
 
-export default function LandingAbout() {
+export default function LandingAbout({ t }: { t: Dictionary["about"] }) {
   const root = useRef<HTMLElement>(null);
+  const href = useLocalePath();
   useVisibleVideo(root);
 
   useScrollAnimation(root, animateAbout);
@@ -28,47 +31,41 @@ export default function LandingAbout() {
         </div>
 
         <span className="landing-about-chapter" aria-hidden="true">
-          ABOUT / 02
+          {t.chapter}
         </span>
 
         <div className="landing-about-layout">
           <figure className="landing-about-portrait">
             <Image
               src="/owner.jpeg"
-              alt="Mukhilan, founder of Spiritual Tattoo Art Studio"
+              alt={t.portraitAlt}
               fill
               sizes="(max-width: 700px) 68vw, 36vw"
             />
             <span className="landing-about-portrait-curtain" aria-hidden="true" />
             <figcaption>
-              <span>Founder / Artist</span>
+              <span>{t.portraitCaption}</span>
             </figcaption>
           </figure>
 
           <div className="landing-about-copy">
-            <p className="landing-about-kicker">The hands behind the mark</p>
+            <p className="landing-about-kicker">{t.kicker}</p>
             <h2 id="about-title">
-              <span><i className="landing-about-copy-line">Made by hand.</i></span>
-              <span><i className="landing-about-copy-line">Shaped around you.</i></span>
-              <span><i className="landing-about-copy-line landing-about-copy-line--red">Carried for life.</i></span>
+              <span><i className="landing-about-copy-line">{t.lines[0]}</i></span>
+              <span><i className="landing-about-copy-line">{t.lines[1]}</i></span>
+              <span><i className="landing-about-copy-line landing-about-copy-line--red">{t.lines[2]}</i></span>
             </h2>
 
-            <p>
-              Mukhilan, founder of Spiritual Tattoo Art Studio, has been shaping his craft since 2018.
-              For him, tattooing is not about chasing money, but about respecting the art and the person receiving it.
-              He takes the time to understand each individual and create work that feels personal and meaningful.
-            </p>
-            <p>
-              Every design is carefully considered so it naturally belongs on the skin, rather than simply sitting on it.
-              His approach goes beyond creating tattoos; it is about creating art that carries meaning, character, and permanence.
-            </p>
+            {t.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
 
             <blockquote className="landing-about-quote">
-              “The best mark feels discovered, not added.”
+              {t.quote}
             </blockquote>
 
-            <a className="landing-about-link" href="/studio">
-              <span>Enter the studio</span>
+            <a className="landing-about-link" href={href("/studio")}>
+              <span>{t.link}</span>
               <i aria-hidden="true">↗</i>
             </a>
           </div>

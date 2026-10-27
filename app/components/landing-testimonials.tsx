@@ -1,65 +1,32 @@
 import type { CSSProperties } from "react";
+import { getDictionary } from "../lib/i18n/get-dictionary";
+import { format } from "../lib/i18n/text";
 import styles from "./landing-testimonials.module.css";
 
 const googleReviewsUrl =
   "https://www.google.com/search?q=spiritualart+pondicherry&oq=spiritualart+pondicherry&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDUxMDZqMGo3qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x3a5363ab0ef0d2cd:0xa4ef7c80af258de1,1,,,,";
 
+// Reviewers and themes live here; each review's text comes from the dictionary
+// (`testimonials.quotes`, in the same order) so it can be shown in the visitor's language.
 const testimonials = [
-  {
-    number: "01",
-    theme: "ink",
-    author: "Nicolas Joffroy",
-    quote: "Excellent tattoo artist, and someone I trust completely.",
-  },
-  {
-    number: "02",
-    theme: "paper",
-    author: "Lydie Asselin",
-    quote: "Beautiful, delicate, and exactly what I had imagined.",
-  },
-  {
-    number: "03",
-    theme: "signal",
-    author: "Chris Coles",
-    quote: "Very clean and professional.",
-  },
-  {
-    number: "04",
-    theme: "ink",
-    author: "Yael Radhakrishnan",
-    quote: "Mukhilan is a true artist and a deeply spiritual person.",
-  },
-  {
-    number: "05",
-    theme: "paper",
-    author: "Adelinemira RAZASEGARAN",
-    quote: "The artist was professional, talented, and made me feel comfortable throughout the whole process.",
-  },
-  {
-    number: "06",
-    theme: "signal",
-    author: "Sweta Soren",
-    quote: "His work is really detailed and beautifully done, and he always gives helpful advice on the placement and size.",
-  },
-  {
-    number: "07",
-    theme: "ink",
-    author: "Charlotte DE GROOTE",
-    quote: "The piercer was super friendly, very welcoming, and flexible.",
-  },
-  {
-    number: "08",
-    theme: "paper",
-    author: "Janine Röseler",
-    quote: "Mister Mukhilan is an absolut great Artist. So friendly and patient.",
-  },
+  { number: "01", theme: "ink", author: "Nicolas Joffroy" },
+  { number: "02", theme: "paper", author: "Lydie Asselin" },
+  { number: "03", theme: "signal", author: "Chris Coles" },
+  { number: "04", theme: "ink", author: "Yael Radhakrishnan" },
+  { number: "05", theme: "paper", author: "Adelinemira RAZASEGARAN" },
+  { number: "06", theme: "signal", author: "Sweta Soren" },
+  { number: "07", theme: "ink", author: "Charlotte DE GROOTE" },
+  { number: "08", theme: "paper", author: "Janine Röseler" },
 ] as const;
 
 const reviewStyle: CSSProperties & { "--review-count": number } = {
   "--review-count": testimonials.length,
 };
 
-export default function LandingTestimonials() {
+export default async function LandingTestimonials() {
+  const { testimonials: t } = await getDictionary();
+  const total = String(testimonials.length).padStart(2, "0");
+
   return (
     <section
       id="stories"
@@ -68,23 +35,23 @@ export default function LandingTestimonials() {
       aria-labelledby="testimonials-title"
     >
       <h2 id="testimonials-title" className="sr-only">
-        Google reviews from our clients
+        {t.heading}
       </h2>
 
       <div className="landing-testimonials-stage">
         <div className="landing-testimonials-track">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <article
               className={`landing-testimonial-panel landing-testimonial-panel--${testimonial.theme}`}
               key={testimonial.number}
             >
               <header className={styles.reviewHeader}>
-                <span className="landing-testimonial-chapter">CLIENT STORIES / {String(testimonials.length).padStart(2, "0")}</span>
-                <a className={styles.googleBrand} href={googleReviewsUrl} target="_blank" rel="noreferrer" aria-label="Read our reviews on Google">
+                <span className="landing-testimonial-chapter">{format(t.chapter, { total })}</span>
+                <a className={styles.googleBrand} href={googleReviewsUrl} target="_blank" rel="noreferrer" aria-label={t.googleLabel}>
                   <span className={styles.googleWord} aria-hidden="true">
                     <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
                   </span>
-                  <span>Reviews ↗</span>
+                  <span>{t.reviews}</span>
                 </a>
               </header>
               <span className="landing-testimonial-ghost" aria-hidden="true">
@@ -93,17 +60,17 @@ export default function LandingTestimonials() {
 
               <div className={`landing-testimonial-copy ${styles.quoteCopy}`}>
                 <blockquote>
-                  <p><span className={styles.quoteMark} aria-hidden="true">“</span>{testimonial.quote}<span className={styles.quoteMark} aria-hidden="true">”</span></p>
+                  <p><span className={styles.quoteMark} aria-hidden="true">“</span>{t.quotes[index]}<span className={styles.quoteMark} aria-hidden="true">”</span></p>
                 </blockquote>
               </div>
 
               <footer className="landing-testimonial-meta">
-                <span>{testimonial.number} / {String(testimonials.length).padStart(2, "0")}</span>
+                <span>{testimonial.number} / {total}</span>
                 <div className={styles.reviewer}>
                   <span className={styles.avatar} aria-hidden="true">{testimonial.author.split(" ").map((name) => name[0]).slice(0, 2).join("")}</span>
                   <div>
                     <cite className={styles.author}>{testimonial.author}</cite>
-                    <div className={styles.rating} role="img" aria-label="5 out of 5 stars">
+                    <div className={styles.rating} role="img" aria-label={t.stars}>
                       <span aria-hidden="true">★★★★★</span>
                       <small aria-hidden="true">5.0</small>
                     </div>
@@ -111,7 +78,7 @@ export default function LandingTestimonials() {
                 </div>
                 <span className={styles.reviewLink}>
                   <a href={googleReviewsUrl} target="_blank" rel="noreferrer">
-                    Google review ↗
+                    {t.googleReview}
                   </a>
                 </span>
               </footer>
@@ -120,13 +87,13 @@ export default function LandingTestimonials() {
         </div>
 
         <div className="landing-testimonials-progress" aria-hidden="true">
-          <span>What they carry</span>
+          <span>{t.progress}</span>
           <i>
             <span />
           </i>
           <span className="landing-testimonials-hint">
-            <span className="landing-testimonials-hint--scroll">Scroll to read</span>
-            <span className="landing-testimonials-hint--swipe">Swipe to read →</span>
+            <span className="landing-testimonials-hint--scroll">{t.scrollHint}</span>
+            <span className="landing-testimonials-hint--swipe">{t.swipeHint}</span>
           </span>
         </div>
       </div>

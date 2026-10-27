@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 
 type DeferredMapProps = {
   src: string;
+  title: string;
 };
 
-export default function DeferredMap({ src }: DeferredMapProps) {
+export default function DeferredMap({ src, title }: DeferredMapProps) {
   const container = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
@@ -38,7 +39,7 @@ export default function DeferredMap({ src }: DeferredMapProps) {
       {shouldLoad && (
         <iframe
           src={src}
-          title="Spiritual Tattoo Studio location in White Town, Puducherry"
+          title={title}
           loading="lazy"
           allowFullScreen
           referrerPolicy="no-referrer-when-downgrade"

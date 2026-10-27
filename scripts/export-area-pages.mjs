@@ -11,7 +11,7 @@ function readModule(file) {
   return exports;
 }
 
-const directory = path.resolve("app/tattoo-shop-near/_content/areas");
+const directory = path.resolve("app/[lang]/tattoo-shop-near/_content/areas");
 const { site, businessId, localBusinessJsonLd } = readModule(path.resolve("app/lib/site.ts"));
 const pages = fs.readdirSync(directory).filter((name) => name.endsWith(".ts") && name !== "index.ts")
   .flatMap((name) => Object.values(readModule(path.join(directory, name))));

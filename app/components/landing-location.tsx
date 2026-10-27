@@ -1,5 +1,7 @@
-import DeferredMap from "./deferred-map";
+import { getDictionary } from "../lib/i18n/get-dictionary";
+import { format } from "../lib/i18n/text";
 import { site } from "../lib/site";
+import DeferredMap from "./deferred-map";
 
 const mapUrl =
   "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001&output=embed";
@@ -7,28 +9,30 @@ const mapUrl =
 const directionsUrl =
   "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001";
 
-export default function LandingLocation() {
+export default async function LandingLocation() {
+  const { location: t } = await getDictionary();
+
   return (
     <section id="visit" className="landing-location" aria-labelledby="landing-location-title">
       <div className="landing-location-heading">
-        <span>{"{FIND THE STUDIO}"}</span>
+        <span>{t.label}</span>
         <h2 id="landing-location-title">White Town / Puducherry</h2>
         <p className="landing-location-name">{site.name}</p>
         <p>
-          34 Law De Lauriston Street<br />
-          Near Central Bank of India, 605001
+          {t.address[0]}<br />
+          {t.address[1]}
         </p>
         <div className="landing-location-links">
-          <a href={site.phoneHref} aria-label={`Call ${site.name} at ${site.phone}`}>
-            {site.phone} <i aria-hidden="true">Call ↗</i>
+          <a href={site.phoneHref} aria-label={format(t.callAria, { name: site.name, phone: site.phone })}>
+            {site.phone} <i aria-hidden="true">{t.call}</i>
           </a>
           <a href={directionsUrl} target="_blank" rel="noreferrer">
-            Open in Google Maps <i aria-hidden="true">↗</i>
+            {t.maps} <i aria-hidden="true">↗</i>
           </a>
         </div>
       </div>
 
-      <DeferredMap src={mapUrl} />
+      <DeferredMap src={mapUrl} title={t.mapTitle} />
     </section>
   );
 }

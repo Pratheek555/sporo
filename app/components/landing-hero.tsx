@@ -3,23 +3,23 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import SiteNav from "./site-nav";
+import type { Dictionary } from "../lib/i18n/dictionaries/en";
+import { useLocalePath } from "../lib/i18n/locale-context";
 import { useVisibleVideo } from "./use-visible-video";
 
-export default function LandingHero() {
+export default function LandingHero({ t }: { t: Dictionary["hero"] }) {
   const root = useRef<HTMLDivElement>(null);
+  const href = useLocalePath();
   useVisibleVideo(root);
 
   return (
     <>
-      <SiteNav />
-
       <div ref={root} className="landing-shell">
         <section id="top" className="hero" aria-labelledby="hero-title">
         <div className="hero-film-frame" aria-hidden="true">
           <video data-src="/media/cover_page_video.mp4" loop muted playsInline preload="none" poster="/media/nocturne-hero.webp" />
-          <span className="film-index">STS / VISUAL ARCHIVE / 001</span>
-          <span className="film-state">LOOPING</span>
+          <span className="film-index">{t.filmIndex}</span>
+          <span className="film-state">{t.filmState}</span>
         </div>
 
         <div className="hero-peacock" aria-hidden="true">
@@ -33,37 +33,37 @@ export default function LandingHero() {
         </div>
 
         <div className="hero-stream hero-stream--left" aria-hidden="true">
-          STS / 01 / PONDICHERRY / ART / INK / FORM
+          {t.streamLeft}
         </div>
         <div className="hero-stream hero-stream--right" aria-hidden="true">
-          MEMORY / RITUAL / BODY / PERMANENCE / 2026
+          {t.streamRight}
         </div>
 
         <div className="hero-content">
-          <p className="hero-tagline">Changing the way you feel art</p>
+          <p className="hero-tagline">{t.tagline}</p>
           <div className="hero-copy">
             <h2 className="hero-welcome">
-              <span>Bienvenue</span>
-              <span className="text-red-500">À votre service</span>
+              <span>{t.welcome[0]}</span>
+              <span className="text-red-500">{t.welcome[1]}</span>
             </h2>
 
             <h1 id="hero-title" className="hero-title">
-              <span className="hero-title-seo">Tattoo &amp; Piercing Studio in Pondicherry: </span>
+              <span className="hero-title-seo">{t.titleSeo}</span>
               <span>Spiritual</span>
               <span>Tattoo <span className="text-red-500">Art</span></span>
             </h1>
             <p className="hero-descriptor">
-              <span className="hero-descriptor-kicker">Tattoo &amp; Piercing Shop <i>in</i> Pondicherry</span>
-              <span className="hero-descriptor-note">The best &amp; most trusted studio in town.</span>
+              <span className="hero-descriptor-kicker">{t.descriptorKicker[0]} <i>{t.descriptorKicker[1]}</i> {t.descriptorKicker[2]}</span>
+              <span className="hero-descriptor-note">{t.descriptorNote}</span>
             </p>
           </div>
           </div>
 
           <Link
             className="enter-studio"
-            href="/studio"
+            href={href("/studio")}
             prefetch={false}
-            aria-label="Enter Spiritual Tattoo Studio"
+            aria-label={t.enterLabel}
           >
             <svg className="enter-studio-ring" viewBox="0 0 100 100" aria-hidden="true">
               <defs>
@@ -71,7 +71,7 @@ export default function LandingHero() {
               </defs>
               <text>
                 <textPath href="#enter-studio-ring-path" textLength="236" lengthAdjust="spacing">
-                  Step inside the archive <tspan>•</tspan> Enter studio <tspan>•</tspan>
+                  {t.ring[0]} <tspan>•</tspan> {t.ring[1]} <tspan>•</tspan>
                 </textPath>
               </text>
             </svg>

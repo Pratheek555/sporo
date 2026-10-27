@@ -1,0 +1,348 @@
+// French copy. Mirrors `en.ts` key for key (the `Dictionary` type enforces it).
+// French typographic spacing (no-break space before ? ! : ; » and after «) is applied
+// centrally by `frenchTypography`, so write ordinary spaces here.
+
+import type { Dictionary } from "./en";
+
+const fr: Dictionary = {
+  meta: {
+    title:
+      "Le MEILLEUR salon de tatouage et de piercing à Pondichéry - pour un tatouage ou un piercing près de chez vous, Spiritual Tattoo Art Studio est l’adresse idéale",
+    description:
+      "Tatouages originaux en blackwork, fine line, grandes pièces et recouvrements, créés dans notre studio de Pondichéry.",
+    ogDescription: "Des tatouages uniques, pensés autour de l’anatomie, du mouvement et de la durée.",
+    keywords: [
+      "studio de tatouage sur mesure",
+      "tatouage blackwork",
+      "tatouage fine line",
+      "consultation tatouage",
+      "Spiritual Tattoo Studio",
+    ],
+  },
+
+  hours: [
+    { label: "Lundi – Jeudi", time: "10 h – 20 h" },
+    { label: "Vendredi – Dimanche", time: "10 h – 21 h" },
+  ],
+
+  whatsapp: {
+    message: "Bonjour Spiritual Tattoo Art ! Je souhaiterais une consultation gratuite.",
+    messageWithTopic:
+      "Bonjour Spiritual Tattoo Art ! Je souhaiterais une consultation gratuite. Je suis intéressé(e) par : {topic}.",
+  },
+
+  nav: {
+    homeLabel: "Accueil Spiritual Tattoo Art",
+    brandSub: "Tattoo Art / Pondichéry",
+    edition: ["White Town", "Depuis 2018"],
+    primaryLabel: "Navigation principale",
+    mobileLabel: "Navigation mobile",
+    services: "Services",
+    toggleServices: "Ouvrir ou fermer le menu des services",
+    toggleCategories: "Ouvrir ou fermer les catégories de services",
+    tattoos: "Tatouages",
+    piercings: "Piercings",
+    tattooCount: "{n} styles & prestations",
+    piercingCount: "{n} emplacements",
+    asideTitle: "Vous hésitez encore ?",
+    asideText: "La consultation est gratuite. Passez nous voir ou écrivez-nous d’abord.",
+    allServices: "Tous les services",
+    viewAllServices: "Voir tous les services",
+    freeConsultation: "Consultation gratuite",
+    philosophy: "Philosophie",
+    stories: "Avis",
+    visit: "Adresse",
+    contact: "Contact",
+    contactUs: "Nous contacter",
+    enterStudio: "Le studio",
+    menu: "Menu",
+    close: "Fermer",
+    mobileFoot: "Accueil sans rendez-vous / Consultation gratuite",
+    language: "Langue",
+  },
+
+  hero: {
+    filmIndex: "STS / ARCHIVE VISUELLE / 001",
+    filmState: "EN BOUCLE",
+    streamLeft: "STS / 01 / PONDICHÉRY / ART / ENCRE / FORME",
+    streamRight: "MÉMOIRE / RITUEL / CORPS / PERMANENCE / 2026",
+    tagline: "Changer la façon de ressentir l’art",
+    welcome: ["Bienvenue", "À votre service"],
+    titleSeo: "Studio de tatouage et de piercing à Pondichéry : ",
+    descriptorKicker: ["Salon de tatouage & piercing", "à", "Pondichéry"],
+    descriptorNote: "Le meilleur studio de la ville, et le plus digne de confiance.",
+    enterLabel: "Entrer dans le Spiritual Tattoo Studio",
+    ring: ["Entrez dans l’archive", "Entrer au studio"],
+  },
+
+  about: {
+    chapter: "À PROPOS / 02",
+    portraitAlt: "Mukhilan, fondateur de Spiritual Tattoo Art Studio",
+    portraitCaption: "Fondateur / Artiste",
+    kicker: "Les mains derrière chaque trait",
+    lines: ["Fait main.", "Façonné pour vous.", "Porté à vie."],
+    paragraphs: [
+      "Mukhilan, fondateur de Spiritual Tattoo Art Studio, façonne son art depuis 2018. Pour lui, tatouer n’est pas une course à l’argent, mais une façon de respecter l’art et la personne qui le reçoit. Il prend le temps de comprendre chacun et de créer un travail personnel, porteur de sens.",
+      "Chaque dessin est mûrement réfléchi pour appartenir naturellement à la peau, plutôt que de simplement s’y poser. Son approche va au-delà du tatouage : il s’agit de créer un art qui porte du sens, du caractère et de la permanence.",
+    ],
+    quote: "« Le plus beau tatouage semble découvert, non ajouté. »",
+    link: "Entrer dans le studio",
+  },
+
+  testimonials: {
+    heading: "Avis Google de nos clients",
+    chapter: "HISTOIRES CLIENTS / {total}",
+    googleLabel: "Lire nos avis sur Google",
+    reviews: "Avis ↗",
+    googleReview: "Avis Google ↗",
+    stars: "5 étoiles sur 5",
+    progress: "Ce qu’ils portent",
+    scrollHint: "Faites défiler pour lire",
+    swipeHint: "Balayez pour lire →",
+    quotes: [
+      "Excellent tatoueur, et quelqu’un en qui j’ai entièrement confiance.",
+      "Magnifique, délicat, et exactement ce que j’avais imaginé.",
+      "Très propre et professionnel.",
+      "Mukhilan est un véritable artiste et une personne profondément spirituelle.",
+      "L’artiste était professionnel et talentueux, et j’ai été parfaitement à l’aise du début à la fin.",
+      "Son travail est très détaillé et magnifiquement réalisé, et il donne toujours de bons conseils sur l’emplacement et la taille.",
+      "Le perceur était super sympa, très accueillant et flexible.",
+      "Monsieur Mukhilan est un artiste absolument formidable. Si sympathique et patient.",
+    ],
+  },
+
+  location: {
+    label: "{TROUVER LE STUDIO}",
+    address: ["34 Law De Lauriston Street", "Près de la Central Bank of India, 605001"],
+    callAria: "Appeler {name} au {phone}",
+    call: "Appeler ↗",
+    maps: "Ouvrir dans Google Maps",
+    mapTitle: "Emplacement du Spiritual Tattoo Studio à White Town, Puducherry",
+  },
+
+  footer: {
+    startConversation: "Démarrer la conversation",
+    contactUs: "Nous contacter ↗",
+    allServices: "Tous les services ↗",
+    locationLabel: "Studio de White Town",
+    locationPlace: "Pondichéry / Inde",
+    locationNote: "Avec ou sans rendez-vous",
+    detailsLabel: "Coordonnées du studio",
+    studio: "Studio",
+    address: "Adresse",
+    phone: "Téléphone",
+    cta: ["Votre histoire.", "Marquée à vie."],
+    index: ["STS / 2026", "CRÉATION ORIGINALE / FORME PERMANENTE"],
+  },
+
+  contact: {
+    meta: {
+      title: "Nous contacter | Spiritual Tattoo Studio",
+      description:
+        "Lancez la conversation, préparez votre tatouage ou votre piercing, ou retrouvez notre studio à White Town, Puducherry. Accueil sans rendez-vous.",
+    },
+    index: "{CONTACT / 03}",
+    place: "Pondichéry, Inde",
+    script: "Chaque tatouage commence par une conversation.",
+    title: ["Prenons", "contact."],
+    intro: ["Une idée, une question, une histoire que vous voulez porter.", "Nous serions ravis de l’entendre."],
+    heroLink: "Trouvez le chemin jusqu’à nous",
+    footLeft: "Créations sur mesure / Histoires personnelles",
+    footRight: "Avec ou sans rendez-vous",
+    connectTitle: "Commencez quelque part.",
+    connectLabel: "{LE PREMIER PAS}",
+    whatsapp: { title: "Parlons-en", text: "Envoyez-nous votre idée sur WhatsApp." },
+    instagram: {
+      title: "Suivez-nous",
+      text: "Encre fraîche. Moments au studio. Créations en cours.",
+      detail: "Instagram",
+    },
+    calendly: {
+      title: "Prendre rendez-vous",
+      text: "Réservez du temps pour votre prochain tatouage.",
+      detail: "Choisir un créneau sur Calendly",
+    },
+    emailLabel: "Plutôt une lettre ?",
+    visitLabel: "{VENEZ NOUS VOIR}",
+    visitTitle: ["Venez", "au studio."],
+    landmark: "Près de la Central Bank of India",
+    directions: "Itinéraire",
+    hoursTitle: "Horaires d’ouverture",
+    walkIns:
+      "Vous pouvez venir sans rendez-vous. Pour les pièces plus importantes, écrivez-nous d’abord afin que nous réservions assez de temps.",
+    timezone: "Tous les horaires sont en heure indienne (IST).",
+    mapCaption: ["White Town / Puducherry", "Retrouvez-nous ici ↓"],
+    mapTitle: "Emplacement du Spiritual Tattoo Studio à White Town, Puducherry",
+    mapTagline: "Un lieu calme pour quelque chose de permanent.",
+    footerLine: ["Votre histoire.", "Marquée à vie."],
+    footerLink: "Entrez dans le studio",
+    footerIndex: ["STS / 2026", "Art / Encre / Pondichéry"],
+  },
+
+  studio: {
+    meta: {
+      title: "Dans les coulisses du studio — Spiritual Tattoo Studio",
+      description: "Entrez dans le Spiritual Tattoo Studio à Pondichéry.",
+    },
+    backLink: "← Retour à l’accueil du studio",
+    archiveMeta: "Archive privée / Pondichéry",
+    statement: "TOUT EST ART",
+    notesLabel: "Notes sur l’œuvre",
+    artworkLabel: "Œuvre de tatouage",
+    prevPageLabel: "Tourner vers la page précédente",
+    nextPageLabel: "Tourner vers la page suivante",
+    signature: "SPIRITUAL TATTOO STUDIO / CRÉATION ORIGINALE",
+    booking: { label: "VOTRE HISTOIRE / VOTRE PEAU", cta: "ENGAGER LA CONVERSATION ↗" },
+    coverLabel: "Ouvrir le livre d’archives de Spiritual Tattoo Art",
+    coverKicker: "LE LIVRE DES MARQUES VIVANTES / 01",
+    coverPrompt: "OUVRIR L’ARCHIVE",
+    bookTitle: "LE LIVRE DES MARQUES VIVANTES",
+    bookIntro: "Trois chapitres d’art, d’intention et d’histoires personnelles.",
+    controlsLabel: "Pages de l’archive",
+    previous: "← Précédent",
+    next: "Suivant →",
+    footerInstruction: "OUVREZ LA COUVERTURE POUR EXPLORER",
+    filmsLink: "LE STUDIO EN MOUVEMENT",
+    loaderTop: ["SPIRITUAL TATTOO STUDIO / ARCHIVE PRIVÉE", "FONDÉ À PONDICHÉRY / INDE"],
+    loaderYears: "Archives du studio de 2018 à 2026",
+    loaderCaption: ["HUIT ANS D’ENCRE", "MARQUES, MÉMOIRE ET PERMANENCE"],
+    pages: [
+      {
+        title: "L’antre créatif de Mukhilan",
+        note: "Né en 2018 de la vision d’un jeune artiste, ce studio est devenu un espace sacré dédié au tatouage intentionnel. Aujourd’hui, il honore ce rêve en cultivant un lieu où l’art est profondément respecté, transformant des histoires personnelles en repères spirituels durables sur la peau.",
+      },
+      {
+        title: "Au-delà de la toile",
+        note: "Pour Mukhilan, chaque dessin est une collaboration sacrée plutôt qu’une simple prestation. Il façonne chaque pièce avec soin pour refléter votre parcours personnel, transformant d’anciennes traditions de l’encre en une expérience intentionnelle et inoubliable, qui résonne profondément avec votre esprit.",
+      },
+      {
+        title: "La galerie d’art",
+        note: "Tout, absolument tout, est art. Cette galerie présente quelques créations sur mesure de Mukhilan, chacune conçue avec soin pour honorer la vision unique de nos clients. Laissez-nous transformer votre histoire en chef-d’œuvre vivant !\n\nPassez au studio ou appelez-nous dès aujourd’hui pour réserver votre séance de tatouage sur mesure.",
+      },
+    ],
+    galleryAlts: [
+      "Un studio de tatouage aux tons rouges chaleureux, rempli d’œuvres d’art, de sculptures et d’étagères",
+      "Une séance de tatouage dans le studio rouge de Spiritual Art",
+      "Figurines de collection et objets disposés sur une étagère du studio",
+      "Un petit chien vêtu d’une tenue colorée dans le studio",
+    ],
+    objectAlt: "Une forme sculpturale d’encre noire",
+    flashAlt:
+      "Une planche de flashs dessinée à la main avec quatre créations de tatouage originales : une déesse féroce armée d’un trident, un visage de soleil, un papillon de nuit aux ailes en forme d’yeux et Kali avec un cobra",
+    films: {
+      eyebrow: "Au cœur de Spiritual",
+      journal: "Journal filmé / 01—03",
+      heading: ["DERRIÈRE", "L’", "ENCRE."],
+      intro: ["Les mains. Le lieu.", "Les instants entre deux.", "Un aperçu de notre monde, en mouvement."],
+      made: "Créé avec intention. À Pondichéry.",
+      pause: "Mettre en pause",
+      resume: "Reprendre",
+      next: "Votre histoire pourrait être la prochaine",
+      watch: "Regarder {title}",
+      watchFilm: "Voir le film",
+      filmNumber: "Film / {number}",
+      closeFilm: "Fermer le film",
+      close: "Fermer",
+      failed: "Ce film n’a pas pu se charger.",
+      openDirectly: "Ouvrir la vidéo directement ↗",
+      items: [
+        { title: "Le rituel", note: "Un instant avant la marque." },
+        { title: "En création", note: "Des mains sûres. Une intention unique." },
+        { title: "Marques vivantes", note: "Un art porté au-delà de ces murs." },
+      ],
+    },
+  },
+
+  services: {
+    meta: {
+      title: "Services de tatouage et de piercing à Pondichéry | Spiritual Tattoo Art Studio, White Town",
+      description:
+        "Tatouages sur mesure dans tous les styles et piercings professionnels à White Town, Pondichéry. Consultation gratuite, accueil sans rendez-vous, instruments stérilisés à l’autoclave.",
+      keywords: [
+        "meilleur salon de tatouage à Pondichéry",
+        "meilleur salon de piercing à Pondichéry",
+        "meilleur studio de tatouage à Puducherry",
+        "tatouage et piercing White Town",
+      ],
+      ogAlt: "À l’intérieur du Spiritual Tattoo Art Studio, White Town, Puducherry",
+    },
+    home: "Accueil",
+    breadcrumbLabel: "Fil d’Ariane",
+    place: "White Town / Puducherry",
+    tattooCategory: "Tatouages",
+    piercingCategory: "Piercings",
+    cardTattoo: "Tatouage",
+    cardPiercing: "Piercing",
+    schemaOffer: "Consultation gratuite. Accueil sans rendez-vous et sur rendez-vous.",
+    schemaService: "{name} à Pondichéry",
+
+    hub: {
+      script: "Vingt-quatre façons de ne pas quitter Pondichéry tout à fait le même.",
+      h1: ["Tatouages & piercings ", "à Pondichéry"],
+      lede: "Des tatouages sur mesure dans tous les styles et des piercings réalisés avec soin et professionnalisme, sous un même toit, sur Law De Lauriston Street. Choisissez un service ci-dessous, ou passez nous voir et trouvons la solution ensemble.",
+      consultation: "Consultation gratuite",
+      browse: "Parcourir les services",
+      facts: [
+        { label: "Tatouages", value: "{n} styles & spécialités" },
+        { label: "Piercings", value: "{n} emplacements" },
+        { label: "Visites", value: "Avec ou sans rendez-vous" },
+        { label: "Consultation", value: "Toujours gratuite" },
+      ],
+      introLabel: "À propos de nos services",
+      intro: [
+        [
+          "On cherche le meilleur salon de tatouage à Pondichéry pour toutes sortes de raisons. Un premier tatouage après des années de « un jour ». Un souvenir d’un voyage dans le Quartier français. Le portrait d’un être cher qui manque. Un recouvrement qui se fait attendre.",
+          "Quelle que soit la raison de votre visite, le processus est le même. Mukhilan, notre fondateur et artiste, tatoue depuis 2018. Il commence par écouter, dessine pour votre corps, et travaille avec des instruments stérilisés à l’autoclave et des aiguilles à usage unique. En savoir plus [sur Mukhilan](/services/tattoo-artist) ou [entrez dans le studio](/studio).",
+        ],
+        [
+          "Vous cherchez plutôt le meilleur salon de piercing à Pondichéry ? Le même soin s’applique. Mukhilan étudie votre anatomie et vous guide sur les bijoux et la cicatrisation avant tout geste. Vous repartez ensuite avec des consignes de soins écrites, adaptées à un climat humide, salin et très attaché à la plage.",
+          "Nous sommes à White Town, près de la Central Bank of India, à quelques pas de la Promenade, et facilement accessibles depuis Auroville, Lawspet ou l’ECR. Venez sans rendez-vous n’importe quel jour, ou [contactez-nous](/contact) d’abord pour les pièces plus importantes.",
+        ],
+      ],
+      tattooHeading: ["Services de ", "tatouage"],
+      tattooLabel: "{{n} STYLES & SPÉCIALITÉS}",
+      piercingHeading: ["Services de ", "piercing"],
+      piercingLabel: "{{n} EMPLACEMENTS}",
+      stepsHeading: ["Comment ça ", "marche."],
+      stepsLabel: "{QUATRE ÉTAPES / SANS PRESSION}",
+      steps: [
+        { title: "Échanger", text: "Passez nous voir ou écrivez-nous. La consultation est gratuite, sans précipitation et sincère." },
+        { title: "Concevoir", text: "Votre idée devient un croquis dessiné pour votre corps, et non tiré d’un classeur." },
+        { title: "Réaliser", text: "Instruments stérilisés à l’autoclave, aiguilles à usage unique, et pauses chaque fois que vous en avez besoin." },
+        { title: "Cicatriser", text: "Consignes de soins écrites pour le climat humide, salin et ensoleillé de Pondichéry, avec un suivi par WhatsApp." },
+      ],
+    },
+
+    article: {
+      consultation: "Consultation gratuite",
+      walkIn: "Venir sur place / Itinéraire",
+      onThisPage: "Sur cette page",
+      tocLabel: "Table des matières",
+      tocTitle: "{SUR CETTE PAGE}",
+      askMukhilan: "Demander à Mukhilan",
+      faqToc: "Questions, réponses",
+      visitToc: "Venir au studio",
+      faqHeading: ["Vos questions,", "nos réponses."],
+      faqLabel: "{{name} / FAQ}",
+      exploreHeading: "Continuer à explorer",
+      allServices: "Tous les services ↗",
+      tableFallback: "Tableau comparatif",
+      untranslated:
+        "Cet article n’est pas encore traduit en français ; il s’affiche dans sa langue d’origine.",
+    },
+
+    visit: {
+      label: "{VENEZ NOUS VOIR}",
+      title: ["Venez", "au studio."],
+      directions: "Itinéraire",
+      hoursTitle: "Horaires d’ouverture",
+      walkIns:
+        "Vous pouvez venir sans rendez-vous. Pour les pièces plus importantes, écrivez-nous d’abord afin que nous vous réservions un fauteuil et suffisamment de temps.",
+      script: "Chaque tatouage commence par une conversation.",
+      book: "Réserver une consultation gratuite",
+      call: "Appeler le {phone}",
+    },
+  },
+};
+
+export default fr;

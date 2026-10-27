@@ -5,11 +5,11 @@ import vm from "node:vm";
 import ts from "typescript";
 
 const root = process.cwd();
-const directory = path.join(root, "app/tattoo-shop-near/_content/areas");
+const directory = path.join(root, "app/[lang]/tattoo-shop-near/_content/areas");
 const expected = ["white-town", "french-quarter", "promenade-beach", "mission-street", "goubert-avenue", "lawspet", "muthialpet", "reddiarpalayam", "auroville", "serenity-beach", "kottakuppam"];
 const base = process.argv[2];
 const siteUrl = "https://spiritualart3.com";
-const serviceIndex = fs.readFileSync(path.join(root, "app/services/_content/registry.ts"), "utf8");
+const serviceIndex = fs.readFileSync(path.join(root, "app/[lang]/services/_content/registry.ts"), "utf8");
 const services = new Set([...serviceIndex.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]));
 const index = fs.readFileSync(path.join(directory, "index.ts"), "utf8");
 const titles = new Set();
@@ -97,8 +97,11 @@ for (const slug of expected) {
 
 if (base) {
   const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
-  for (const slug of expected) assert(sitemap.includes(`${siteUrl}/tattoo-shop-near/${slug}</loc>`), `${slug} appears in sitemap`);
-  assert.equal((sitemap.match(/<loc>[^<]*\/tattoo-shop-near\//g) ?? []).length, 11, "sitemap lists exactly 11 area pages");
+  for (const slug of expected) {
+    assert(sitemap.includes(`${siteUrl}/tattoo-shop-near/${slug}</loc>`), `${slug} appears in sitemap`);
+    assert(sitemap.includes(`${siteUrl}/fr/tattoo-shop-near/${slug}</loc>`), `${slug} has a French sitemap entry`);
+  }
+  assert.equal((sitemap.match(/<loc>[^<]*\/tattoo-shop-near\//g) ?? []).length, 22, "sitemap lists 11 area pages in both languages");
   const missing = await fetch(`${base}/tattoo-shop-near/not-a-real-area`);
   assert.equal(missing.status, 404, "unknown area returns 404");
   console.log("PASS sitemap discovery and unknown-area 404");

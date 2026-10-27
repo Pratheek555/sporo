@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
+import type { Dictionary } from "../lib/i18n/dictionaries/en";
+import { useLocalePath } from "../lib/i18n/locale-context";
 import StudioFilmGallery from "./studio-film-gallery";
 import styles from "./studio-book-interaction.module.css";
 
@@ -26,56 +28,48 @@ type ArtPage =
   | (ArtPageBase & { kind: "gallery"; images: [ArtImage, ArtImage, ArtImage, ArtImage] })
   | (ArtPageBase & { kind: "single"; image: ArtImage });
 
-const studioGalleryImages = [
-  {
-    src: "/media/studio-gallery/studio-gallery-1.png",
-    alt: "A warm red tattoo studio filled with art, sculptures and shelves",
-  },
-  {
-    src: "/media/studio-gallery/studio-gallery-2.png",
-    alt: "A tattoo session taking place inside the red Spiritual Art studio",
-  },
-  {
-    src: "/media/studio-gallery/studio-gallery-3.png",
-    alt: "Collectible figures and objects arranged on a studio shelf",
-  },
-  {
-    src: "/media/studio-gallery/studio-gallery-4.png",
-    alt: "A small dog wearing a colorful outfit inside the studio",
-  },
-] satisfies [ArtImage, ArtImage, ArtImage, ArtImage];
+const studioGallerySources = [
+  "/media/studio-gallery/studio-gallery-1.png",
+  "/media/studio-gallery/studio-gallery-2.png",
+  "/media/studio-gallery/studio-gallery-3.png",
+  "/media/studio-gallery/studio-gallery-4.png",
+] as const;
 
 const archiveYears = Array.from({ length: 9 }, (_, index) => 2018 + index);
 
-const artPages: ArtPage[] = [
-  {
-    number: "01",
-    title: "Mukhilan’s Creative Den",
-    note: "Born in 2018 from a young artist’s vision, this studio has evolved into a sacred space for intentional tattooing. Today, he honors that dream by cultivating an environment where art is deeply respected, transforming personal stories into enduring, spiritual milestones on the skin.",
-    kind: "gallery",
-    images: studioGalleryImages,
-    className: "studio-book-art--gallery",
-  },
-  {
-    number: "02",
-    title: "Beyond the Canvas",
-    note: "For Mukhilan, each design is a sacred collaboration rather than a mere service. He carefully crafts every piece to mirror your personal journey, transforming ancient ink traditions into an unforgettable, intentional experience that deeply resonates with your spirit.",
-    kind: "single",
-    image: { src: "/media/nocturne-ink-object.webp", alt: "A sculptural black ink form" },
-    className: "studio-book-art--object",
-  },
-  {
-    number: "03",
-    title: "The Hall of Art",
-    note: "Anything and Everything is Art. This gallery showcases a few of Mukhilan’s custom works, each carefully designed to honour our client’s unique visions. Let us transform your story into a living masterpiece!\n\nVisit the studio or call us today to secure your custom ink session.",
-    kind: "single",
-    image: {
-      src: "/media/studio-flash-sheet.webp",
-      alt: "A hand-drawn flash sheet of four original tattoo designs: a fierce goddess with a trident, a sun face, an eye-winged moth and Kali with a cobra",
+// Images, layout classes and page order are fixed; titles, notes and alt text come from the dictionary.
+function buildArtPages(t: Dictionary["studio"]): ArtPage[] {
+  const [first, second, third] = t.pages;
+
+  return [
+    {
+      number: "01",
+      ...first,
+      kind: "gallery",
+      images: studioGallerySources.map((src, index) => ({ src, alt: t.galleryAlts[index] })) as [
+        ArtImage,
+        ArtImage,
+        ArtImage,
+        ArtImage,
+      ],
+      className: "studio-book-art--gallery",
     },
-    className: "studio-book-art--flash",
-  },
-];
+    {
+      number: "02",
+      ...second,
+      kind: "single",
+      image: { src: "/media/nocturne-ink-object.webp", alt: t.objectAlt },
+      className: "studio-book-art--object",
+    },
+    {
+      number: "03",
+      ...third,
+      kind: "single",
+      image: { src: "/media/studio-flash-sheet.webp", alt: t.flashAlt },
+      className: "studio-book-art--flash",
+    },
+  ];
+}
 
 function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: boolean }) {
   const images = art.kind === "gallery" ? art.images : [art.image];
@@ -97,7 +91,9 @@ function ArtMedia({ art, decorative = false }: { art: ArtPage; decorative?: bool
   return image ? <Image src={image.src} alt={decorative ? "" : image.alt} fill sizes={sizes} /> : null;
 }
 
-export default function StudioExperience() {
+export default function StudioExperience({ t }: { t: Dictionary["studio"] }) {
+  const artPages = buildArtPages(t);
+  const href = useLocalePath();
   const root = useRef<HTMLDivElement>(null);
   const count = useRef<HTMLSpanElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -406,21 +402,21 @@ export default function StudioExperience() {
       <div className="studio-noise" aria-hidden="true" />
 
       <main id="archive" className="studio-book-stage" data-open={isOpen}>
-        <Link className="studio-back-link" href="/">← Back to studio home</Link>
-        <span className="studio-archive-meta">Private archive / Pondicherry</span>
-        <p className="studio-art-statement">EVERYTHING IS ART</p>
+        <Link className="studio-back-link" href={href("/")}>{t.backLink}</Link>
+        <span className="studio-archive-meta">{t.archiveMeta}</span>
+        <p className="studio-art-statement">{t.statement}</p>
         <div className="studio-book-shell">
           <div className="studio-book">
             <section
               className="studio-book-page studio-book-left"
-              aria-label="Artwork notes"
+              aria-label={t.notesLabel}
               inert={!isOpen}
               onClick={() => turnPage("backward")}
             >
               <button
                 type="button"
                 className={styles.pageTap}
-                aria-label="Flip to previous page"
+                aria-label={t.prevPageLabel}
                 disabled={!isOpen || busy || currentPage === 0}
               />
               <div className="studio-book-left-rule" />
@@ -431,12 +427,12 @@ export default function StudioExperience() {
               <div className="studio-book-seal" aria-hidden="true">
                 <Image src="/redpeacock.png" alt="" fill sizes="22vw" />
               </div>
-              <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+              <small>{t.signature}</small>
             </section>
 
             <section
               className="studio-book-page studio-book-right"
-              aria-label="Tattoo artwork"
+              aria-label={t.artworkLabel}
               inert={!isOpen}
               onClick={(event) => {
                 if (event.target instanceof Element && event.target.closest("a")) return;
@@ -446,7 +442,7 @@ export default function StudioExperience() {
               <button
                 type="button"
                 className={styles.pageTap}
-                aria-label="Flip to next page"
+                aria-label={t.nextPageLabel}
                 disabled={!isOpen || busy || currentPage === artPages.length - 1}
               />
               <div className="studio-book-artwork">
@@ -461,8 +457,8 @@ export default function StudioExperience() {
                     <ArtMedia art={art} />
                     {index === artPages.length - 1 && (
                       <figcaption id="booking" className="studio-book-booking">
-                        <span>YOUR STORY / YOUR SKIN</span>
-                        <a href="mailto:studio@spiritualart3.com">START A CONVERSATION ↗</a>
+                        <span>{t.booking.label}</span>
+                        <a href="mailto:studio@spiritualart3.com">{t.booking.cta}</a>
                       </figcaption>
                     )}
                   </figure>
@@ -494,7 +490,7 @@ export default function StudioExperience() {
                   >
                     <strong>{art.title}</strong>
                     <p>{art.note}</p>
-                    <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+                    <small>{t.signature}</small>
                   </div>
                 ))}
               </div>
@@ -509,7 +505,7 @@ export default function StudioExperience() {
                   >
                     <strong>{art.title}</strong>
                     <p>{art.note}</p>
-                    <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+                    <small>{t.signature}</small>
                   </div>
                 ))}
                 {artPages.map((art, index) => (
@@ -532,7 +528,7 @@ export default function StudioExperience() {
               tabIndex={isOpen ? -1 : 0}
               aria-disabled={busy}
               aria-expanded={isOpen}
-              aria-label="Open the Spiritual Tattoo Art archive book"
+              aria-label={t.coverLabel}
               onClick={(event) => {
                 event.stopPropagation();
                 begin();
@@ -545,18 +541,18 @@ export default function StudioExperience() {
               }}
             >
               <div className="studio-book-cover-face">
-                <span className="studio-cover-kicker">THE BOOK OF LIVING MARKS / 01</span>
+                <span className="studio-cover-kicker">{t.coverKicker}</span>
                 <div className="studio-cover-kali" aria-hidden="true">
                   <Image src="/cover-kali.png" alt="" fill sizes="40vw" preload />
                 </div>
-                <span className="studio-cover-prompt">OPEN THE ARCHIVE <span aria-hidden="true">↗</span></span>
+                <span className="studio-cover-prompt">{t.coverPrompt} <span aria-hidden="true">↗</span></span>
               </div>
               <div className="studio-book-cover-inside studio-book-left" aria-hidden="true">
                 <div className="studio-book-left-rule" />
                 <h2 className="studio-book-page-title">{artPages[0].title}</h2>
                 <p className="studio-book-page-note">{artPages[0].note}</p>
                 <div className="studio-book-seal"><Image src="/redpeacock.png" alt="" fill sizes="22vw" /></div>
-                <small>SPIRITUAL TATTOO STUDIO / ORIGINAL WORK</small>
+                <small>{t.signature}</small>
               </div>
             </div>
 
@@ -566,13 +562,13 @@ export default function StudioExperience() {
 
         <div className="studio-book-navigation">
           <div className="studio-book-caption" aria-live="polite">
-            <span>{isOpen ? artPages[currentPage].title : "THE BOOK OF LIVING MARKS"}</span>
-            <p>{isOpen ? artPages[currentPage].note : "Three chapters in art, intention and personal stories."}</p>
+            <span>{isOpen ? artPages[currentPage].title : t.bookTitle}</span>
+            <p>{isOpen ? artPages[currentPage].note : t.bookIntro}</p>
           </div>
-          <nav className="studio-book-controls" aria-label="Archive pages" inert={!isOpen}>
-            <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>← Previous</button>
+          <nav className="studio-book-controls" aria-label={t.controlsLabel} inert={!isOpen}>
+            <button type="button" disabled={!isOpen || busy || currentPage === 0} onClick={() => turnPage("backward")}>{t.previous}</button>
             <span aria-live="polite">{currentPage + 1} / {artPages.length}</span>
-            <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>Next →</button>
+            <button type="button" disabled={!isOpen || busy || currentPage === artPages.length - 1} onClick={() => turnPage("forward")}>{t.next}</button>
           </nav>
         </div>
       <footer className="studio-footer">
@@ -584,21 +580,21 @@ export default function StudioExperience() {
         <div className="studio-progress" aria-hidden="true">
           <span className="studio-progress-fill" style={{ transform: `scaleX(${1 / artPages.length})` }} />
         </div>
-        <p className="studio-footer-instruction">OPEN THE COVER TO EXPLORE</p>
+        <p className="studio-footer-instruction">{t.footerInstruction}</p>
       </footer>
-      <a href="#films" className="studio-films-link">THE STUDIO IN MOTION <span>↓</span></a>
+      <a href="#films" className="studio-films-link">{t.filmsLink} <span>↓</span></a>
       </main>
 
-      <StudioFilmGallery />
+      <StudioFilmGallery t={t.films} />
 
       <div className="studio-loader">
         <div className="studio-loader-field" aria-hidden="true" />
         <div className="studio-loader-meta studio-loader-meta--top">
-          <span>SPIRITUAL TATTOO STUDIO / PRIVATE ARCHIVE</span>
-          <span>EST. PONDICHERRY / INDIA</span>
+          <span>{t.loaderTop[0]}</span>
+          <span>{t.loaderTop[1]}</span>
         </div>
 
-        <div className="studio-loader-years" aria-label="Studio archive from 2018 to 2026">
+        <div className="studio-loader-years" aria-label={t.loaderYears}>
           <div className="studio-loader-year-track" aria-hidden="true">
             {archiveYears.map((year) => (
               <span className="studio-loader-year" key={year}>
@@ -609,8 +605,8 @@ export default function StudioExperience() {
         </div>
 
         <div className="studio-loader-caption">
-          <span>EIGHT YEARS OF INK</span>
-          <small>MARKS, MEMORY AND PERMANENCE</small>
+          <span>{t.loaderCaption[0]}</span>
+          <small>{t.loaderCaption[1]}</small>
         </div>
 
         <div className="studio-loader-meta studio-loader-meta--bottom">

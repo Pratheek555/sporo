@@ -17,8 +17,8 @@ loadContent.extensions['.ts'] = (module, filename) => {
 };
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const { articles } = loadContent(path.join(root, 'app/services/_content/articles/index.ts'));
-const { services } = loadContent(path.join(root, 'app/services/_content/registry.ts'));
+const { articles } = loadContent(path.join(root, 'app/[lang]/services/_content/articles/index.ts'));
+const { services } = loadContent(path.join(root, 'app/[lang]/services/_content/registry.ts'));
 const issues = [];
 const check = (condition, message) => { if (!condition) issues.push(message); };
 assert.equal(Object.keys(articles).length, 24);

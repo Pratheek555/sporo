@@ -1,45 +1,47 @@
 import Link from "next/link";
+import { localePath } from "../lib/i18n/config";
+import { getDictionaryFor, getLang } from "../lib/i18n/get-dictionary";
+import { site } from "../lib/site";
 
 const studioAddress =
   "34 Law De Lauriston Street, White Town, Puducherry 605001";
 
-const studioDetails = [
-  { label: "Studio", value: "Spiritual Tattoo Art Studio" },
-  {
-    label: "Address",
-    value: studioAddress,
-    href: "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001",
-  },
-  { label: "Phone", value: "+91 81242 59830", href: "tel:+918124259830" },
-];
+export default async function LandingFooter() {
+  const lang = await getLang();
+  const t = (await getDictionaryFor(lang)).footer;
 
-export default function LandingFooter() {
+  const studioDetails = [
+    { key: "studio", label: t.studio, value: site.name },
+    { key: "address", label: t.address, value: studioAddress, href: site.directionsUrl },
+    { key: "phone", label: t.phone, value: site.phone, href: site.phoneHref },
+  ];
+
   return (
     <footer className="landing-footer" aria-labelledby="landing-footer-title">
       <div className="landing-footer-grid">
         <div className="landing-footer-contact">
-          <span>Start a conversation</span>
-          <a href="/contact">Contact us ↗</a>
-          <Link href="/services">All services ↗</Link>
-          <a href="mailto:studio@spiritualart3.com">
-            studio@spiritualart3.com
+          <span>{t.startConversation}</span>
+          <a href={localePath(lang, "/contact")}>{t.contactUs}</a>
+          <Link href={localePath(lang, "/services")}>{t.allServices}</Link>
+          <a href={`mailto:${site.email}`}>
+            {site.email}
           </a>
         </div>
 
         <div className="landing-footer-location">
-          <span>White Town studio</span>
-          <strong>Pondicherry / India</strong>
-          <small>Walk-ins &amp; appointments</small>
+          <span>{t.locationLabel}</span>
+          <strong>{t.locationPlace}</strong>
+          <small>{t.locationNote}</small>
         </div>
 
-        <address className="landing-footer-details" aria-label="Studio details">
+        <address className="landing-footer-details" aria-label={t.detailsLabel}>
           {studioDetails.map((detail) => (
-            <div key={detail.label} className="landing-footer-detail">
+            <div key={detail.key} className="landing-footer-detail">
               <span>{detail.label}</span>
               {detail.href ? (
                 <a
                   href={detail.href}
-                  {...(detail.label === "Address"
+                  {...(detail.key === "address"
                     ? { target: "_blank", rel: "noreferrer" }
                     : {})}
                 >
@@ -59,13 +61,13 @@ export default function LandingFooter() {
       </div>
 
       <h2 id="landing-footer-title" className="landing-footer-cta">
-        Your story.
-        <span>Marked for life.</span>
+        {t.cta[0]}
+        <span>{t.cta[1]}</span>
       </h2>
 
       <div className="landing-footer-index" aria-hidden="true">
-        <span>STS / 2026</span>
-        <span>ORIGINAL WORK / PERMANENT FORM</span>
+        <span>{t.index[0]}</span>
+        <span>{t.index[1]}</span>
       </div>
     </footer>
   );

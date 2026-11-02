@@ -84,11 +84,10 @@ for (const slug of expected) {
     assert(studio?.address.streetAddress.includes("No. 34, Law De Lauriston Street"), `${slug} shares the studio address`);
     assert.equal(studio.openingHoursSpecification.length, 2, `${slug} has studio opening hours`);
     assert.equal(new Set(nodes.filter((node) => String(node["@type"]).includes("TattooParlor")).map((node) => node["@id"])).size, 1, `${slug} references one business identity`);
-    const menus = [...html.matchAll(/<(nav|footer)\b[^>]*>([\s\S]*?)<\/\1>/g)];
-    for (const [, , menu] of menus) {
-      for (const link of menu.matchAll(/href="([^"]+)"/g)) {
-        assert(!new URL(link[1], siteUrl).pathname.startsWith("/tattoo-shop-near/"), `${slug} is absent from navigation and footer links`);
-      }
+    assert(html.includes('href="/tattoo-shop-near"'), `${slug} links back to the area directory`);
+    assert(html.includes('href="/services"'), `${slug} links to the services directory`);
+    for (const other of expected.filter((area) => area !== slug)) {
+      assert(html.includes(`href="/tattoo-shop-near/${other}"`), `${slug} links to ${other}`);
     }
   }
   results.push({ slug, words, titleCharacters: page.seo.title.length, descriptionCharacters: page.seo.description.length, faqs: page.faqs.length, httpChecked: Boolean(base) });

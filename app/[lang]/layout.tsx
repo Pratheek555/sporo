@@ -5,7 +5,7 @@ import "../globals.css";
 import { isLocale, localeMeta, locales } from "../lib/i18n/config";
 import { getDictionaryFor } from "../lib/i18n/get-dictionary";
 import { LocaleProvider } from "../lib/i18n/locale-context";
-import { jsonLdScript, localBusinessJsonLd, site } from "../lib/site";
+import { jsonLdScript, site, siteJsonLd } from "../lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +55,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
+  const { meta } = await getDictionaryFor(lang);
 
   return (
     <html
@@ -63,7 +64,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
     >
       <body>
         <LocaleProvider lang={lang}>{children}</LocaleProvider>
-        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusinessJsonLd())} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(siteJsonLd({ lang, description: meta.description }))} />
       </body>
     </html>
   );

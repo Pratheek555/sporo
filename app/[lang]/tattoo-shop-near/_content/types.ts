@@ -1,9 +1,7 @@
 import type { ServiceFact, ServiceFaq } from "../../services/_content/types";
 
-// Hyperlocal landing pages for the neighbourhoods around the studio. They exist
-// for search engines: listed in the sitemap, never linked from the site's nav,
-// footer or hub pages. The studio has ONE location (White Town); every page
-// must say so rather than imply a branch in the area it targets.
+// Local guides linked from the area directory and service pages.
+// The studio has ONE location in White Town; guides must not imply local branches.
 
 export type AreaPage = {
   slug: string;

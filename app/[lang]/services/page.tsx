@@ -1,3 +1,4 @@
+import AreaDirectory from "../../components/area-directory";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import { isLocale, localeMeta, localePath, pageAlternates, type Locale } from ".
 import type { Dictionary } from "../../lib/i18n/dictionaries/en";
 import { getDictionaryFor } from "../../lib/i18n/get-dictionary";
 import { format } from "../../lib/i18n/text";
-import { businessId, jsonLdScript, site } from "../../lib/site";
+import { businessId, jsonLdScript, site, websiteId } from "../../lib/site";
 import { getServices, serviceHref, type ServiceSummary } from "./_content/registry";
 import VisitBlock, { whatsappLink } from "./_lib/visit-block";
 import { renderInline } from "./_lib/markdown";
@@ -87,10 +88,14 @@ export default async function ServicesPage({ params }: PageProps<"/[lang]/servic
         name: d.meta.title,
         description: d.meta.description,
         inLanguage: localeMeta[lang].schema,
+        isPartOf: { "@id": websiteId },
         about: { "@id": businessId },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        mainEntity: { "@id": `${url}#services` },
       },
       {
         "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: d.home, item: `${site.url}${localePath(lang, "/")}` },
           { "@type": "ListItem", position: 2, name: dictionary.nav.services, item: url },
@@ -98,6 +103,7 @@ export default async function ServicesPage({ params }: PageProps<"/[lang]/servic
       },
       {
         "@type": "ItemList",
+        "@id": `${url}#services`,
         itemListElement: services.map((service, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -192,6 +198,7 @@ export default async function ServicesPage({ params }: PageProps<"/[lang]/servic
           </ol>
         </section>
 
+        <AreaDirectory lang={lang} />
         <VisitBlock />
       </main>
 

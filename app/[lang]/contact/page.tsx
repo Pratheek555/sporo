@@ -4,7 +4,7 @@ import Link from "next/link";
 import SiteNav from "../../components/site-nav";
 import { isLocale, localePath, pageAlternates } from "../../lib/i18n/config";
 import { getDictionaryFor, getLang } from "../../lib/i18n/get-dictionary";
-import { site } from "../../lib/site";
+import { businessId, jsonLdScript, site, webPageJsonLd } from "../../lib/site";
 import styles from "./page.module.css";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/contact">): Promise<Metadata> {
@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/contact">)
   return { title: meta.title, description: meta.description, alternates: pageAlternates(lang, "/contact") };
 }
 
-// Filler links: confirm the Instagram and Calendly URLs with the owner before publishing.
-const instagramUrl = "https://www.instagram.com/spiritualtattooart/";
+// Filler link: confirm the Calendly URL with the owner before publishing.
+const instagramUrl = site.instagramUrl;
 const calendlyUrl = "https://calendly.com/spiritualtattooart/consultation";
 const whatsappUrl = "https://wa.me/918124259830";
 const directionsUrl = "https://www.google.com/maps?q=34+Law+De+Lauriston+St+Near+Central+Bank+of+India+White+Town+Puducherry+605001";
@@ -49,6 +49,20 @@ export default async function ContactPage() {
   const lang = await getLang();
   const dictionary = await getDictionaryFor(lang);
   const t = dictionary.contact;
+  const url = `${site.url}${localePath(lang, "/contact")}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": webPageJsonLd({
+      url,
+      name: t.meta.title,
+      description: t.meta.description,
+      lang,
+      type: "ContactPage",
+      crumbs: { home: dictionary.services.home, trail: [[dictionary.nav.contact, url]] },
+      mainEntity: businessId,
+      image: `${site.url}/media/hero-red-art.webp`,
+    }),
+  };
 
   return (
     <div className={styles.page}>
@@ -131,6 +145,7 @@ export default async function ContactPage() {
         <div className={styles.wordmark} aria-hidden="true">Spiritual</div>
         <div className={styles.footerIndex}><span>{t.footerIndex[0]}</span><span>{t.footerIndex[1]}</span></div>
       </footer>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
     </div>
   );
 }

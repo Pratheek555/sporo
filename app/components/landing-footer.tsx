@@ -1,3 +1,4 @@
+import { areasLabel } from "./area-directory";
 import Link from "next/link";
 import { localePath } from "../lib/i18n/config";
 import { getDictionaryFor, getLang } from "../lib/i18n/get-dictionary";
@@ -23,6 +24,8 @@ export default async function LandingFooter() {
           <span>{t.startConversation}</span>
           <a href={localePath(lang, "/contact")}>{t.contactUs}</a>
           <Link href={localePath(lang, "/services")}>{t.allServices}</Link>
+          <Link href={localePath(lang, "/about-us")}>{lang === "fr" ? "À propos" : "About Us"}</Link>
+          <Link href={localePath(lang, "/tattoo-shop-near")}>{areasLabel(lang)}</Link>
           <a href={`mailto:${site.email}`}>
             {site.email}
           </a>

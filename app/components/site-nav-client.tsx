@@ -81,6 +81,19 @@ export default function SiteNavClient({
   const onServicesPage = path.startsWith("/services");
 
   useEffect(() => {
+    if (!navOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const mobile = window.matchMedia("(max-width: 980px)");
+    const closeOnDesktop = () => { if (!mobile.matches) setNavOpen(false); };
+    document.body.style.overflow = "hidden";
+    mobile.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      mobile.removeEventListener("change", closeOnDesktop);
+    };
+  }, [navOpen]);
+
+  useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       setNavOpen(false);
@@ -200,14 +213,14 @@ export default function SiteNavClient({
           </div>
         </div>
 
-        <Link href={anchor("philosophy")} onClick={closeAll}>
-          <small>02</small><span>{t.philosophy}</span>
+        <Link href={href("/about-us")} aria-current={path === "/about-us" ? "page" : undefined} onClick={closeAll}>
+          <small>02</small><span>{t.aboutUs}</span>
         </Link>
         <Link href={anchor("stories")} onClick={closeAll}>
           <small>03</small><span>{t.stories}</span>
         </Link>
-        <Link href={anchor("visit")} onClick={closeAll}>
-          <small>04</small><span>{t.visit}</span>
+        <Link href={href("/tattoo-shop-near")} aria-current={path.startsWith("/tattoo-shop-near") ? "page" : undefined} onClick={closeAll}>
+          <small>04</small><span>{lang === "fr" ? "Quartiers" : "Areas we serve"}</span>
         </Link>
         <Link href={href("/contact")} aria-current={path === "/contact" ? "page" : undefined} onClick={closeAll}>
           <small>05</small><span>{t.contact}</span>
@@ -268,14 +281,14 @@ export default function SiteNavClient({
               </Link>
             </div>
           </div>
-          <Link href={anchor("philosophy")} onClick={closeAll}>
-            <small>02 /</small><span>{t.philosophy}</span><i aria-hidden="true">↘</i>
+          <Link href={href("/about-us")} aria-current={path === "/about-us" ? "page" : undefined} onClick={closeAll}>
+            <small>02 /</small><span>{t.aboutUs}</span><i aria-hidden="true">↗</i>
           </Link>
           <Link href={anchor("stories")} onClick={closeAll}>
             <small>03 /</small><span>{t.stories}</span><i aria-hidden="true">↘</i>
           </Link>
-          <Link href={anchor("visit")} onClick={closeAll}>
-            <small>04 /</small><span>{t.visit}</span><i aria-hidden="true">↘</i>
+          <Link href={href("/tattoo-shop-near")} onClick={closeAll}>
+            <small>04 /</small><span>{lang === "fr" ? "Quartiers" : "Areas we serve"}</span><i aria-hidden="true">↘</i>
           </Link>
           <Link href={href("/studio")} prefetch={false} onClick={closeAll}>
             <small>05 /</small><span>{t.enterStudio}</span><i aria-hidden="true">↗</i>

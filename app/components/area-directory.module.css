@@ -1,0 +1,28 @@
+.section { position: relative; z-index: 2; background: var(--ink); color: var(--paper); padding: 80px 6vw; border-top: 1px solid #f3eee52b; }
+.heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.eyebrow { font: 11px monospace; letter-spacing: .12em; color: var(--signal); margin: 0 0 20px; }
+.heading h2 { font-size: clamp(2rem, 4.5vw, 4.5rem); line-height: 1.05; font-weight: 500; letter-spacing: -.04em; margin: 0; }
+.intro { max-width: 680px; font-size: 16px; line-height: 1.7; opacity: .75; margin: 28px 0 36px; }
+.action { display: inline-flex; gap: 20px; align-items: center; font-size: 14px; text-decoration: underline; text-underline-offset: 6px; }
+.grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1px; background: #f3eee52b; border: 1px solid #f3eee52b; list-style: none; padding: 0; margin: 0 0 32px; }
+.grid li { background: var(--ink); min-width: 0; }
+.grid a { display: flex; flex-direction: column; padding: 28px; gap: 18px; height: 100%; text-decoration: none; transition: background .2s; }
+.grid a:hover { background: #f3eee510; }
+.grid small { font: 11px monospace; color: var(--signal); }
+.grid strong { font-size: clamp(21px,2.4vw,32px); font-weight: 500; }
+.grid span { display: flex; justify-content: space-between; font-size: 12px; opacity: .7; }
+.grid i { font-style: normal; }
+.section a:focus-visible { outline: 2px solid var(--paper); outline-offset: 4px; }
+@media(max-width: 700px) {
+  .section { padding: 48px 20px; }
+  .heading { align-items: start; flex-direction: column; gap: 16px; }
+  .heading h2 { font-size: clamp(2rem, 8vw, 3rem); }
+  .intro { margin-block: 20px 28px; font-size: .95rem; }
+  .action { min-height: 44px; line-height: 1.5; }
+  .grid { grid-template-columns: 1fr; margin-bottom: 20px; }
+  .grid a { display: grid; grid-template-columns: 28px minmax(0, 1fr) 16px; align-items: center; min-height: 72px; padding: 20px 16px; gap: 10px; }
+  .grid small { white-space: nowrap; }
+  .grid strong { font-size: clamp(1.15rem, 5vw, 1.5rem); }
+  .grid span { font-size: 0; }
+  .grid i { font-size: 1.1rem; }
+}

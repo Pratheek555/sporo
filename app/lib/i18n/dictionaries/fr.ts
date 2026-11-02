@@ -34,7 +34,7 @@ const fr: Dictionary = {
   nav: {
     homeLabel: "Accueil Spiritual Tattoo Art",
     brandSub: "Tattoo Art / Pondichéry",
-    edition: ["White Town", "Depuis 2018"],
+    edition: ["White Town", "Depuis 2013"],
     primaryLabel: "Navigation principale",
     mobileLabel: "Navigation mobile",
     services: "Services",
@@ -50,6 +50,7 @@ const fr: Dictionary = {
     viewAllServices: "Voir tous les services",
     freeConsultation: "Consultation gratuite",
     philosophy: "Philosophie",
+    aboutUs: "À propos",
     stories: "Avis",
     visit: "Adresse",
     contact: "Contact",
@@ -69,9 +70,9 @@ const fr: Dictionary = {
     tagline: "Changer la façon de ressentir l’art",
     welcome: ["Bienvenue", "À votre service"],
     titleSeo: "Le salon de tatouage et de piercing le plus réputé et le plus fiable de Pondichéry : ",
-    subtitleSeo: "Tatouages sur mesure, Pondichéry",
+    subtitleSeo: "Tatouages sur mesure et piercings à Pondichéry",
     descriptorKicker: ["Salon de tatouage & piercing", "à", "Pondichéry"],
-    descriptorNote: "Le meilleur studio de la ville, et le plus digne de confiance.",
+    descriptorNote: "Des créations personnelles, un savoir-faire attentif et un accueil chaleureux chez Spiritual Tattoo Art Studio.",
     enterLabel: "Entrer dans le Spiritual Tattoo Studio",
     ring: ["Entrez dans l’archive", "Entrer au studio"],
   },
@@ -83,11 +84,11 @@ const fr: Dictionary = {
     kicker: "Les mains derrière chaque trait",
     lines: ["Fait main.", "Façonné pour vous.", "Porté à vie."],
     paragraphs: [
-      "Mukhilan, fondateur de Spiritual Tattoo Art Studio, façonne son art depuis 2018. Pour lui, tatouer n’est pas une course à l’argent, mais une façon de respecter l’art et la personne qui le reçoit. Il prend le temps de comprendre chacun et de créer un travail personnel, porteur de sens.",
+      "Mukhilan, fondateur de Spiritual Tattoo Art Studio, façonne son art depuis 2013. Pour lui, tatouer n’est pas une course à l’argent, mais une façon de respecter l’art et la personne qui le reçoit. Il prend le temps de comprendre chacun et de créer un travail personnel, porteur de sens.",
       "Chaque dessin est mûrement réfléchi pour appartenir naturellement à la peau, plutôt que de simplement s’y poser. Son approche va au-delà du tatouage : il s’agit de créer un art qui porte du sens, du caractère et de la permanence.",
     ],
     quote: "« Le plus beau tatouage semble découvert, non ajouté. »",
-    link: "Entrer dans le studio",
+    link: "Découvrir l’artiste",
   },
 
   testimonials: {
@@ -210,7 +211,7 @@ const fr: Dictionary = {
     pages: [
       {
         title: "L’antre créatif de Mukhilan",
-        note: "Né en 2018 de la vision d’un jeune artiste, ce studio est devenu un espace sacré dédié au tatouage intentionnel. Aujourd’hui, il honore ce rêve en cultivant un lieu où l’art est profondément respecté, transformant des histoires personnelles en repères spirituels durables sur la peau.",
+        note: "Né en 2013 de la vision d’un jeune artiste, ce studio est devenu un espace sacré dédié au tatouage intentionnel. Aujourd’hui, il honore ce rêve en cultivant un lieu où l’art est profondément respecté, transformant des histoires personnelles en repères spirituels durables sur la peau.",
       },
       {
         title: "Au-delà de la toile",
@@ -317,7 +318,7 @@ const fr: Dictionary = {
       intro: [
         [
           "On cherche le meilleur salon de tatouage à Pondichéry pour toutes sortes de raisons. Un premier tatouage après des années de « un jour ». Un souvenir d’un voyage dans le Quartier français. Le portrait d’un être cher qui manque. Un recouvrement qui se fait attendre.",
-          "Quelle que soit la raison de votre visite, le processus est le même. Mukhilan, notre fondateur et artiste, tatoue depuis 2018. Il commence par écouter, dessine pour votre corps, et travaille avec des instruments stérilisés à l’autoclave et des aiguilles à usage unique. En savoir plus [sur Mukhilan](/services/tattoo-artist) ou [entrez dans le studio](/studio).",
+          "Quelle que soit la raison de votre visite, le processus est le même. Mukhilan, notre fondateur et artiste, tatoue depuis 2013. Il commence par écouter, dessine pour votre corps, et travaille avec des instruments stérilisés à l’autoclave et des aiguilles à usage unique. En savoir plus [sur Mukhilan](/services/tattoo-artist) ou [entrez dans le studio](/studio).",
         ],
         [
           "Vous cherchez plutôt le meilleur salon de piercing à Pondichéry ? Le même soin s’applique. Mukhilan étudie votre anatomie et vous guide sur les bijoux et la cicatrisation avant tout geste. Vous repartez ensuite avec des consignes de soins écrites, adaptées à un climat humide, salin et très attaché à la plage.",

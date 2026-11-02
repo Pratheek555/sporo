@@ -64,7 +64,7 @@ export default function LandingAbout({ t }: { t: Dictionary["about"] }) {
               {t.quote}
             </blockquote>
 
-            <a className="landing-about-link" href={href("/studio")}>
+            <a className="landing-about-link" href={href("/about-us")}>
               <span>{t.link}</span>
               <i aria-hidden="true">↗</i>
             </a>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { site } from "../lib/site";
 import type { Dictionary } from "../lib/i18n/dictionaries/en";
 import { format } from "../lib/i18n/text";
 import { useVisibleVideo } from "./use-visible-video";
@@ -10,7 +11,7 @@ type FilmStrings = Dictionary["studio"]["films"];
 // Media and running times are fixed; titles and notes come from the dictionary, in the same order.
 const filmMedia = [
   { number: "01", duration: "00:22", src: "/media/studio-films/the-ritual.mp4", poster: "/media/studio-films/the-ritual.jpg" },
-  { number: "02", duration: "00:06", src: "/media/studio-films/film-02.mp4", poster: "/media/studio-films/film-02.jpg" },
+  { number: "02", duration: "01:14", src: "/media/middle.mp4", poster: "/media/studio-films/middle.jpg" },
   { number: "03", duration: "00:20", src: "/media/studio-films/living-marks.mp4", poster: "/media/studio-films/living-marks.jpg" },
 ];
 
@@ -88,7 +89,7 @@ export default function StudioFilmGallery({ t }: { t: FilmStrings }) {
         <div className="studio-film-gallery__films">
           {films.map((film) => <FilmCard key={film.number} film={film} t={t} onSelect={setActiveFilm} previewsEnabled={!paused && !activeFilm} />)}
         </div>
-        <div className="studio-film-gallery__bottom"><span>{t.made}</span><button className="studio-film-gallery__motion" type="button" aria-pressed={paused} onClick={() => setPaused(!paused)}><span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span> {paused ? t.resume : t.pause}</button><a href="mailto:studio@spiritualart3.com">{t.next} <span>↗</span></a></div>
+        <div className="studio-film-gallery__bottom"><span>{t.made}</span><button className="studio-film-gallery__motion" type="button" aria-pressed={paused} onClick={() => setPaused(!paused)}><span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span> {paused ? t.resume : t.pause}</button><a href={`mailto:${site.email}`}>{t.next} <span>↗</span></a></div>
       </div>
       <dialog ref={dialog} className="studio-film-dialog" aria-labelledby="studio-film-dialog-title" onClose={() => setActiveFilm(null)} onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
         {activeFilm && <div className="studio-film-dialog__content"><header><div><span>{format(t.filmNumber, { number: activeFilm.number })}</span><h2 id="studio-film-dialog-title">{activeFilm.title}</h2></div><button type="button" autoFocus aria-label={t.closeFilm} onClick={() => dialog.current?.close()}>{t.close} <span aria-hidden="true">×</span></button></header><FilmPlayer key={activeFilm.number} film={activeFilm} t={t} /><p>{activeFilm.note}</p></div>}

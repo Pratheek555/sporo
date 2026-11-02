@@ -14,8 +14,8 @@ const clips = [
   { src: "/media/work-reel/clip-01.mp4", poster: "/media/work-reel/clip-01.jpg", duration: "00:18" },
   { src: "/media/work-reel/clip-02.mp4", poster: "/media/work-reel/clip-02.jpg", duration: "00:21" },
   { src: "/media/work-reel/clip-03.mp4", poster: "/media/work-reel/clip-03.jpg", duration: "00:24" },
-  { src: "/work.mp4", poster: "/media/work-reel/work.jpg", duration: "00:17" },
-  { src: "/media/cover_page_video.mp4", poster: "/media/work-reel/cover.jpg", duration: "00:17" },
+  { src: "/media/work-reel/4.MP4", poster: "/media/work-reel/4.jpg", duration: "00:09" },
+  { src: "/media/work-reel/5.MP4", poster: "/media/work-reel/5.jpg", duration: "00:19" },
 ];
 
 type Clip = (typeof clips)[number] & { number: string; title: string; note: string };

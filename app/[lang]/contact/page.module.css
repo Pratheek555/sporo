@@ -74,9 +74,13 @@ a.contactRow:hover { color: #ec767b; padding-left: 12px; }
   .sectionLabel { align-items: start; margin-bottom: 25px; }
   .sectionLabel h2 { font-size: 1.3rem; }
   .sectionLabel > span { font-size: .62rem; padding-top: 5px; }
-  .contactRow { grid-template-columns: 24px 30px 1fr 22px; gap: 12px; padding-block: 28px; }
+  .contactRow { grid-template-columns: 30px minmax(0, 1fr) 22px; gap: 12px; padding-block: 24px; }
+  .rowIndex { display: none; }
+  .rowCopy { min-width: 0; overflow-wrap: anywhere; }
+  .rowDetail { grid-column: 2; }
+  .arrow { grid-column: 3; }
   .icon { width: 28px; height: 28px; }
-  .rowCopy h3 { font-size: 1.85rem; }
+  .rowCopy h3 { font-size: clamp(1.65rem, 7.5vw, 2.2rem); line-height: 1.05; }
   .rowCopy p { font-size: .85rem; }
   .rowDetail { font-size: .68rem; }
   .arrow { font-size: 1.5rem; }
@@ -91,6 +95,10 @@ a.contactRow:hover { color: #ec767b; padding-left: 12px; }
   .footer > p { font-size: 1.5rem; }
   .footer > a { align-items: center; min-height: 44px; font-size: .72rem; }
   .footerIndex { font-size: .62rem; }
+  .heroIndex, .heroFoot, .footerIndex { flex-wrap: wrap; gap: 12px 24px; }
+  .heroCopy { padding-block: 40px; }
+  .heroLink, .directions { min-height: 48px; font-size: .72rem; }
+  .email a { overflow-wrap: anywhere; }
 }
 @media (prefers-reduced-motion: reduce) {
   .contactRow { transition: none; }

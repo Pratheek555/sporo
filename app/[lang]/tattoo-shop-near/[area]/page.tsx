@@ -1,3 +1,4 @@
+import AreaDirectory, { areasLabel } from "../../../components/area-directory";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +7,7 @@ import LandingFooter from "../../../components/landing-footer";
 import SiteNav from "../../../components/site-nav";
 import { isLocale, localeMeta, localePath, pageAlternates } from "../../../lib/i18n/config";
 import { getDictionaryFor } from "../../../lib/i18n/get-dictionary";
-import { businessId, jsonLdScript, site } from "../../../lib/site";
+import { businessId, jsonLdScript, site, websiteId } from "../../../lib/site";
 import { getServiceSummary, serviceHref } from "../../services/_content/registry";
 import { extractHeadings, renderInline, renderMarkdown, stripInline } from "../../services/_lib/markdown";
 import VisitBlock, { whatsappLink } from "../../services/_lib/visit-block";
@@ -72,6 +73,7 @@ export default async function AreaPage({ params }: PageProps<"/[lang]/tattoo-sho
         name: page.seo.title,
         description: page.seo.description,
         inLanguage: localeMeta[lang].schema,
+        isPartOf: { "@id": websiteId },
         about: { "@id": businessId },
         breadcrumb: { "@id": `${url}#breadcrumb` },
         primaryImageOfPage: `${site.url}/media/studio-gallery/studio-gallery-2.png`,
@@ -81,7 +83,8 @@ export default async function AreaPage({ params }: PageProps<"/[lang]/tattoo-sho
         "@id": `${url}#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: d.home, item: `${site.url}${localePath(lang, "/")}` },
-          { "@type": "ListItem", position: 2, name: crumb, item: url },
+          { "@type": "ListItem", position: 2, name: areasLabel(lang), item: `${site.url}${localePath(lang, "/tattoo-shop-near")}` },
+          { "@type": "ListItem", position: 3, name: crumb, item: url },
         ],
       },
       {
@@ -137,6 +140,7 @@ export default async function AreaPage({ params }: PageProps<"/[lang]/tattoo-sho
           <nav className={styles.breadcrumb} aria-label={d.breadcrumbLabel}>
             <ol>
               <li><Link href={localePath(lang, "/")}>{d.home}</Link></li>
+              <li><Link href={localePath(lang, "/tattoo-shop-near")}>{areasLabel(lang)}</Link></li>
               <li aria-current="page">{crumb}</li>
             </ol>
             <span>{d.place}</span>
@@ -225,6 +229,7 @@ export default async function AreaPage({ params }: PageProps<"/[lang]/tattoo-sho
           </section>
         )}
 
+        <AreaDirectory lang={lang} exclude={slug} />
         <VisitBlock topic={topic} />
       </main>
 

@@ -1,3 +1,4 @@
+import AreaDirectory from "../../../components/area-directory";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import SiteNav from "../../../components/site-nav";
 import { defaultLocale, isLocale, localeMeta, localePath, pageAlternates } from "../../../lib/i18n/config";
 import { getDictionaryFor } from "../../../lib/i18n/get-dictionary";
 import { format } from "../../../lib/i18n/text";
-import { businessId, jsonLdScript, site } from "../../../lib/site";
+import { businessId, founderId, jsonLdScript, site, websiteId } from "../../../lib/site";
 import { articles } from "../_content/articles";
 import { getArticle } from "../_content/get-article";
 import { getServiceSummary, serviceHref } from "../_content/registry";
@@ -84,7 +85,10 @@ export default async function ServicePage({ params }: PageProps<"/[lang]/service
         name: article.seo.title,
         description: article.seo.description,
         inLanguage: localeMeta[contentLang].schema,
+        isPartOf: { "@id": websiteId },
         about: { "@id": businessId },
+        // The artist page is about Mukhilan; every other article is about its service.
+        mainEntity: { "@id": slug === "tattoo-artist" ? founderId : `${url}#service` },
         breadcrumb: { "@id": `${url}#breadcrumb` },
         primaryImageOfPage: `${site.url}/media/studio-gallery/studio-gallery-2.png`,
       },
@@ -238,6 +242,7 @@ export default async function ServicePage({ params }: PageProps<"/[lang]/service
           </section>
         )}
 
+        <AreaDirectory lang={lang} />
         <VisitBlock topic={summary.name} />
       </main>
 

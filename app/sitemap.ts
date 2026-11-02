@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       // A French article that isn't translated yet is noindexed, so it stays out of the sitemap.
       languages: service.slug in articlesFr ? locales : [defaultLocale],
     })),
+    { path: "/tattoo-shop-near", changeFrequency: "monthly", priority: 0.9 },
     ...Object.values(areas).map((area) => ({
       path: areaHref(area.slug),
       changeFrequency: "monthly" as const,
@@ -38,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     { path: "/contact", changeFrequency: "yearly", priority: 0.7 },
     { path: "/studio", changeFrequency: "yearly", priority: 0.6 },
+    { path: "/about-us", changeFrequency: "yearly", priority: 0.7 },
   ];
 
   return pages.flatMap(({ path, changeFrequency, priority, languages = locales }) => {

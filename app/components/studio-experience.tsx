@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
+import { site } from "../lib/site";
 import type { Dictionary } from "../lib/i18n/dictionaries/en";
 import { useLocalePath } from "../lib/i18n/locale-context";
 import StudioFilmGallery from "./studio-film-gallery";
@@ -519,7 +520,7 @@ export default function StudioExperience({ t }: { t: Dictionary["studio"] }) {
                     {index === artPages.length - 1 && (
                       <figcaption id="booking" className="studio-book-booking">
                         <span>{t.booking.label}</span>
-                        <a href="mailto:studio@spiritualart3.com">{t.booking.cta}</a>
+                        <a href={`mailto:${site.email}`}>{t.booking.cta}</a>
                       </figcaption>
                     )}
                   </figure>

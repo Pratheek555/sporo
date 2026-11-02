@@ -34,7 +34,7 @@ const en = {
   nav: {
     homeLabel: "Spiritual Tattoo Art home",
     brandSub: "Tattoo Art / Pondicherry",
-    edition: ["White Town", "Est. 2018"],
+    edition: ["White Town", "Est. 2013"],
     primaryLabel: "Primary navigation",
     mobileLabel: "Mobile navigation",
     services: "Services",
@@ -50,6 +50,7 @@ const en = {
     viewAllServices: "View all services",
     freeConsultation: "Free consultation",
     philosophy: "Philosophy",
+    aboutUs: "About Us",
     stories: "Stories",
     visit: "Visit",
     contact: "Contact",
@@ -69,9 +70,9 @@ const en = {
     tagline: "Changing the way you feel art",
     welcome: ["Bienvenue", "À votre service"],
     titleSeo: "The best and most trusted Tattoo and piercing shop in Pondicherry: ",
-    subtitleSeo: "Custom Tattoos, Pondicherry",
+    subtitleSeo: "Custom Tattoos & Piercings in Pondicherry",
     descriptorKicker: ["Tattoo & Piercing Shop", "in", "Pondicherry"],
-    descriptorNote: "The best & most trusted studio in town.",
+    descriptorNote: "The best & most trusted studio in Pondicherry.",
     enterLabel: "Enter Spiritual Tattoo Studio",
     ring: ["Step inside the archive", "Enter studio"],
   },
@@ -83,11 +84,11 @@ const en = {
     kicker: "The hands behind the mark",
     lines: ["Made by hand.", "Shaped around you.", "Carried for life."],
     paragraphs: [
-      "Mukhilan, founder of Spiritual Tattoo Art Studio, has been shaping his craft since 2018. For him, tattooing is not about chasing money, but about respecting the art and the person receiving it. He takes the time to understand each individual and create work that feels personal and meaningful.",
+      "Mukhilan, founder of Spiritual Tattoo Art Studio, has been shaping his craft since 2013. For him, tattooing is not about chasing money, but about respecting the art and the person receiving it. He takes the time to understand each individual and create work that feels personal and meaningful.",
       "Every design is carefully considered so it naturally belongs on the skin, rather than simply sitting on it. His approach goes beyond creating tattoos; it is about creating art that carries meaning, character, and permanence.",
     ],
     quote: "“The best mark feels discovered, not added.”",
-    link: "Enter the studio",
+    link: "Meet the artist",
   },
 
   testimonials: {
@@ -209,7 +210,7 @@ const en = {
     pages: [
       {
         title: "Mukhilan’s Creative Den",
-        note: "Born in 2018 from a young artist’s vision, this studio has evolved into a sacred space for intentional tattooing. Today, he honors that dream by cultivating an environment where art is deeply respected, transforming personal stories into enduring, spiritual milestones on the skin.",
+        note: "Born in 2013 from a young artist’s vision, this studio has evolved into a sacred space for intentional tattooing. Today, he honors that dream by cultivating an environment where art is deeply respected, transforming personal stories into enduring, spiritual milestones on the skin.",
       },
       {
         title: "Beyond the Canvas",
@@ -316,7 +317,7 @@ const en = {
       intro: [
         [
           "People search for the best tattoo shop in Pondicherry for all sorts of reasons. A first tattoo after years of “someday”. A keepsake from a trip to the French Quarter. A portrait of someone they miss. A cover-up that’s overdue.",
-          "Whatever brings you in, the process is the same. Mukhilan, our founder and artist, has tattooed since 2018. He listens first, draws for your body, and works with autoclave-sterilised tools and single-use needles. Read more [about Mukhilan](/services/tattoo-artist) or [step inside the studio](/studio).",
+          "Whatever brings you in, the process is the same. Mukhilan, our founder and artist, has tattooed since 2013. He listens first, draws for your body, and works with autoclave-sterilised tools and single-use needles. Read more [about Mukhilan](/services/tattoo-artist) or [step inside the studio](/studio).",
         ],
         [
           "Looking for the best piercing shop in Pondicherry instead? The same care applies. Mukhilan checks your anatomy and talks you through jewellery and healing before anything happens. Then you get written aftercare for a climate that’s humid, salty and very fond of the beach.",

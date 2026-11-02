@@ -42,21 +42,20 @@ export default function LandingHero({ t }: { t: Dictionary["hero"] }) {
         <div className="hero-content">
           <p className="hero-tagline">{t.tagline}</p>
           <div className="hero-copy">
-            <h2 className="hero-welcome">
+            <p className="hero-welcome">
               <span>{t.welcome[0]}</span>
               <span className="text-red-500">{t.welcome[1]}</span>
-            </h2>
+            </p>
 
             <h1 id="hero-title" className="hero-title">
               <span className="hero-title-seo">{t.titleSeo}</span>
               <span>Spiritual</span>
               <span>Tattoo <span className="text-red-500">Art</span></span>
             </h1>
-            <h2 className="sr-only">{t.subtitleSeo}</h2>
-            <p className="hero-descriptor">
-              <span className="hero-descriptor-kicker">{t.descriptorKicker[0]} <i>{t.descriptorKicker[1]}</i> {t.descriptorKicker[2]}</span>
+            <div className="hero-descriptor">
+              <h2 className="hero-descriptor-kicker">{t.subtitleSeo}</h2>
               <span className="hero-descriptor-note">{t.descriptorNote}</span>
-            </p>
+            </div>
           </div>
           </div>
 

@@ -10,13 +10,6 @@
 html[lang="fr"] { --font-display: var(--font-french-display); }
 
 /* Leave room for both language choices on the narrowest phones. */
-@media (max-width: 380px) {
-  .landing-nav .landing-nav-logo { width: 44px; flex-basis: 44px; }
-  .landing-nav .landing-nav-wordmark { padding-inline: 6px; }
-  .landing-nav .landing-nav-wordmark strong { font-size: 1rem; }
-  .landing-nav .landing-nav-toggle { width: 76px; padding-inline: 10px; }
-  .landing-nav .landing-nav-lang { padding-inline: 6px; }
-}
 
 @font-face {
   font-family: "Akzidenz Freena";
@@ -222,6 +215,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-descriptor-kicker {
+  margin: 0;
+  font-weight: 400;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1403,12 +1398,12 @@ a { color: inherit; text-decoration: none; }
   .landing-location-map { min-height: 58svh; }
 }
 
-/* Sticky footer reveal: the landing scene slides away while this layer stays
-   anchored underneath it, matching the reference site's native scroll effect. */
+/* Shared footers scroll normally. Only the layered landing and studio scenes
+   opt into the reveal effect below. */
 .landing-footer {
-  position: sticky;
+  position: relative;
   z-index: 0;
-  bottom: 0;
+  bottom: auto;
   display: grid;
   width: 100%;
   height: min(72svh, 700px);
@@ -1418,6 +1413,11 @@ a { color: inherit; text-decoration: none; }
   background: var(--signal);
   color: var(--paper);
   isolation: isolate;
+}
+
+:where(.landing-page, .studio-page) .landing-footer {
+  position: sticky;
+  bottom: 0;
 }
 
 .landing-footer::before,
@@ -3538,7 +3538,7 @@ html { scroll-padding-top: 96px; }
     border-right: 0;
     border-left: 1px solid rgba(243, 238, 229, .16);
   }
-  .landing-nav-lang > * { min-width: 32px; height: 28px; padding: 0 6px; font-size: .58rem; }
+  .landing-nav-lang > * { min-width: 36px; height: 44px; padding: 0 6px; font-size: .65rem; }
 
   .landing-nav-toggle i { position: relative; width: 15px; height: 11px; }
   .landing-nav-toggle b {
@@ -3563,7 +3563,7 @@ html { scroll-padding-top: 96px; }
     grid-template-rows: 0fr 0px;
     overflow: hidden;
     border: 1px solid transparent;
-    background: rgba(15, 8, 10, .96);
+    background: #0f080a;
     opacity: 0;
     transition: grid-template-rows 320ms cubic-bezier(.2, .8, .2, 1), opacity 220ms ease, border-color 220ms ease;
   }
@@ -3614,7 +3614,7 @@ html { scroll-padding-top: 96px; }
     transition: grid-template-rows 300ms cubic-bezier(.2, .8, .2, 1);
   }
   .site-mobile-services.is-open { grid-template-rows: 1fr; }
-  .site-mobile-services > div { min-height: 0; overflow: hidden; padding: 0 18px 0 66px; }
+  .site-mobile-services > div { min-height: 0; overflow: hidden; padding: 0 18px; }
   .site-mobile-services.is-open > div { padding-bottom: 18px; border-bottom: 1px solid rgba(243, 238, 229, .13); }
   .site-mobile-services p {
     margin: 16px 0 4px;
@@ -3633,7 +3633,7 @@ html { scroll-padding-top: 96px; }
   }
   .landing-mobile-nav .site-mobile-services a {
     display: flex;
-    min-height: 42px;
+    min-height: 48px;
     align-items: center;
     gap: 8px;
     padding: 6px 0;
@@ -3687,7 +3687,14 @@ html { scroll-padding-top: 96px; }
 
 @media (max-width: 420px) {
   .landing-nav-wordmark small { display: none; }
-  .landing-nav-toggle { width: 88px; }
+  .landing-nav-logo { width: 44px; flex-basis: 44px; }
+  .landing-nav-wordmark { padding-inline: 8px; }
+  .landing-nav-wordmark strong { font-size: 1rem; }
+  .landing-nav-toggle { width: 88px; gap: 8px; padding-inline: 10px; letter-spacing: 0; }
+  .landing-nav-toggle i { flex-shrink: 0; }
+  .landing-nav-lang { padding-inline: 4px; }
+  .landing-nav-lang > * { min-width: 32px; }
+  .site-mobile-services ul { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -4122,4 +4129,42 @@ html { scroll-padding-top: 96px; }
   .site-mobile-services p,
   .landing-mobile-nav p { font-size: .62rem; }
   .landing-mobile-nav .site-mobile-services .site-mobile-services-all { min-height: 48px; font-size: .68rem; }
+}
+
+/* Keep the mobile composition in normal flow so short screens and larger text
+   cannot push the studio link over the hero copy. */
+@media (max-width: 700px) {
+  .hero { display: flex; flex-direction: column; min-height: min(100svh, 780px); }
+  .landing-shell { min-height: 0; }
+  .hero-content { padding: 108px 20px 32px; gap: 24px; }
+  .hero-title { font-size: clamp(2.8rem, 16vw, 7rem); }
+  .hero-tagline { font-size: .65rem; line-height: 1.6; }
+  .hero-descriptor { max-width: 32ch; }
+  .hero-descriptor-kicker { font-size: .68rem; line-height: 1.6; letter-spacing: .12em; }
+  .enter-studio {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    align-self: center;
+    flex-shrink: 0;
+    margin: auto 0 24px;
+    translate: none;
+    --seal: 116px;
+  }
+  .landing-about-layout { padding: 64px 20px 48px; gap: 28px; }
+  .landing-about-portrait { width: min(100%, 360px); aspect-ratio: 1; }
+  .landing-about-copy > p:not(.landing-about-kicker) { font-size: .95rem; }
+  .landing-location { padding: 56px 20px; gap: 32px; }
+  .landing-location-heading h2 { line-height: .95; }
+  .landing-location-heading a { align-items: center; min-height: 48px; }
+  .landing-location-map { min-height: clamp(280px, 45svh, 400px); }
+  .studio-film-gallery__heading h2 { font-size: 22vw; }
+  .studio-film-gallery__heading h2 > span { white-space: normal; }
+  .studio-archive-meta { top: 62px; right: 20px; left: 20px; max-width: none; text-align: left; font-size: .65rem; }
+  .studio-art-statement { top: 102px; }
+  .studio-book-stage { --book-top: 176px; }
+  .studio-film-dialog__content header { align-items: start; gap: 12px; }
+  .studio-film-dialog__content header > div { min-width: 0; }
+  .studio-film-dialog__content button { flex-shrink: 0; gap: 8px; }
 }

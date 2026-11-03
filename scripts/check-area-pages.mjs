@@ -8,7 +8,7 @@ const root = process.cwd();
 const directory = path.join(root, "app/[lang]/tattoo-shop-near/_content/areas");
 const expected = ["white-town", "french-quarter", "promenade-beach", "mission-street", "goubert-avenue", "lawspet", "muthialpet", "reddiarpalayam", "auroville", "serenity-beach", "kottakuppam"];
 const base = process.argv[2];
-const siteUrl = "https://spiritualart3.com";
+const siteUrl = "https://www.spiritualtattooart.com";
 const serviceIndex = fs.readFileSync(path.join(root, "app/[lang]/services/_content/registry.ts"), "utf8");
 const services = new Set([...serviceIndex.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]));
 const index = fs.readFileSync(path.join(directory, "index.ts"), "utf8");

@@ -216,7 +216,7 @@ Yes. We offer professional piercings in the same studio. Start with our [ear pie
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/white-town#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/white-town#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -287,13 +287,13 @@ Yes. We offer professional piercings in the same studio. Start with our [ear pie
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -344,19 +344,19 @@ Yes. We offer professional piercings in the same studio. Start with our [ear pie
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/white-town#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/white-town#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near White Town",
-      "item": "https://spiritualart3.com/tattoo-shop-near/white-town"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/white-town"
     }
   ]
 }
@@ -569,7 +569,7 @@ Seek medical care for spreading redness, marked swelling, pus, fever, worsening 
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/auroville#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/auroville#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -656,13 +656,13 @@ Seek medical care for spreading redness, marked swelling, pus, fever, worsening 
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -713,19 +713,19 @@ Seek medical care for spreading redness, marked swelling, pus, fever, worsening 
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/auroville#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/auroville#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Auroville",
-      "item": "https://spiritualart3.com/tattoo-shop-near/auroville"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/auroville"
     }
   ]
 }
@@ -953,7 +953,7 @@ Before travelling home, ask how routine aftercare follow-up works and keep your 
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/french-quarter#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/french-quarter#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -1024,13 +1024,13 @@ Before travelling home, ask how routine aftercare follow-up works and keep your 
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -1081,19 +1081,19 @@ Before travelling home, ask how routine aftercare follow-up works and keep your 
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/french-quarter#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/french-quarter#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near French Quarter",
-      "item": "https://spiritualart3.com/tattoo-shop-near/french-quarter"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/french-quarter"
     }
   ]
 }
@@ -1308,7 +1308,7 @@ We open at 10 am every day. Have breakfast and a shower after your walk, then co
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/goubert-avenue#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/goubert-avenue#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -1371,13 +1371,13 @@ We open at 10 am every day. Have breakfast and a shower after your walk, then co
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -1428,19 +1428,19 @@ We open at 10 am every day. Have breakfast and a shower after your walk, then co
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/goubert-avenue#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/goubert-avenue#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Goubert Avenue",
-      "item": "https://spiritualart3.com/tattoo-shop-near/goubert-avenue"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/goubert-avenue"
     }
   ]
 }
@@ -1664,7 +1664,7 @@ Monday through Thursday from 10 AM to 8 PM, and Friday through Sunday from 10 AM
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/kottakuppam#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/kottakuppam#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -1759,13 +1759,13 @@ Monday through Thursday from 10 AM to 8 PM, and Friday through Sunday from 10 AM
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -1816,19 +1816,19 @@ Monday through Thursday from 10 AM to 8 PM, and Friday through Sunday from 10 AM
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/kottakuppam#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/kottakuppam#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Kottakuppam",
-      "item": "https://spiritualart3.com/tattoo-shop-near/kottakuppam"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/kottakuppam"
     }
   ]
 }
@@ -2042,7 +2042,7 @@ Ask about a multi-session plan during the free consultation. Mukhilan can explai
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/lawspet#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/lawspet#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -2105,13 +2105,13 @@ Ask about a multi-session plan during the free consultation. Mukhilan can explai
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -2162,19 +2162,19 @@ Ask about a multi-session plan during the free consultation. Mukhilan can explai
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/lawspet#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/lawspet#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Lawspet",
-      "item": "https://spiritualart3.com/tattoo-shop-near/lawspet"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/lawspet"
     }
   ]
 }
@@ -2382,7 +2382,7 @@ Feeling nervous is understandable. Bring your questions to the free consultation
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/mission-street#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/mission-street#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -2445,13 +2445,13 @@ Feeling nervous is understandable. Bring your questions to the free consultation
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -2502,19 +2502,19 @@ Feeling nervous is understandable. Bring your questions to the free consultation
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/mission-street#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/mission-street#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Mission Street",
-      "item": "https://spiritualart3.com/tattoo-shop-near/mission-street"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/mission-street"
     }
   ]
 }
@@ -2733,7 +2733,7 @@ The studio is open Monday through Thursday from 10 AM to 8 PM, and Friday throug
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/muthialpet#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/muthialpet#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -2828,13 +2828,13 @@ The studio is open Monday through Thursday from 10 AM to 8 PM, and Friday throug
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -2885,19 +2885,19 @@ The studio is open Monday through Thursday from 10 AM to 8 PM, and Friday throug
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/muthialpet#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/muthialpet#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Muthialpet",
-      "item": "https://spiritualart3.com/tattoo-shop-near/muthialpet"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/muthialpet"
     }
   ]
 }
@@ -3120,7 +3120,7 @@ No. Keep fresh ink covered with clothing instead. Start using sunscreen only aft
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/promenade-beach#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/promenade-beach#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -3183,13 +3183,13 @@ No. Keep fresh ink covered with clothing instead. Start using sunscreen only aft
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -3240,19 +3240,19 @@ No. Keep fresh ink covered with clothing instead. Start using sunscreen only aft
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/promenade-beach#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/promenade-beach#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Promenade Beach",
-      "item": "https://spiritualart3.com/tattoo-shop-near/promenade-beach"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/promenade-beach"
     }
   ]
 }
@@ -3451,7 +3451,7 @@ Get medical help for possible infection symptoms such as spreading redness, mark
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/reddiarpalayam#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/reddiarpalayam#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -3538,13 +3538,13 @@ Get medical help for possible infection symptoms such as spreading redness, mark
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -3595,19 +3595,19 @@ Get medical help for possible infection symptoms such as spreading redness, mark
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/reddiarpalayam#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/reddiarpalayam#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Reddiarpalayam",
-      "item": "https://spiritualart3.com/tattoo-shop-near/reddiarpalayam"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/reddiarpalayam"
     }
   ]
 }
@@ -3829,7 +3829,7 @@ Monday through Thursday from 10 AM to 8 PM, and Friday through Sunday from 10 AM
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/serenity-beach#faq",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/serenity-beach#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -3924,13 +3924,13 @@ Monday through Thursday from 10 AM to 8 PM, and Friday through Sunday from 10 AM
     "TattooParlor",
     "HealthAndBeautyBusiness"
   ],
-  "@id": "https://spiritualart3.com/#studio",
+  "@id": "https://www.spiritualtattooart.com/#studio",
   "name": "Spiritual Tattoo Art Studio",
-  "url": "https://spiritualart3.com",
+  "url": "https://www.spiritualtattooart.com",
   "telephone": "+91 81242 59830",
   "email": "Mukhimax26@gmail.com",
-  "image": "https://spiritualart3.com/media/studio-gallery/studio-gallery-2.png",
-  "logo": "https://spiritualart3.com/cover-kali.png",
+  "image": "https://www.spiritualtattooart.com/media/studio-gallery/studio-gallery-2.png",
+  "logo": "https://www.spiritualtattooart.com/cover-kali.png",
   "foundingDate": "2018",
   "founder": {
     "@type": "Person",
@@ -3981,19 +3981,19 @@ Monday through Thursday from 10 AM to 8 PM, and Friday through Sunday from 10 AM
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "@id": "https://spiritualart3.com/tattoo-shop-near/serenity-beach#breadcrumb",
+  "@id": "https://www.spiritualtattooart.com/tattoo-shop-near/serenity-beach#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://spiritualart3.com"
+      "item": "https://www.spiritualtattooart.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Tattoo shop near Serenity Beach",
-      "item": "https://spiritualart3.com/tattoo-shop-near/serenity-beach"
+      "item": "https://www.spiritualtattooart.com/tattoo-shop-near/serenity-beach"
     }
   ]
 }

@@ -8,7 +8,7 @@ import { localeMeta, localePath, locales, type Locale } from "./i18n/config";
 export const site = {
   name: "Spiritual Tattoo Art Studio",
   shortName: "Spiritual Tattoo Art",
-  url: "https://spiritualart3.com",
+  url: "https://www.spiritualtattooart.com",
   founded: 2013,
   owner: "Mukhilan",
   phone: "+91 81242 59830",
